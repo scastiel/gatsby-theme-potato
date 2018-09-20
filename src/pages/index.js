@@ -1,11 +1,11 @@
 import React from 'react'
 import Layout from '../components/Layout'
-import PostListQuery from '../queries/PostListQuery'
+import PostList from '../components/PostList'
 
 const Index = () => {
   return (
     <Layout isHome>
-      <PostListQuery />
+      <PostList />
     </Layout>
   )
 }

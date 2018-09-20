@@ -1,13 +1,14 @@
 import React from 'react'
 import BlogPost from './BlogPost'
+import PostsQuery from '../queries/PostsQuery'
 
 const PostList = ({ posts }) => {
   return (
-    <div>
-      {posts.map(post => (
-        <BlogPost key={post.id} post={post} isExcerpt />
-      ))}
-    </div>
+    <PostsQuery>
+      {posts =>
+        posts.map(post => <BlogPost key={post.id} post={post} isExcerpt />)
+      }
+    </PostsQuery>
   )
 }
 

@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'gatsby'
 import styled from 'styled-components'
+import SiteMetadataQuery from '../queries/SiteMetadataQuery'
 
 const StyledLayout = styled.div`
   box-sizing: border-box;
@@ -18,11 +19,23 @@ const StyledLayout = styled.div`
   }
 `
 
-const BlogTitle = styled.h1`
+const BlogHeader = styled.header`
   margin-top: ${props => (props.isHome ? '3rem' : '1rem')};
-  margin-bottom: 1em;
-  font-size: ${props => (props.isHome ? '60px' : '40px')};
+  padding-bottom: 1em;
   border-bottom: ${props => (props.isHome ? '0' : '1px dotted #d3d3d3')};
+
+  h1 {
+    font-size: ${props => (props.isHome ? '60px' : '40px')};
+    margin: 0;
+  }
+
+  .description {
+    color: #888888;
+    font-size: 21px;
+    font-style: italic;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+  }
 
   a {
     color: inherit;
@@ -32,9 +45,21 @@ const BlogTitle = styled.h1`
 
 const Layout = ({ children, isHome }) => (
   <StyledLayout>
-    <BlogTitle isHome={isHome}>
-      <Link to="/">My blog</Link>
-    </BlogTitle>
+    <SiteMetadataQuery>
+      {({ title, description }) => (
+        <BlogHeader isHome={isHome}>
+          <h1>
+            <Link to="/">{title}</Link>
+          </h1>
+          {isHome && (
+            <div
+              className="description"
+              dangerouslySetInnerHTML={{ __html: description }}
+            />
+          )}
+        </BlogHeader>
+      )}
+    </SiteMetadataQuery>
     {children}
   </StyledLayout>
 )

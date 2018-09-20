@@ -1,8 +1,7 @@
 import React from 'react'
 import { graphql, StaticQuery } from 'gatsby'
-import PostList from '../components/PostList'
 
-const PostListQuery = () => (
+const PostsQuery = ({ children }) => (
   <StaticQuery
     query={graphql`
       query {
@@ -25,9 +24,9 @@ const PostListQuery = () => (
     `}
     render={({ allMarkdownRemark: { edges } }) => {
       const posts = edges.map(edge => edge.node)
-      return <PostList posts={posts} />
+      return children(posts)
     }}
   />
 )
 
-export default PostListQuery
+export default PostsQuery
