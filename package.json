@@ -9,6 +9,8 @@
   },
   "dependencies": {
     "gatsby": "^2.0.0",
+    "gatsby-source-filesystem": "^2.0.1",
+    "gatsby-transformer-remark": "^2.1.3",
     "react": "^16.5.1",
     "react-dom": "^16.5.1"
   },
@@ -37,7 +39,8 @@
       "plugin:prettier/recommended"
     ],
     "rules": {
-      "react/display-name": 0
+      "react/display-name": 0,
+      "react/prop-types": 0
     },
     "env": {
       "jest": true
