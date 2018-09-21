@@ -1,6 +1,8 @@
 import React from 'react'
 import { Link } from 'gatsby'
 import styled from 'styled-components'
+import 'prismjs/plugins/line-numbers/prism-line-numbers.css'
+import 'prismjs/themes/prism.css'
 
 const renderDate = date => new Date(date).toDateString()
 
@@ -26,6 +28,26 @@ const Content = styled.div`
   font-size: 21px;
   color: #333333;
   line-height: 150%;
+
+  pre {
+    max-width: 100%;
+    overflow-x: auto;
+    line-height: 100%;
+
+    code {
+      font-size: 75%;
+    }
+  }
+
+  code {
+    font-size: 85%;
+  }
+`
+
+const ReadMoreLink = styled(Link)`
+  color: inherit;
+  font-style: italic;
+  color: #888888;
 `
 
 const BlogPost = ({ post, isExcerpt }) => {
@@ -45,7 +67,9 @@ const BlogPost = ({ post, isExcerpt }) => {
       </header>
       {isExcerpt ? (
         <Content>
-          <p>{excerpt}</p>
+          <p>
+            {excerpt} <ReadMoreLink to={slug}>Continue reading…</ReadMoreLink>
+          </p>
         </Content>
       ) : (
         <Content dangerouslySetInnerHTML={{ __html: html }} />

@@ -5,7 +5,7 @@ import BlogPost from '../components/BlogPost'
 
 const BlogPostTemplate = ({ data: { markdownRemark: post } }) => {
   return (
-    <Layout>
+    <Layout title={post.frontmatter.title}>
       <BlogPost post={post} />
     </Layout>
   )

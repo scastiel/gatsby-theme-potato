@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'gatsby'
 import styled from 'styled-components'
+import { Helmet } from 'react-helmet'
 import SiteMetadataQuery from '../queries/SiteMetadataQuery'
 
 const StyledLayout = styled.div`
@@ -27,6 +28,10 @@ const BlogHeader = styled.header`
   h1 {
     font-size: ${props => (props.isHome ? '60px' : '40px')};
     margin: 0;
+
+    a {
+      text-decoration: none;
+    }
   }
 
   .description {
@@ -39,25 +44,35 @@ const BlogHeader = styled.header`
 
   a {
     color: inherit;
-    text-decoration: none;
   }
 `
 
-const Layout = ({ children, isHome }) => (
+const Layout = ({ children, isHome, title }) => (
   <StyledLayout>
     <SiteMetadataQuery>
-      {({ title, description }) => (
-        <BlogHeader isHome={isHome}>
-          <h1>
-            <Link to="/">{title}</Link>
-          </h1>
-          {isHome && (
-            <div
-              className="description"
-              dangerouslySetInnerHTML={{ __html: description }}
-            />
-          )}
-        </BlogHeader>
+      {({ title: blogTitle, description }) => (
+        <>
+          <Helmet>
+            <meta charSet="utf-8" />
+            <title>
+              {title ? `${title} | ` : ''}
+              {blogTitle}
+            </title>
+            <meta name="description" value={description} />
+            <link rel="canonical" href="http://mysite.com/example" />
+          </Helmet>
+          <BlogHeader isHome={isHome}>
+            <h1>
+              <Link to="/">{blogTitle}</Link>
+            </h1>
+            {isHome && (
+              <div
+                className="description"
+                dangerouslySetInnerHTML={{ __html: description }}
+              />
+            )}
+          </BlogHeader>
+        </>
       )}
     </SiteMetadataQuery>
     {children}
