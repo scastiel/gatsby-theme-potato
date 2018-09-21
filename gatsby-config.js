@@ -1,3 +1,5 @@
+require('babel-polyfill')
+
 module.exports = {
   siteMetadata: {
     title: 'Another webdev blog',
@@ -57,6 +59,8 @@ module.exports = {
           }
         ]
       }
-    }
+    },
+    'gatsby-redirect-from',
+    'gatsby-plugin-meta-redirect'
   ]
 }
