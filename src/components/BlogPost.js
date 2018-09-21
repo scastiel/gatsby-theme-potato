@@ -8,7 +8,7 @@ const renderDate = date => new Date(date).toDateString()
 
 const Title = styled.h2`
   color: #333333;
-  font-size: ${({ isExcerpt }) => (isExcerpt ? '2em' : '3rem')};
+  font-size: ${({ isExcerpt }) => (isExcerpt ? '1.3rem' : '3rem')};
   font-weight: 700;
   margin-top: 3rem;
   margin-bottom: 0;
@@ -21,7 +21,7 @@ const Title = styled.h2`
 
 const Infos = styled.div`
   color: rgba(0, 0, 0, 0.5);
-  margin-top: 1rem;
+  margin-top: ${({ isExcerpt }) => (isExcerpt ? '0.5rem' : '1rem')};
 `
 
 const Content = styled.div`
@@ -63,7 +63,7 @@ const BlogPost = ({ post, isExcerpt }) => {
         <Title isExcerpt={isExcerpt}>
           <Link to={slug}>{title}</Link>
         </Title>
-        <Infos>{renderDate(date)}</Infos>
+        <Infos isExcerpt={isExcerpt}>{renderDate(date)}</Infos>
       </header>
       {isExcerpt ? (
         <Content>
