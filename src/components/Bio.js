@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { Link } from 'gatsby'
 
 const StyledDiv = styled.div`
-  color: #888888;
+  color: #707070;
   font-size: 1.1rem;
   font-style: italic;
   margin-bottom: 1rem;

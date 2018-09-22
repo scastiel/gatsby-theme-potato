@@ -9,6 +9,7 @@ const BlogPostTemplate = ({ data: { markdownRemark: post } }) => {
       title={post.frontmatter.title}
       slug={post.fields.slug}
       description={post.excerpt}
+      lang={post.frontmatter.lang}
     >
       <BlogPost post={post} />
     </Layout>

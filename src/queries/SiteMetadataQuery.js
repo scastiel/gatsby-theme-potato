@@ -10,6 +10,7 @@ const SiteMetadataQuery = ({ children }) => (
             title
             description
             siteUrl
+            lang
           }
         }
       }

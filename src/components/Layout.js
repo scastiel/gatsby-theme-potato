@@ -62,20 +62,27 @@ const Layout = ({
   title,
   displayTitle,
   slug,
-  description
+  description,
+  lang
 }) => (
   <StyledLayout>
     <SiteMetadataQuery>
-      {({ title: blogTitle, description: siteDescription, siteUrl }) => (
+      {({
+        title: blogTitle,
+        description: siteDescription,
+        lang: siteLang,
+        siteUrl
+      }) => (
         <>
           <Helmet>
+            <html lang={lang || siteLang} />
             <meta charSet="utf-8" />
             <title>
               {title ? `${title} | ` : ''}
               {blogTitle}
             </title>
-            <meta name="description" value={description || siteDescription} />
-            <meta name="canonical" value={siteUrl + (slug || '')} />
+            <meta name="description" content={description || siteDescription} />
+            <meta name="canonical" content={siteUrl + (slug || '')} />
           </Helmet>
           <BlogHeader isHome={isHome}>
             <h1>

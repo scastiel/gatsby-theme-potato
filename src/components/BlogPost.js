@@ -25,7 +25,7 @@ const Title = styled.h2`
 const Infos = styled.div`
   font-family: 'PT Sans', sans-serif;
   font-size: 0.9em;
-  color: rgba(0, 0, 0, 0.5);
+  color: #707070;
   margin-top: ${({ isExcerpt }) => (isExcerpt ? '0.5rem' : '1rem')};
 `
 

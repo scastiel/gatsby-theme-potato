@@ -5,7 +5,8 @@ module.exports = {
     title: 'Sébastien Castiel',
     siteUrl: 'https://blog.castiel.me',
     description:
-      'I’m Sébastien Castiel, and I write about web development and some other stuff.'
+      'I’m Sébastien Castiel, and I write about web development and some other stuff.',
+    lang: 'en'
   },
   plugins: [
     'gatsby-plugin-feed',
@@ -48,7 +49,7 @@ module.exports = {
       resolve: 'gatsby-plugin-manifest',
       options: {
         name: 'Sébastien Castiel',
-        short_name: 'Sébastien Castiel',
+        short_name: 'S. Castiel',
         start_url: '/',
         background_color: '#ffffff',
         theme_color: '#ffffff',
