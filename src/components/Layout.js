@@ -60,7 +60,6 @@ const Layout = ({ children, isHome, title, displayTitle }) => (
               {blogTitle}
             </title>
             <meta name="description" value={description} />
-            <link rel="canonical" href="http://mysite.com/example" />
           </Helmet>
           <BlogHeader isHome={isHome}>
             <h1>
