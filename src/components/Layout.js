@@ -59,7 +59,7 @@ const BlogHeader = styled.header`
 const Layout = ({ children, isHome, title, displayTitle, slug }) => (
   <StyledLayout>
     <SiteMetadataQuery>
-      {({ title: blogTitle, description, url }) => (
+      {({ title: blogTitle, description, siteUrl }) => (
         <>
           <Helmet>
             <meta charSet="utf-8" />
@@ -68,7 +68,7 @@ const Layout = ({ children, isHome, title, displayTitle, slug }) => (
               {blogTitle}
             </title>
             <meta name="description" value={description} />
-            <meta name="canonical" value={url + (slug || '')} />
+            <meta name="canonical" value={siteUrl + (slug || '')} />
           </Helmet>
           <BlogHeader isHome={isHome}>
             <h1>

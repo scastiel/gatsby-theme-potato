@@ -9,7 +9,7 @@ const SiteMetadataQuery = ({ children }) => (
           siteMetadata {
             title
             description
-            url
+            siteUrl
           }
         }
       }
