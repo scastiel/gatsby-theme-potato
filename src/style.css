@@ -1,0 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=PT+Serif|PT+Sans');
+
+html {
+  font-size: calc(18px + (24 - 18) * (100vw - 800px) / (800-400));
+}

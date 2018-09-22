@@ -12,6 +12,7 @@ const StyledLayout = styled.div`
   margin-left: auto;
   margin-right: auto;
   padding: 0.5em;
+  font-family: 'PT Serif', serif;
 
   *,
   *:before,
@@ -36,7 +37,7 @@ const BlogHeader = styled.header`
 
   .description {
     color: #888888;
-    font-size: 21px;
+    font-size: 1.1rem;
     font-style: italic;
     margin-bottom: 1rem;
     margin-top: 1rem;

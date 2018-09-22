@@ -6,10 +6,11 @@ import 'prismjs/themes/prism.css'
 
 const renderDate = date => new Date(date).toDateString()
 
-const Title = styled.h1`
+const Title = styled.h2`
+  font-family: 'PT Sans', sans-serif;
   color: #333333;
-  font-size: ${({ isExcerpt }) => (isExcerpt ? '1.5em' : null)};
-  /* font-weight: 700; */
+  font-size: ${({ isExcerpt }) => (isExcerpt ? '1.5rem' : '2.2em')};
+  font-weight: 700;
   margin-top: 2rem;
   margin-bottom: 0;
 
@@ -25,10 +26,8 @@ const Infos = styled.div`
 `
 
 const Content = styled.div`
-  /* font-size: 21px; */
   color: #333333;
-  /* line-height: 150%; */
-
+  line-height: 1.7;
   pre {
     max-width: 100%;
     overflow-x: auto;
@@ -41,6 +40,13 @@ const Content = styled.div`
 
   code {
     font-size: 85%;
+  }
+
+  h2,
+  h3,
+  h4,
+  h5 {
+    font-family: 'PT Sans', sans-serif;
   }
 `
 
