@@ -5,7 +5,7 @@ module.exports = {
     title: 'Sébastien Castiel',
     siteUrl: 'https://blog.castiel.me',
     description:
-      'I’m <a href="https://twitter.com/scastiel">Sébastien Castiel</a>, and I talk about web development and some other stuff.'
+      'I’m Sébastien Castiel, and I write about web development and some other stuff.'
   },
   plugins: [
     'gatsby-plugin-feed',

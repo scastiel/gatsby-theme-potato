@@ -56,10 +56,17 @@ const BlogHeader = styled.header`
   }
 `
 
-const Layout = ({ children, isHome, title, displayTitle, slug }) => (
+const Layout = ({
+  children,
+  isHome,
+  title,
+  displayTitle,
+  slug,
+  description
+}) => (
   <StyledLayout>
     <SiteMetadataQuery>
-      {({ title: blogTitle, description, siteUrl }) => (
+      {({ title: blogTitle, description: siteDescription, siteUrl }) => (
         <>
           <Helmet>
             <meta charSet="utf-8" />
@@ -67,7 +74,7 @@ const Layout = ({ children, isHome, title, displayTitle, slug }) => (
               {title ? `${title} | ` : ''}
               {blogTitle}
             </title>
-            <meta name="description" value={description} />
+            <meta name="description" value={description || siteDescription} />
             <meta name="canonical" value={siteUrl + (slug || '')} />
           </Helmet>
           <BlogHeader isHome={isHome}>
