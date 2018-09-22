@@ -3,6 +3,13 @@ import { graphql } from 'gatsby'
 import Layout from '../components/Layout'
 import BlogPost from '../components/BlogPost'
 
+const getTitle = lang => {
+  if (lang === 'en') {
+    return 'Articles in English'
+  }
+  return 'Articles en français'
+}
+
 const LangTemplate = ({
   pageContext: { lang },
   data: {
@@ -11,7 +18,7 @@ const LangTemplate = ({
 }) => {
   const posts = edges.map(edge => edge.node)
   return (
-    <Layout title={`Articles with lang “${lang}”`} displayTitle>
+    <Layout title={getTitle(lang)} displayTitle>
       {posts.map(post => (
         <BlogPost key={post.id} post={post} isExcerpt />
       ))}

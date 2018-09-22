@@ -2,7 +2,8 @@ require('babel-polyfill')
 
 module.exports = {
   siteMetadata: {
-    title: 'Another webdev blog',
+    title: 'Sébastien Castiel',
+    url: 'https://blog.castiel.me',
     description:
       'I’m <a href="https://twitter.com/scastiel">Sébastien Castiel</a>, and I talk about web development and some other stuff.'
   },
@@ -23,9 +24,11 @@ module.exports = {
           {
             resolve: 'gatsby-remark-images',
             options: {
-              maxWidth: 590
+              maxWidth: 590,
+              linkImagesToOriginal: false
             }
           },
+          'gatsby-remark-copy-linked-files',
           {
             resolve: `gatsby-remark-prismjs`,
             options: {

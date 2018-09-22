@@ -39,7 +39,7 @@ As a complete example for this article, we’ll use HOC to create a phone number
 - accept only digits, parenthesis, dashes and spaces as input (when the user types them);
 - format the phone number when the user leaves the input (on _blur_ event). (We’ll handle only North-American phone numbers: "(514) 555-0199".)
 
-![Phone number input result](phoneNumberInput.gif)
+![Phone number input result](./phoneNumberInput.gif)
 
 Note that we suppose that our input will be controlled, i.e. will use `value` and `onChange` attributes to know the text to display and how to update it. We also want the value to contain only the phone number digits ("5145550199"), without caring about formatting, and therefor the `onChange` callback to be called with digits only (in `event.target.value`).
 

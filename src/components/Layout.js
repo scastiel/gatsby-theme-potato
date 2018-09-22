@@ -3,7 +3,9 @@ import { Link } from 'gatsby'
 import styled from 'styled-components'
 import { Helmet } from 'react-helmet'
 import SiteMetadataQuery from '../queries/SiteMetadataQuery'
-import '../style.css'
+import 'typeface-pt-sans'
+import 'typeface-pt-serif'
+import Bio from './Bio'
 
 const StyledLayout = styled.div`
   box-sizing: border-box;
@@ -13,12 +15,17 @@ const StyledLayout = styled.div`
   margin-right: auto;
   padding: 0.5em;
   font-family: 'PT Serif', serif;
+  font-size: calc(20px + (24 - 20) * (100vw - 800px) / (800-400));
   color: #555;
 
   *,
   *:before,
   *:after {
     box-sizing: inherit;
+  }
+
+  @media (min-width: 38em) {
+    font-size: 20px;
   }
 `
 
@@ -49,10 +56,10 @@ const BlogHeader = styled.header`
   }
 `
 
-const Layout = ({ children, isHome, title, displayTitle }) => (
+const Layout = ({ children, isHome, title, displayTitle, slug }) => (
   <StyledLayout>
     <SiteMetadataQuery>
-      {({ title: blogTitle, description }) => (
+      {({ title: blogTitle, description, url }) => (
         <>
           <Helmet>
             <meta charSet="utf-8" />
@@ -61,17 +68,13 @@ const Layout = ({ children, isHome, title, displayTitle }) => (
               {blogTitle}
             </title>
             <meta name="description" value={description} />
+            <meta name="canonical" value={url + (slug || '')} />
           </Helmet>
           <BlogHeader isHome={isHome}>
             <h1>
               <Link to="/">{blogTitle}</Link>
             </h1>
-            {isHome && (
-              <div
-                className="description"
-                dangerouslySetInnerHTML={{ __html: description }}
-              />
-            )}
+            {isHome && <Bio />}
           </BlogHeader>
         </>
       )}
