@@ -6,11 +6,11 @@ import 'prismjs/themes/prism.css'
 
 const renderDate = date => new Date(date).toDateString()
 
-const Title = styled.h2`
+const Title = styled.h1`
   color: #333333;
-  font-size: ${({ isExcerpt }) => (isExcerpt ? '1.3rem' : '3rem')};
-  font-weight: 700;
-  margin-top: 3rem;
+  font-size: ${({ isExcerpt }) => (isExcerpt ? '1.5em' : null)};
+  /* font-weight: 700; */
+  margin-top: 2rem;
   margin-bottom: 0;
 
   a {
@@ -25,9 +25,9 @@ const Infos = styled.div`
 `
 
 const Content = styled.div`
-  font-size: 21px;
+  /* font-size: 21px; */
   color: #333333;
-  line-height: 150%;
+  /* line-height: 150%; */
 
   pre {
     max-width: 100%;
