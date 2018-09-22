@@ -3,6 +3,7 @@ title: 'Writing modern JavaScript code'
 date: '2017-05-17'
 redirect_from:
   - /posts/004-writing-modern-javascript.html
+lang: 'en'
 ---
 
 Remember when JavaScript was a language used to make elements change on the page when the cursor was over them? These days are over, every language evolves over time, and so does the way wa use them. Look at the code you wrote one or two years ago: do you feel ashamed? If yes, this post is for you 🙂

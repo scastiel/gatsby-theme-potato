@@ -3,6 +3,7 @@ title: 'A new blog, a new blog management system'
 date: '2016-10-27'
 redirect_from:
   - /posts/001-first-post.html
+lang: 'en'
 ---
 
 Today I'm starting a new blog. I started a few blogs in the past. Personal blogs, where I talked about a lot of things. This blog is very different, here's why:

@@ -48,7 +48,7 @@ const BlogHeader = styled.header`
   }
 `
 
-const Layout = ({ children, isHome, title }) => (
+const Layout = ({ children, isHome, title, displayTitle }) => (
   <StyledLayout>
     <SiteMetadataQuery>
       {({ title: blogTitle, description }) => (
@@ -76,6 +76,7 @@ const Layout = ({ children, isHome, title }) => (
         </>
       )}
     </SiteMetadataQuery>
+    {displayTitle && <h1>{title}</h1>}
     {children}
   </StyledLayout>
 )

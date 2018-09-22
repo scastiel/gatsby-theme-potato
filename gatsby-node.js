@@ -21,15 +21,22 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
             fields {
               slug
             }
+            frontmatter {
+              lang
+            }
           }
         }
       }
     }
   `)
+
+  const langs = []
+
   result.data.allMarkdownRemark.edges.forEach(
     ({
       node: {
-        fields: { slug }
+        fields: { slug },
+        frontmatter: { lang }
       }
     }) => {
       createPage({
@@ -37,6 +44,17 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
         component: path.resolve('./src/templates/BlogPostTemplate.js'),
         context: { slug }
       })
+      if (!langs.includes(lang)) {
+        langs.push(lang)
+      }
     }
   )
+
+  langs.forEach(lang => {
+    createPage({
+      path: `/langs/${lang}`,
+      component: path.resolve('./src/templates/LangTemplate.js'),
+      context: { lang }
+    })
+  })
 }

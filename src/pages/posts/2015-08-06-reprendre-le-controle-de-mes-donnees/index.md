@@ -1,6 +1,7 @@
 ---
 title: 'Comment j’ai l’intention de reprendre le contrôle de mes données'
 date: '2015-08-06'
+lang: 'fr'
 ---
 
 À l’occasion du (fantastique) dernier [BreizhCamp](http://www.breizhcamp.org/), j’ai eu le plaisir d’assister à la keynote du fondateur et ex-président de Mozilla Europe, Tristan Nitot : _Pourquoi reprendre le contrôle de nos données_ (la transcription est disponible [sur son blog](http://standblog.org/blog/post/2015/07/02/Pourquoi-reprendre-le-controle-de-nos-donnees)).

@@ -12,6 +12,7 @@ const PostsQuery = ({ children }) => (
               frontmatter {
                 title
                 date
+                lang
               }
               excerpt
               fields {
