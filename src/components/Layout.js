@@ -13,6 +13,7 @@ const StyledLayout = styled.div`
   margin-right: auto;
   padding: 0.5em;
   font-family: 'PT Serif', serif;
+  color: #555;
 
   *,
   *:before,

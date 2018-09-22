@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import 'prismjs/plugins/line-numbers/prism-line-numbers.css'
 import 'prismjs/themes/prism.css'
 import LangLink from './LangLink'
+import CommentForm from './CommentForm'
 
 const renderDate = date => new Date(date).toDateString()
 
@@ -29,7 +30,6 @@ const Infos = styled.div`
 `
 
 const Content = styled.div`
-  color: #555;
   line-height: 1.7;
 
   pre {
@@ -88,7 +88,10 @@ const BlogPost = ({ post, isExcerpt }) => {
           </p>
         </Content>
       ) : (
-        <Content dangerouslySetInnerHTML={{ __html: html }} />
+        <>
+          <Content dangerouslySetInnerHTML={{ __html: html }} />
+          <CommentForm slug={post.fields.slug} />
+        </>
       )}
     </article>
   )
