@@ -4671,6 +4671,14 @@ gatsby-plugin-manifest@^2.0.2:
     bluebird "^3.5.0"
     sharp "^0.20.2"
 
+gatsby-plugin-matomo@^0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-matomo/-/gatsby-plugin-matomo-0.5.0.tgz#98f252b3a95d7e91938bb43e46019291ee934bc1"
+  dependencies:
+    babel-runtime "^6.26.0"
+    react "^16.4.2"
+    react-hot-loader "^4.3.4"
+
 gatsby-plugin-meta-redirect@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/gatsby-plugin-meta-redirect/-/gatsby-plugin-meta-redirect-1.1.0.tgz#f2f702be02d5cd4d17409b760e2ac1090651a9fa"
@@ -8746,7 +8754,7 @@ react-helmet@^5.2.0:
     prop-types "^15.5.4"
     react-side-effect "^1.1.0"
 
-react-hot-loader@^4.1.0:
+react-hot-loader@^4.1.0, react-hot-loader@^4.3.4:
   version "4.3.11"
   resolved "https://registry.yarnpkg.com/react-hot-loader/-/react-hot-loader-4.3.11.tgz#fe5cf7be7700c249b58293f977c1e6e0900f0d87"
   dependencies:
@@ -8772,7 +8780,7 @@ react-side-effect@^1.1.0:
     exenv "^1.2.1"
     shallowequal "^1.0.1"
 
-react@^16.5.1:
+react@^16.4.2, react@^16.5.1:
   version "16.5.2"
   resolved "https://registry.yarnpkg.com/react/-/react-16.5.2.tgz#19f6b444ed139baa45609eee6dc3d318b3895d42"
   dependencies:

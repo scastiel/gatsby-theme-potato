@@ -57,6 +57,14 @@ module.exports = {
         // icon: 'src/images/icon.png'
       }
     },
-    'gatsby-plugin-offline'
+    'gatsby-plugin-offline',
+    {
+      resolve: 'gatsby-plugin-matomo',
+      options: {
+        siteId: '3',
+        matomoUrl: 'https://scastiel.hostiso.cloud/piwik/',
+        siteUrl: 'https://blog.castiel.me'
+      }
+    }
   ]
 }
