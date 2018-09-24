@@ -3,7 +3,11 @@ import { graphql } from 'gatsby'
 import Layout from '../components/Layout'
 import BlogPost from '../components/BlogPost'
 
-const BlogPostTemplate = ({ data: { markdownRemark: post } }) => {
+const BlogPostTemplate = ({
+  data: { markdownRemark: post, allCommentsYaml }
+}) => {
+  const commentsEdges = allCommentsYaml ? allCommentsYaml.edges : []
+  const comments = commentsEdges.map(edge => edge.node)
   return (
     <Layout
       title={post.frontmatter.title}
@@ -11,7 +15,7 @@ const BlogPostTemplate = ({ data: { markdownRemark: post } }) => {
       description={post.excerpt}
       lang={post.frontmatter.lang}
     >
-      <BlogPost post={post} />
+      <BlogPost post={post} comments={comments} />
     </Layout>
   )
 }
@@ -28,6 +32,18 @@ export const query = graphql`
       }
       fields {
         slug
+      }
+    }
+    allCommentsYaml(filter: { slug: { eq: $slug } }) {
+      edges {
+        node {
+          slug
+          date
+          name
+          email
+          url
+          message
+        }
       }
     }
   }

@@ -2,13 +2,13 @@ import React, { Component, createRef } from 'react'
 import styled from 'styled-components'
 
 const StyledInput = styled.input`
-  border: 1px solid #aaa;
+  border: 1px solid #d3d3d3;
   max-width: 20em;
   padding: 0.3rem;
   font-size: 1rem;
 `
 const StyledTextArea = styled.textarea`
-  border: 1px solid #aaa;
+  border: 1px solid #d3d3d3;
   padding: 0.3rem;
   font-size: 1rem;
   resize: vertical;
@@ -21,7 +21,7 @@ const StyledLabel = styled.label`
 const StyledButton = styled.button`
   font-size: 1rem;
   font-family: inherit;
-  border: 1px solid #aaa;
+  border: 1px solid #d3d3d3;
   background-color: inherit;
   padding: 0.3em 1em;
 `
@@ -48,8 +48,6 @@ class CommentForm extends Component {
         <input type="hidden" name="form-name" value="comment" />
         <input name="date" type="hidden" ref={this.dateInput} />
 
-        <hr />
-        <h4>Leave a comment</h4>
         <p hidden>
           <label>
             Don’t fill this out: <input name="bot-field" />
@@ -57,12 +55,17 @@ class CommentForm extends Component {
         </p>
         <p>
           <StyledLabel>
-            Your Name: <StyledInput required type="text" name="name" />
+            Your name: <StyledInput required type="text" name="name" />
           </StyledLabel>
         </p>
         <p>
           <StyledLabel>
-            Your Email: <StyledInput required type="email" name="email" />
+            Your email: <StyledInput required type="email" name="email" />
+          </StyledLabel>
+        </p>
+        <p>
+          <StyledLabel>
+            Your website (optional): <StyledInput type="url" name="url" />
           </StyledLabel>
         </p>
         <p>

@@ -5,6 +5,7 @@ import 'prismjs/plugins/line-numbers/prism-line-numbers.css'
 import 'prismjs/themes/prism.css'
 import LangLink from './LangLink'
 import CommentForm from './CommentForm'
+import Comment from './Comment'
 
 const renderDate = date => new Date(date).toDateString()
 
@@ -58,13 +59,18 @@ const Content = styled.div`
   }
 `
 
+const Separator = styled.hr`
+  border-style: none;
+  border-bottom: 1px dotted #d3d3d3;
+`
+
 const ReadMoreLink = styled(Link)`
   color: inherit;
   font-style: italic;
   color: #888888;
 `
 
-const BlogPost = ({ post, isExcerpt }) => {
+const BlogPost = ({ post, comments, isExcerpt }) => {
   const {
     frontmatter: { title, date, lang },
     fields: { slug },
@@ -90,6 +96,14 @@ const BlogPost = ({ post, isExcerpt }) => {
       ) : (
         <>
           <Content dangerouslySetInnerHTML={{ __html: html }} />
+          <Separator />
+          <h3>Comments</h3>
+          {comments.length === 0 && <p>No comment yet.</p>}
+          {comments.map((comment, index) => (
+            <Comment key={index} comment={comment} />
+          ))}
+          <Separator />
+          <h3>Leave a comment</h3>
           <CommentForm slug={post.fields.slug} />
         </>
       )}

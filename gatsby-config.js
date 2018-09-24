@@ -12,11 +12,19 @@ module.exports = {
     'gatsby-plugin-feed',
     'gatsby-plugin-sharp',
     'gatsby-plugin-react-helmet',
+    'gatsby-transformer-yaml',
     {
       resolve: 'gatsby-source-filesystem',
       options: {
         name: 'src',
         path: `${__dirname}/src/pages/`
+      }
+    },
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'comments',
+        path: `${__dirname}/src/comments/`
       }
     },
     {
