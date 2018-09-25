@@ -73,6 +73,7 @@ module.exports = {
         matomoUrl: 'https://scastiel.hostiso.cloud/piwik/',
         siteUrl: 'https://blog.castiel.me'
       }
-    }
+    },
+    'gatsby-plugin-styled-components'
   ]
 }
