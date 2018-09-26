@@ -11,7 +11,7 @@ const renderDate = date => new Date(date).toDateString()
 
 const Title = styled.h2`
   font-family: 'PT Sans', sans-serif;
-  color: #333333;
+  color: var(--titleTextColor);
   font-size: ${({ isExcerpt }) => (isExcerpt ? '1.5rem' : '2.2em')};
   font-weight: 700;
   margin-top: 2rem;
@@ -26,7 +26,7 @@ const Title = styled.h2`
 const Infos = styled.div`
   font-family: 'PT Sans', sans-serif;
   font-size: 0.9em;
-  color: #707070;
+  color: var(--lightTextColor);
   margin-top: ${({ isExcerpt }) => (isExcerpt ? '0.5rem' : '1rem')};
 `
 
@@ -55,19 +55,18 @@ const Content = styled.div`
   }
 
   a {
-    color: #000;
+    color: var(--linkTextColor);
   }
 `
 
 const Separator = styled.hr`
   border-style: none;
-  border-bottom: 1px dotted #d3d3d3;
+  border-bottom: 1px dotted var(--separatorColor);
 `
 
 const ReadMoreLink = styled(Link)`
-  color: inherit;
   font-style: italic;
-  color: #888888;
+  color: var(--linkTextColor);
 `
 
 const BlogPost = ({ post, comments, isExcerpt }) => {

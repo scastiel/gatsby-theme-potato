@@ -6,8 +6,10 @@ import SiteMetadataQuery from '../queries/SiteMetadataQuery'
 import 'typeface-pt-sans'
 import 'typeface-pt-serif'
 import Bio from './Bio'
+import '../colors.css'
 
 const StyledLayout = styled.div`
+  background-color: var(--backgroundColor);
   box-sizing: border-box;
   width: 100%;
   max-width: 40em;
@@ -16,7 +18,7 @@ const StyledLayout = styled.div`
   padding: 0.5em;
   font-family: 'PT Serif', serif;
   font-size: calc(20px + (24 - 20) * (100vw - 800px) / (800-400));
-  color: #555;
+  color: var(--textColor);
 
   *,
   *:before,
@@ -32,7 +34,8 @@ const StyledLayout = styled.div`
 const BlogHeader = styled.header`
   margin-top: ${props => (props.isHome ? '3em' : '0.5em')};
   padding-bottom: 1em;
-  border-bottom: ${props => (props.isHome ? '0' : '1px dotted #d3d3d3')};
+  border-bottom: ${props =>
+    props.isHome ? '0' : '1px dotted var(--separatorColor)'};
 
   h1 {
     font-size: ${props => (props.isHome ? '2em' : '1.5em')};

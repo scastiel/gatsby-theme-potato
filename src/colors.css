@@ -1,0 +1,25 @@
+body {
+  margin: 0;
+}
+html {
+  --textColor: hsl(0, 0%, 30%);
+  --lightTextColor: hsl(0, 0%, 40%);
+  --titleTextColor: hsl(0, 0%, 20%);
+  --linkTextColor: hsl(0, 0%, 20%);
+  --backgroundColor: hsl(0, 0%, 100%);
+  --separatorColor: hsl(0, 0%, 80%);
+  --commentBorderColor: hsl(0, 0%, 90%);
+  --inputBorderColor: hsl(0, 0%, 70%);
+}
+
+/* Let’s get ready for dark mode! */
+/* html {
+  --textColor: hsl(0, 0%, 70%);
+  --lightTextColor: hsl(0, 0%, 60%);
+  --titleTextColor: hsl(0, 0%, 80%);
+  --linkTextColor: hsl(0, 0%, 80%);
+  --backgroundColor: hsl(0, 0%, 15%);
+  --separatorColor: hsl(0, 0%, 20%);
+  --commentBorderColor: hsl(0, 0%, 10%);
+  --inputBorderColor: hsl(0, 0%, 30%);
+} */

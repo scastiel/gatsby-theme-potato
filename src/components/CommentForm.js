@@ -2,13 +2,21 @@ import React, { Component, createRef } from 'react'
 import styled from 'styled-components'
 
 const StyledInput = styled.input`
-  border: 1px solid #d3d3d3;
+  border-color: var(--inputBorderColor);
+  border-width: 1px;
+  border-style: solid;
+  background-color: var(--backgroundColor);
+  color: var(--textColor);
   max-width: 20em;
   padding: 0.3rem;
   font-size: 1rem;
 `
 const StyledTextArea = styled.textarea`
-  border: 1px solid #d3d3d3;
+  border-color: var(--inputBorderColor);
+  border-width: 1px;
+  border-style: solid;
+  background-color: var(--backgroundColor);
+  color: var(--textColor);
   padding: 0.3rem;
   font-size: 1rem;
   resize: vertical;
@@ -21,7 +29,8 @@ const StyledLabel = styled.label`
 const StyledButton = styled.button`
   font-size: 1rem;
   font-family: inherit;
-  border: 1px solid #d3d3d3;
+  border: 1px solid var(--inputBorderColor);
+  color: var(--textColor);
   background-color: inherit;
   padding: 0.3em 1em;
 `

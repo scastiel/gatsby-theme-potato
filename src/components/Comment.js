@@ -5,12 +5,12 @@ const Title = styled.h5`
   margin-bottom: 0;
 
   a {
-    color: #000000;
+    color: var(--linkTextColor);
   }
 `
 
 const Content = styled.p`
-  border-left: 0.5em solid #eeeeee;
+  border-left: 0.5em solid var(--commentBorderColor);
   padding: 0.5em;
   margin-top: 0.5em;
   white-space: pre-wrap;
