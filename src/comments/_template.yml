@@ -1,3 +1,5 @@
+# Just to have all the fields for querying even if there is no comment.
+_id: some_id
 slug: /posts/slug
 name: Commenter name
 date: 2018-03-09T01:00:00.000Z

@@ -34,13 +34,16 @@ export const query = graphql`
         slug
       }
     }
-    allCommentsYaml(filter: { slug: { eq: $slug } }) {
+    allCommentsYaml(
+      sort: { fields: [date], order: ASC }
+      filter: { slug: { eq: $slug } }
+    ) {
       edges {
         node {
+          _id
           slug
           date
           name
-          email
           url
           message
         }

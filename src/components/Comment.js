@@ -23,7 +23,7 @@ const Comment = ({ comment }) => {
     comment.name
   )
   return (
-    <div>
+    <div data-id={comment._id}>
       <Title>
         {author} – {new Date(comment.date).toLocaleDateString()}
       </Title>

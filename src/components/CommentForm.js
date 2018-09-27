@@ -35,56 +35,79 @@ const StyledButton = styled.button`
   padding: 0.3em 1em;
 `
 
+const STATUS = {
+  INITIAL: 'INITIAL',
+  ERROR: 'ERROR',
+  POSTING: 'POSTING',
+  DONE: 'DONE'
+}
+
 class CommentForm extends Component {
   constructor(props) {
     super(props)
-    this.dateInput = createRef()
+    this.formRef = createRef()
+    this.state = { status: STATUS.INITIAL }
   }
-  onSubmit = event => {
-    this.dateInput.current.value = new Date().toISOString()
+  onSubmit = async event => {
+    event.preventDefault()
+    this.setState({ status: STATUS.POSTING })
+    try {
+      const form = this.formRef.current
+      const { action, method } = form
+      const body = new URLSearchParams(new FormData(form))
+      await fetch(action, { method, body })
+      form.reset()
+      this.setState({ status: STATUS.DONE })
+    } catch (err) {
+      console.error(err)
+      this.setState({ status: STATUS.ERROR })
+    }
   }
   render() {
     const { slug } = this.props
+    const { status } = this.state
     return (
       <form
         name="comment"
         method="POST"
-        data-netlify="true"
-        data-netlify-honeypot="bot-field"
+        action="https://scastiel-blog-comments.herokuapp.com/v2/entry/scastiel/new-blog/master/comments"
         onSubmit={this.onSubmit}
+        ref={this.formRef}
       >
-        <input type="hidden" name="slug" value={slug} />
-        <input type="hidden" name="form-name" value="comment" />
-        <input name="date" type="hidden" ref={this.dateInput} />
+        <input type="hidden" name="fields[slug]" value={slug} />
 
-        <p hidden>
-          <label>
-            Don’t fill this out: <input name="bot-field" />
-          </label>
-        </p>
         <p>
           <StyledLabel>
-            Your name: <StyledInput required type="text" name="name" />
+            Your name: <StyledInput required type="text" name="fields[name]" />
           </StyledLabel>
         </p>
         <p>
           <StyledLabel>
-            Your email: <StyledInput required type="email" name="email" />
+            Your email:{' '}
+            <StyledInput required type="email" name="fields[email]" />
           </StyledLabel>
         </p>
         <p>
           <StyledLabel>
-            Your website (optional): <StyledInput type="url" name="url" />
+            Your website (optional):{' '}
+            <StyledInput type="url" name="fields[url]" />
           </StyledLabel>
         </p>
         <p>
           <StyledLabel>
-            Comment: <StyledTextArea required name="message" />
+            Comment: <StyledTextArea required name="fields[message]" />
           </StyledLabel>
         </p>
-        <div data-netlify-recaptcha="true" />
+        {status === STATUS.DONE && (
+          <p>Thanks for your comment! It will appear after being approved.</p>
+        )}
+        {status === STATUS.ERROR && (
+          <p>Someting happened… Please retry in a moment, or contact me.</p>
+        )}
         <p>
-          <StyledButton type="submit">Send</StyledButton>
+          <StyledButton disabled={status === STATUS.POSTING} type="submit">
+            {status === STATUS.POSTING ? 'Sending…' : 'Send'}
+          </StyledButton>
         </p>
       </form>
     )
