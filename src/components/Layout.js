@@ -7,6 +7,7 @@ import 'typeface-pt-sans'
 import 'typeface-pt-serif'
 import Bio from './Bio'
 import '../colors.css'
+import Footer from './Footer'
 
 const StyledLayout = styled.div`
   background-color: var(--backgroundColor);
@@ -98,6 +99,7 @@ const Layout = ({
     </SiteMetadataQuery>
     {displayTitle && <h1>{title}</h1>}
     {children}
+    <Footer />
   </StyledLayout>
 )
 
