@@ -6,13 +6,14 @@ import 'prismjs/themes/prism.css'
 import LangLink from './LangLink'
 import CommentForm from './CommentForm'
 import Comment from './Comment'
+import CommentsCount from './CommentsCount'
 
 const renderDate = date => new Date(date).toDateString()
 
 const Title = styled.h2`
   font-family: 'PT Sans', sans-serif;
   color: var(--titleTextColor);
-  font-size: ${({ isExcerpt }) => (isExcerpt ? '1.5rem' : '2.2em')};
+  font-size: 2.2em;
   font-weight: 700;
   margin-top: 2rem;
   margin-bottom: 0;
@@ -27,7 +28,17 @@ const Infos = styled.div`
   font-family: 'PT Sans', sans-serif;
   font-size: 0.9em;
   color: var(--lightTextColor);
-  margin-top: ${({ isExcerpt }) => (isExcerpt ? '0.5rem' : '1rem')};
+  margin-top: 1rem;
+
+  a {
+    color: inherit;
+    text-decoration: none;
+
+    :hover,
+    :active {
+      text-decoration: underline;
+    }
+  }
 `
 
 const Content = styled.div`
@@ -64,48 +75,38 @@ const Separator = styled.hr`
   border-bottom: 1px dotted var(--separatorColor);
 `
 
-const ReadMoreLink = styled(Link)`
-  font-style: italic;
-  color: var(--linkTextColor);
-`
-
 const BlogPost = ({ post, comments, isExcerpt }) => {
   const {
     frontmatter: { title, date, lang },
     fields: { slug },
-    html,
-    excerpt
+    html
   } = post
   return (
     <article>
       <header>
-        <Title isExcerpt={isExcerpt}>
+        <Title>
           <Link to={slug}>{title}</Link>
         </Title>
-        <Infos isExcerpt={isExcerpt}>
-          {renderDate(date)} – <LangLink lang={lang} />
+        <Infos>
+          {renderDate(date)} – <LangLink lang={lang} /> –{' '}
+          <Link to={`${slug}#comments`}>
+            <CommentsCount count={comments.length} />
+          </Link>
         </Infos>
       </header>
-      {isExcerpt ? (
-        <Content>
-          <p>
-            {excerpt} <ReadMoreLink to={slug}>Continue reading…</ReadMoreLink>
-          </p>
-        </Content>
-      ) : (
-        <>
-          <Content dangerouslySetInnerHTML={{ __html: html }} />
-          <Separator />
-          <h3>Comments</h3>
-          {comments.length === 0 && <p>No comment yet.</p>}
-          {comments.map((comment, index) => (
-            <Comment key={index} comment={comment} />
-          ))}
-          <Separator />
-          <h3>Leave a comment</h3>
-          <CommentForm slug={post.fields.slug} />
-        </>
-      )}
+      <Content dangerouslySetInnerHTML={{ __html: html }} />
+      <Separator />
+      <h3>
+        <a name="comments" />
+        Comments
+      </h3>
+      {comments.length === 0 && <p>No comment yet.</p>}
+      {comments.map((comment, index) => (
+        <Comment key={index} comment={comment} />
+      ))}
+      <Separator />
+      <h3>Leave a comment</h3>
+      <CommentForm slug={slug} />
     </article>
   )
 }

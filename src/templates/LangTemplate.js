@@ -1,7 +1,7 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 import Layout from '../components/Layout'
-import BlogPost from '../components/BlogPost'
+import BlogPostExcerpt from '../components/BlogPostExcerpt'
 
 const getTitle = lang => {
   if (lang === 'en') {
@@ -20,7 +20,7 @@ const LangTemplate = ({
   return (
     <Layout title={getTitle(lang)} displayTitle>
       {posts.map(post => (
-        <BlogPost key={post.id} post={post} isExcerpt />
+        <BlogPostExcerpt key={post.id} post={post} />
       ))}
     </Layout>
   )
