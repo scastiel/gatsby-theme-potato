@@ -25,7 +25,7 @@ const Content = styled.p`
 
 const Comment = ({ comment }) => {
   const author = comment.url ? (
-    <Link href={comment.url}>{comment.name}</Link>
+    <Link to={comment.url}>{comment.name}</Link>
   ) : (
     comment.name
   )

@@ -8,9 +8,13 @@ import 'typeface-pt-serif'
 import Bio from './Bio'
 import '../colors.css'
 import Footer from './Footer'
+import withTheme from './ThemeUser'
+
+const Container = styled.div`
+  background-color: var(--backgroundColor);
+`
 
 const StyledLayout = styled.div`
-  background-color: var(--backgroundColor);
   box-sizing: border-box;
   width: 100%;
   max-width: 40em;
@@ -67,40 +71,47 @@ const Layout = ({
   displayTitle,
   slug,
   description,
-  lang
+  lang,
+  theme,
+  setTheme
 }) => (
-  <StyledLayout>
-    <SiteMetadataQuery>
-      {({
-        title: blogTitle,
-        description: siteDescription,
-        lang: siteLang,
-        siteUrl
-      }) => (
-        <>
-          <Helmet>
-            <html lang={lang || siteLang} />
-            <meta charSet="utf-8" />
-            <title>
-              {title ? `${title} | ` : ''}
-              {blogTitle}
-            </title>
-            <meta name="description" content={description || siteDescription} />
-            <meta name="canonical" content={siteUrl + (slug || '')} />
-          </Helmet>
-          <BlogHeader isHome={isHome}>
-            <h1>
-              <Link to="/">{blogTitle}</Link>
-            </h1>
-            {isHome && <Bio />}
-          </BlogHeader>
-        </>
-      )}
-    </SiteMetadataQuery>
-    {displayTitle && <h1>{title}</h1>}
-    {children}
-    <Footer />
-  </StyledLayout>
+  <Container>
+    <StyledLayout>
+      <SiteMetadataQuery>
+        {({
+          title: blogTitle,
+          description: siteDescription,
+          lang: siteLang,
+          siteUrl
+        }) => (
+          <>
+            <Helmet>
+              <html lang={lang || siteLang} className={theme} />
+              <meta charSet="utf-8" />
+              <title>
+                {title ? `${title} | ` : ''}
+                {blogTitle}
+              </title>
+              <meta
+                name="description"
+                content={description || siteDescription}
+              />
+              <meta name="canonical" content={siteUrl + (slug || '')} />
+            </Helmet>
+            <BlogHeader isHome={isHome}>
+              <h1>
+                <Link to="/">{blogTitle}</Link>
+              </h1>
+              {isHome && <Bio />}
+            </BlogHeader>
+          </>
+        )}
+      </SiteMetadataQuery>
+      {displayTitle && <h1>{title}</h1>}
+      {children}
+      <Footer theme={theme} setTheme={setTheme} />
+    </StyledLayout>
+  </Container>
 )
 
-export default Layout
+export default withTheme(Layout)

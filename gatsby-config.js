@@ -9,6 +9,14 @@ module.exports = {
     lang: 'en'
   },
   plugins: [
+    {
+      resolve: 'gatsby-plugin-react-svg',
+      options: {
+        rule: {
+          include: /assets/
+        }
+      }
+    },
     'gatsby-plugin-feed',
     'gatsby-plugin-sharp',
     'gatsby-plugin-react-helmet',
