@@ -97,6 +97,9 @@ const Layout = ({
                 content={description || siteDescription}
               />
               <meta name="canonical" content={siteUrl + (slug || '')} />
+              <style>
+                {'body { background-color: var(--backgroundColor); }'}
+              </style>
             </Helmet>
             <BlogHeader isHome={isHome}>
               <h1>

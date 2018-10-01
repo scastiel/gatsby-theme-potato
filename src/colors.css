@@ -1,7 +1,3 @@
-body {
-  margin: 0;
-}
-
 html {
   --textColor: hsl(0, 0%, 30%);
   --lightTextColor: hsl(0, 0%, 40%);
