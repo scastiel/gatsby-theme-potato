@@ -68,6 +68,10 @@ const Content = styled.div`
   a {
     color: var(--linkTextColor);
   }
+
+  blockquote {
+    font-style: italic;
+  }
 `
 
 const Separator = styled.hr`
