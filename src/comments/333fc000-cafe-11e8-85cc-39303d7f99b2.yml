@@ -1,0 +1,35 @@
+_id: 333fc000-cafe-11e8-85cc-39303d7f99b2
+slug: /posts/2018-10-03-utile-d-apprendre-react/
+name: Simon
+email: a99922fd1c4e000d5911b8c88280938e
+url: 'https://www.deblan.io'
+message: >-
+  De mon point vue, je trouve que ça devient vraiment la misère d'avoir un
+  environnement de développement qui vie correctement dans le temps. C'est
+  d'ailleurs très complexe de le faire vivre momentanément. 
+
+
+  Y'a un pas un outil qui utilise la même version de librairie ou
+  d'interpréteur. Quelle version de node js utilisée ? la 6 ? la 8 ? la 10 ?
+  C'est aussi la merde pour déployer ça sur des serveurs, sans parler des
+  questions de sécurité.
+
+
+  Quand on sort de la partie "environnement", on a la question de l'outil
+  lui-même : faut utiliser quoi ? webpack, babel, gulp, whatever ? Ah et quid de
+  yarn, npm only ou bower il n'y a pas si longtemps ? Y'en a tellement qu'on est
+  pas capable de faire un choix potable et durable. D'ailleurs, c'est tellement
+  une partouze d'outils que personne ne sait vraiment quoi sert à quoi.  Les
+  configs sont de vraies plaies et la majorité des gens font du copier/coller
+  depuis des threads stack overflow. C'est au petit bonheur la chance pour avoir
+  un truc qui fonctionne…
+
+
+  Enfin, faire du `du -hs node_modules` et voir 300Mo de fichiers pour générer
+  un fichier javascript, ça me fait mal au cul.
+
+
+  J'ai des projets écrits il y a 10 ans que je peux encore faire tourner
+  aujourd'hui. Quand ça sera le cas des frameworks js, je me poserai la question
+  de choisir react ou pas.
+date: '2018-10-08T13:29:36.672Z'
