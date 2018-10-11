@@ -1,6 +1,6 @@
 {
   "name": "new-blog",
-  "description": "Sebastien Castiel’s blog",
+  "description": "My blog",
   "license": "MIT",
   "scripts": {
     "develop": "gatsby develop",
