@@ -7,7 +7,7 @@ import CommentsCount from './CommentsCount'
 const renderDate = date => new Date(date).toDateString()
 
 const Title = styled.h2`
-  font-family: 'PT Sans', sans-serif;
+  font-family: var(--sansSerifFont);
   color: var(--titleTextColor);
   font-size: 1.5rem;
   font-weight: 700;
@@ -21,7 +21,7 @@ const Title = styled.h2`
 `
 
 const Infos = styled.div`
-  font-family: 'PT Sans', sans-serif;
+  font-family: var(--sansSerifFont);
   font-size: 0.8em;
   color: var(--lightTextColor);
   margin-top: 0.5rem;

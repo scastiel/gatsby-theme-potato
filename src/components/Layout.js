@@ -9,6 +9,7 @@ import Bio from './Bio'
 import '../colors.css'
 import Footer from './Footer'
 import withTheme from './ThemeUser'
+import Sidebar from './Sidebar'
 
 const Container = styled.div`
   background-color: var(--backgroundColor);
@@ -17,11 +18,11 @@ const Container = styled.div`
 const StyledLayout = styled.div`
   box-sizing: border-box;
   width: 100%;
-  max-width: 40em;
+  max-width: 50em;
   margin-left: auto;
   margin-right: auto;
   padding: 0.5em;
-  font-family: 'PT Serif', serif;
+  font-family: var(--serifFont);
   font-size: calc(20px + (24 - 20) * (100vw - 800px) / (800-400));
   color: var(--textColor);
 
@@ -63,6 +64,18 @@ const BlogHeader = styled.header`
     color: inherit;
   }
 `
+
+const Body = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: center;
+
+  @media (max-width: 55em) {
+    flex-direction: column;
+  }
+`
+
+const Content = styled.div``
 
 const Layout = ({
   children,
@@ -111,7 +124,10 @@ const Layout = ({
         )}
       </SiteMetadataQuery>
       {displayTitle && <h1>{title}</h1>}
-      {children}
+      <Body>
+        <Content>{children}</Content>
+        <Sidebar />
+      </Body>
       <Footer theme={theme} setTheme={setTheme} />
     </StyledLayout>
   </Container>

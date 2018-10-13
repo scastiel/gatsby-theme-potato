@@ -7,6 +7,9 @@ html {
   --separatorColor: hsl(0, 0%, 80%);
   --commentBorderColor: hsl(0, 0%, 90%);
   --inputBorderColor: hsl(0, 0%, 70%);
+
+  --sansSerifFont: 'PT Sans', sans-serif;
+  --serifFont: 'PT Serif', serif;
 }
 
 html.dark {
