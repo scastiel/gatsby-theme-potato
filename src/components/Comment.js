@@ -25,7 +25,7 @@ const Content = styled.p`
 
 const Comment = ({ comment }) => {
   const author = comment.url ? (
-    <Link to={comment.url}>{comment.name}</Link>
+    <a href={comment.url}>{comment.name}</a>
   ) : (
     comment.name
   )
@@ -36,7 +36,7 @@ const Comment = ({ comment }) => {
         <a name={hash} />
         {author} –{' '}
         <Link to={`${comment.slug}#${hash}`}>
-          {new Date(comment.date).toLocaleDateString()}
+          {new Date(comment.date).toDateString()}
         </Link>
       </Title>
       <Content>{comment.message}</Content>
