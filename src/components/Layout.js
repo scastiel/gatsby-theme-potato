@@ -75,7 +75,13 @@ const Body = styled.div`
   }
 `
 
-const Content = styled.div``
+const Content = styled.div`
+  max-width: calc(100% - 15em + 2em - 3em);
+
+  @media (max-width: 55em) {
+    max-width: 100%;
+  }
+`
 
 const Layout = ({
   children,

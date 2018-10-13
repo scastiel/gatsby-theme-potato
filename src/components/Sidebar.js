@@ -30,7 +30,7 @@ const SidebarContainer = styled.div`
 
 const Widget = styled.div`
   margin-top: 2rem;
-  max-width: 15em;
+  width: 15em;
 
   a {
     color: inherit;
