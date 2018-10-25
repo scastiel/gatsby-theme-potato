@@ -1,0 +1,7 @@
+_id: 63b87260-d86c-11e8-a0b2-7136dfeee29c
+slug: /posts/2018-10-03-utile-d-apprendre-react/
+name: Galuf
+email: 85ffdf8b946e9cedf7343963da08b6d2
+url: ''
+message: "Franchement j'ai du mal à concevoir qu'on puisse utiliser réact pour une appli lambda. Angular + solide librairie CSS ça fait à peu près tout et ça gère babel et webpack tout seul.\r\n\r\nLe typescript c'est pas terrible et les nouveaux paradygmes de front sont intimidants mais au moins avec angular on fait de vraies choses, on donne de la fonctionnalité aux composant, on découpe en couche le front avec la partie service, bref plein de choses mockable/testable.\r\n\r\nReact franchement à part pour faire des webparts sur sharepoint et autre CRM, c'est souvent réinventer la roue pour 0 qualité de perf. (faut pousser assez loin niveau besoins hélas pour que le dom virtuel soit un apport)"
+date: '2018-10-25T15:41:07.928Z'
