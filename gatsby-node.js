@@ -10,14 +10,6 @@ exports.onCreateNode = ({ node, getNode, actions: { createNodeField } }) => {
       value: slug
     })
   }
-  if (node.internal.type === 'CommentsYaml') {
-    const slug = createFilePath({ node, getNode, basePath: 'pages' })
-    createNodeField({
-      node,
-      name: 'slug',
-      value: slug
-    })
-  }
 }
 
 exports.createPages = async ({ graphql, actions: { createPage } }) => {

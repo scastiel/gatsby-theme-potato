@@ -1,10 +1,12 @@
 import React from 'react'
-import { Link } from 'gatsby'
+import { Link, withPrefix } from 'gatsby'
 import styled from 'styled-components'
 import 'prismjs/plugins/line-numbers/prism-line-numbers.css'
 import 'prismjs/themes/prism.css'
+import ReactDisqusComments from 'react-disqus-comments'
 import LangLink from './LangLink'
 import { renderDate } from '../utils'
+import { Helmet } from 'react-helmet'
 
 const Title = styled.h2`
   font-family: var(--sansSerifFont);
@@ -76,44 +78,47 @@ const Separator = styled.hr`
   margin-top: 5em;
 `
 
-const CommentsNote = styled.p`
-  font-style: italic;
-
-  a {
-    color: var(--linkTextColor);
-  }
-`
-
 const BlogPost = ({ post, comments, isExcerpt }) => {
   const {
     frontmatter: { title, date, lang },
     fields: { slug },
-    html
+    html,
+    excerpt
   } = post
   return (
-    <article>
-      <header>
-        <Title>
-          <Link to={slug}>{title}</Link>
-        </Title>
-        <Infos>
-          {renderDate(date)} – <LangLink lang={lang} />
-        </Infos>
-      </header>
-      <Content dangerouslySetInnerHTML={{ __html: html }} />
-      <Separator />
-      <CommentsNote>
-        Comments are currently disabled due to a lot of spam.
-        <br />
-        You can{' '}
-        <a
-          href={`https://twitter.com/search?f=tweets&q=blog.castiel.me${slug}`}
-        >
-          discuss about this post on Twitter
-        </a>
-        .
-      </CommentsNote>
-    </article>
+    <>
+      <Helmet>
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:site" content="@scastiel" />
+        <meta name="twitter:creator" content="@scastiel" />
+        <meta property="og:url" content={`https://blog.castiel.me${slug}`} />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={excerpt} />
+        <meta
+          property="og:image"
+          content={`https://blog.castiel.me${withPrefix(
+            '/twitter-card-small.png'
+          )}?${Math.random()}`}
+        />
+      </Helmet>
+      <article>
+        <header>
+          <Title>
+            <Link to={slug}>{title}</Link>
+          </Title>
+          <Infos>
+            {renderDate(date)} – <LangLink lang={lang} />
+          </Infos>
+        </header>
+        <Content dangerouslySetInnerHTML={{ __html: html }} />
+        <Separator />
+        <ReactDisqusComments
+          shortname="sebastien-castiel"
+          identifier={slug}
+          url={`https://blog.castiel.me${slug}`}
+        />
+      </article>
+    </>
   )
 }
 
