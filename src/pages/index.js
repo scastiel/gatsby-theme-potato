@@ -3,26 +3,13 @@ import { graphql } from 'gatsby'
 import Layout from '../components/Layout'
 import BlogPostExcerpt from '../components/BlogPostExcerpt'
 
-const Index = ({ data: { allMarkdownRemark, allCommentsYaml } }) => {
+const Index = ({ data: { allMarkdownRemark } }) => {
   const edges = allMarkdownRemark ? allMarkdownRemark.edges : []
   const posts = edges.map(edge => edge.node)
-  const commentCounts = (allCommentsYaml ? allCommentsYaml.edges : [])
-    .map(edge => edge.node)
-    .reduce(
-      (counts, { slug }) => ({
-        ...counts,
-        [slug]: (counts[slug] || 0) + 1
-      }),
-      {}
-    )
   return (
     <Layout isHome>
       {posts.map(post => (
-        <BlogPostExcerpt
-          key={post.id}
-          post={post}
-          commentsCount={commentCounts[post.fields.slug] || 0}
-        />
+        <BlogPostExcerpt key={post.id} post={post} />
       ))}
     </Layout>
   )
@@ -43,13 +30,6 @@ export const query = graphql`
           fields {
             slug
           }
-        }
-      }
-    }
-    allCommentsYaml {
-      edges {
-        node {
-          slug
         }
       }
     }

@@ -4,11 +4,7 @@ import styled from 'styled-components'
 import 'prismjs/plugins/line-numbers/prism-line-numbers.css'
 import 'prismjs/themes/prism.css'
 import LangLink from './LangLink'
-import CommentForm from './CommentForm'
-import Comment from './Comment'
-import CommentsCount from './CommentsCount'
-
-const renderDate = date => new Date(date).toDateString()
+import { renderDate } from '../utils'
 
 const Title = styled.h2`
   font-family: var(--sansSerifFont);
@@ -77,6 +73,15 @@ const Content = styled.div`
 const Separator = styled.hr`
   border-style: none;
   border-bottom: 1px dotted var(--separatorColor);
+  margin-top: 5em;
+`
+
+const CommentsNote = styled.p`
+  font-style: italic;
+
+  a {
+    color: var(--linkTextColor);
+  }
 `
 
 const BlogPost = ({ post, comments, isExcerpt }) => {
@@ -92,25 +97,22 @@ const BlogPost = ({ post, comments, isExcerpt }) => {
           <Link to={slug}>{title}</Link>
         </Title>
         <Infos>
-          {renderDate(date)} – <LangLink lang={lang} /> –{' '}
-          <Link to={`${slug}#comments`}>
-            <CommentsCount count={comments.length} />
-          </Link>
+          {renderDate(date)} – <LangLink lang={lang} />
         </Infos>
       </header>
       <Content dangerouslySetInnerHTML={{ __html: html }} />
       <Separator />
-      <h3>
-        <a name="comments" />
-        Comments
-      </h3>
-      {comments.length === 0 && <p>No comment yet.</p>}
-      {comments.map((comment, index) => (
-        <Comment key={index} comment={comment} />
-      ))}
-      <Separator />
-      <h3>Leave a comment</h3>
-      <CommentForm slug={slug} />
+      <CommentsNote>
+        Comments are currently disabled due to a lot of spam.
+        <br />
+        You can{' '}
+        <a
+          href={`https://twitter.com/search?f=tweets&q=blog.castiel.me${slug}`}
+        >
+          discuss about this post on Twitter
+        </a>
+        .
+      </CommentsNote>
     </article>
   )
 }

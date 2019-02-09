@@ -2,9 +2,7 @@ import React from 'react'
 import { Link } from 'gatsby'
 import styled from 'styled-components'
 import LangLink from './LangLink'
-import CommentsCount from './CommentsCount'
-
-const renderDate = date => new Date(date).toDateString()
+import { renderDate } from '../utils'
 
 const Title = styled.h2`
   font-family: var(--sansSerifFont);
@@ -46,7 +44,7 @@ const ReadMoreLink = styled(Link)`
   color: var(--linkTextColor);
 `
 
-const BlogPostExcerpt = ({ post, comments, commentsCount }) => {
+const BlogPostExcerpt = ({ post }) => {
   const {
     frontmatter: { title, date, lang },
     fields: { slug },
@@ -59,10 +57,7 @@ const BlogPostExcerpt = ({ post, comments, commentsCount }) => {
           <Link to={slug}>{title}</Link>
         </Title>
         <Infos>
-          {renderDate(date)} – <LangLink lang={lang} /> –{' '}
-          <Link to={`${slug}#comments`}>
-            <CommentsCount count={commentsCount} />
-          </Link>
+          {renderDate(date)} – <LangLink lang={lang} />
         </Infos>
       </header>
       <Content>

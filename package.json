@@ -28,11 +28,11 @@
     "gatsby-transformer-remark": "^2.1.3",
     "gatsby-transformer-yaml": "^2.1.1",
     "prismjs": "^1.15.0",
+    "raleway-webfont": "^3.0.1",
     "react": "^16.5.1",
     "react-dom": "^16.5.1",
     "react-helmet": "^5.2.0",
     "styled-components": "^3.4.9",
-    "typeface-pt-sans": "^0.0.54",
     "typeface-pt-serif": "^0.0.54"
   },
   "devDependencies": {

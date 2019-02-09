@@ -8705,6 +8705,10 @@ querystringify@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/querystringify/-/querystringify-2.0.0.tgz#fa3ed6e68eb15159457c89b37bc6472833195755"
 
+raleway-webfont@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/raleway-webfont/-/raleway-webfont-3.0.1.tgz#12bf6b081558fde0717df5a97cc17f076d1eabfa"
+
 ramda@0.21.0:
   version "0.21.0"
   resolved "https://registry.yarnpkg.com/ramda/-/ramda-0.21.0.tgz#a001abedb3ff61077d4ff1d577d44de77e8d0a35"
