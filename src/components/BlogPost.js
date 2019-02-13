@@ -70,6 +70,11 @@ const Content = styled.div`
   blockquote {
     font-style: italic;
   }
+
+  figcaption {
+    text-align: center;
+    font-size: 0.8em;
+  }
 `
 
 const Separator = styled.hr`
