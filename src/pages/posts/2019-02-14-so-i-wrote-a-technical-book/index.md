@@ -4,7 +4,7 @@ date: '2019-02-14T12:00:00'
 lang: 'en'
 ---
 
-Big week for me: I finished writing my [eBook in French about React](https://www.masterreact.io/livre), and I couldn’t be more proud. Eight months, and it was not easy, but it’s so worth it. In this post I wanted to expose a few thoughts about what happens when you write a technical book.
+Big week for me: I finished writing my [eBook in French about React](https://www.masterreact.io/livre), and I couldn’t be prouder. Eight months, and it was not easy, but it’s so worth it. In this post I wanted to expose a few thoughts about what happens when you write a technical book.
 
 ## Why? From the idea to starting writing
 
