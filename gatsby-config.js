@@ -77,8 +77,8 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-matomo',
       options: {
-        siteId: '3',
-        matomoUrl: 'https://scastiel.hostiso.cloud/piwik/',
+        siteId: '1',
+        matomoUrl: 'https://scastiel.matomo.cloud/',
         siteUrl: 'https://blog.castiel.me'
       }
     },
