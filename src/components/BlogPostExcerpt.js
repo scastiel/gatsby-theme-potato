@@ -37,6 +37,8 @@ const Infos = styled.div`
 
 const Content = styled.div`
   line-height: 1.7;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
 `
 
 const ReadMoreLink = styled(Link)`

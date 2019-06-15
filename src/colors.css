@@ -1,5 +1,5 @@
 html {
-  --textColor: hsl(0, 0%, 30%);
+  --textColor: hsl(0, 0%, 0, 85%);
   --lightTextColor: hsl(0, 0%, 40%);
   --titleTextColor: hsl(0, 0%, 20%);
   --linkTextColor: hsl(0, 0%, 20%);

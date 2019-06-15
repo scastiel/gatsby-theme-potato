@@ -40,7 +40,9 @@ const Infos = styled.div`
 `
 
 const Content = styled.div`
-  line-height: 1.7;
+  line-height: 2rem;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
 
   pre {
     max-width: 100%;

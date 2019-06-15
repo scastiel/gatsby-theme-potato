@@ -18,7 +18,7 @@ const Container = styled.div`
 const StyledLayout = styled.div`
   box-sizing: border-box;
   width: 100%;
-  max-width: 50em;
+  max-width: 55em;
   margin-left: auto;
   margin-right: auto;
   padding: 0.5em;
