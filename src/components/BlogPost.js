@@ -77,6 +77,11 @@ const Content = styled.div`
     text-align: center;
     font-size: 0.8em;
   }
+
+  figure {
+    margin-top: 2em;
+    margin-bottom: 2em;
+  }
 `
 
 const Separator = styled.hr`
