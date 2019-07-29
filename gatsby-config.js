@@ -79,7 +79,8 @@ module.exports = {
       options: {
         siteId: '1',
         matomoUrl: 'https://scastiel.matomo.cloud/',
-        siteUrl: 'https://blog.castiel.me'
+        siteUrl: 'https://blog.castiel.me',
+        localScript: '//cdn.matomo.cloud/scastiel.matomo.cloud/matomo.js'
       }
     },
     'gatsby-plugin-styled-components'
