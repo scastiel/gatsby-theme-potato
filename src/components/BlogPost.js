@@ -82,7 +82,7 @@ const BlogPost = ({ post, comments, isExcerpt }) => {
         <meta property="og:title" content={title} />
         <meta property="og:description" content={excerpt} />
         <meta
-          property="og:image"
+          property="twitter:image"
           content={
             cover
               ? `https://blog.castiel.me${cover.publicURL}`
