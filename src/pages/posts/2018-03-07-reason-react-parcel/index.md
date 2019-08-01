@@ -4,6 +4,8 @@ date: '2018-03-07'
 redirect_from:
   - /posts/007-reason-react-parcel.html
 lang: 'en'
+category: 'dev'
+cover: './cover.png'
 ---
 
 Not that long ago I used Create-React-App a lot to quickly boostrap my React projects. That’s why I naturally used [Reason Scripts](https://github.com/reasonml-community/reason-scripts) when I wanted to use Reason-React. But even if I still understand the advantages of the approach of CRA and Reason Scripts, I recently discovered [Parcel](https://parceljs.org/), a very minimalist bundler for web projects.

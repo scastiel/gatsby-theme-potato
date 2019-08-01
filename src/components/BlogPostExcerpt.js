@@ -3,6 +3,11 @@ import { Link } from 'gatsby'
 import styled from 'styled-components'
 import LangLink from './LangLink'
 import { renderDate } from '../utils'
+import CategoryLink from './CategoryLink'
+
+const Excerpt = styled.article`
+  margin-bottom: 3rem;
+`
 
 const Title = styled.h2`
   font-family: var(--sansSerifFont);
@@ -14,7 +19,8 @@ const Title = styled.h2`
 
   a {
     color: inherit;
-    text-decoration: none;
+    text-decoration: underline;
+    text-decoration-color: var(--accentColor);
   }
 `
 
@@ -26,19 +32,11 @@ const Infos = styled.div`
 
   a {
     color: inherit;
-    text-decoration: none;
-
-    :hover,
-    :active {
-      text-decoration: underline;
-    }
   }
 `
 
 const Content = styled.div`
-  line-height: 1.7;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
+  line-height: 1.4;
 `
 
 const ReadMoreLink = styled(Link)`
@@ -48,18 +46,19 @@ const ReadMoreLink = styled(Link)`
 
 const BlogPostExcerpt = ({ post }) => {
   const {
-    frontmatter: { title, date, lang },
+    frontmatter: { title, date, lang, category },
     fields: { slug },
     excerpt
   } = post
   return (
-    <article>
+    <Excerpt>
       <header>
         <Title>
           <Link to={slug}>{title}</Link>
         </Title>
         <Infos>
-          {renderDate(date)} – <LangLink lang={lang} />
+          Posted in <CategoryLink category={category} /> on {renderDate(date)} –{' '}
+          <LangLink lang={lang} />
         </Infos>
       </header>
       <Content>
@@ -67,7 +66,7 @@ const BlogPostExcerpt = ({ post }) => {
           {excerpt} <ReadMoreLink to={slug}>Continue reading…</ReadMoreLink>
         </p>
       </Content>
-    </article>
+    </Excerpt>
   )
 }
 

@@ -1,8 +1,5 @@
 import React from 'react'
 import { Link } from 'gatsby'
-import styled from 'styled-components'
-
-const StyledLink = styled(Link)``
 
 const renderLang = lang => {
   switch (lang) {
@@ -16,7 +13,7 @@ const renderLang = lang => {
 }
 
 const LangLink = ({ lang }) => (
-  <StyledLink to={`/langs/${lang}`}>{renderLang(lang)}</StyledLink>
+  <Link to={`/langs/${lang}`}>{renderLang(lang)}</Link>
 )
 
 export default LangLink

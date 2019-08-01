@@ -1,48 +1,13 @@
 import React from 'react'
-import { Link, withPrefix } from 'gatsby'
+import { withPrefix } from 'gatsby'
 import styled from 'styled-components'
 import 'prismjs/plugins/line-numbers/prism-line-numbers.css'
 import 'prismjs/themes/prism.css'
-import ReactDisqusComments from 'react-disqus-comments'
-import LangLink from './LangLink'
-import { renderDate } from '../utils'
 import { Helmet } from 'react-helmet'
-
-const Title = styled.h2`
-  font-family: var(--sansSerifFont);
-  color: var(--titleTextColor);
-  font-size: 2.2em;
-  font-weight: 700;
-  margin-top: 2rem;
-  margin-bottom: 0;
-
-  a {
-    color: inherit;
-    text-decoration: none;
-  }
-`
-
-const Infos = styled.div`
-  font-family: var(--sansSerifFont);
-  font-size: 0.9em;
-  color: var(--lightTextColor);
-  margin-top: 1rem;
-
-  a {
-    color: inherit;
-    text-decoration: none;
-
-    :hover,
-    :active {
-      text-decoration: underline;
-    }
-  }
-`
+import NewsletterSignUp from './NewsletterSignup'
 
 const Content = styled.div`
-  line-height: 2rem;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
+  line-height: 1.6rem;
 
   pre {
     max-width: 100%;
@@ -63,10 +28,6 @@ const Content = styled.div`
   h4,
   h5 {
     font-family: var(--sansSerifFont);
-  }
-
-  a {
-    color: var(--linkTextColor);
   }
 
   blockquote {
@@ -90,45 +51,64 @@ const Separator = styled.hr`
   margin-top: 5em;
 `
 
+const NewsletterBox = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 2em;
+`
+
+const ArticleFooter = styled.p`
+  font-family: var(--sansSerifFont);
+`
+
 const BlogPost = ({ post, comments, isExcerpt }) => {
   const {
-    frontmatter: { title, date, lang },
+    frontmatter: { title, cover },
     fields: { slug },
     html,
     excerpt
   } = post
+  const url = `https://blog.castiel.me${slug}`
   return (
     <>
       <Helmet>
-        <meta name="twitter:card" content="summary" />
+        <meta
+          name="twitter:card"
+          content={cover ? 'summary_large_image' : 'summary'}
+        />
         <meta name="twitter:site" content="@scastiel" />
         <meta name="twitter:creator" content="@scastiel" />
-        <meta property="og:url" content={`https://blog.castiel.me${slug}`} />
+        <meta property="og:url" content={url} />
         <meta property="og:title" content={title} />
         <meta property="og:description" content={excerpt} />
         <meta
           property="og:image"
-          content={`https://blog.castiel.me${withPrefix(
-            '/twitter-card-small.png'
-          )}?${Math.random()}`}
+          content={
+            cover
+              ? `https://blog.castiel.me${cover.publicURL}`
+              : `https://blog.castiel.me${withPrefix(
+                  '/twitter-card-small.png'
+                )}`
+          }
         />
       </Helmet>
       <article>
-        <header>
-          <Title>
-            <Link to={slug}>{title}</Link>
-          </Title>
-          <Infos>
-            {renderDate(date)} – <LangLink lang={lang} />
-          </Infos>
-        </header>
         <Content dangerouslySetInnerHTML={{ __html: html }} />
         <Separator />
-        <ReactDisqusComments
-          shortname="sebastien-castiel"
-          identifier={slug}
-          url={`https://blog.castiel.me${slug}`}
-        />
+        <ArticleFooter>
+          Like this article or want to react?{' '}
+          <a href={`https://twitter.com/search?q=${url}`}>Discuss on Twitter</a>{' '}
+          or{' '}
+          <a
+            href={`mailto:Sébastien Castiel <sebastien@castiel.me>?subject=About your post “${title}”`}
+          >
+            send me an email
+          </a>
+          .
+        </ArticleFooter>
+        <NewsletterBox>
+          <NewsletterSignUp />
+        </NewsletterBox>
       </article>
     </>
   )

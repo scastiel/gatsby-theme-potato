@@ -4,6 +4,8 @@ date: '2016-10-27'
 redirect_from:
   - /posts/001-first-post.html
 lang: 'en'
+category: 'dev'
+cover: './cover.jpg'
 ---
 
 Today I'm starting a new blog. I started a few blogs in the past. Personal blogs, where I talked about a lot of things. This blog is very different, here's why:

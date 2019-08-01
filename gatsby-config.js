@@ -18,7 +18,6 @@ module.exports = {
       }
     },
     'gatsby-plugin-feed',
-    'gatsby-plugin-sharp',
     'gatsby-plugin-react-helmet',
     'gatsby-transformer-yaml',
     {
@@ -26,13 +25,6 @@ module.exports = {
       options: {
         name: 'src',
         path: `${__dirname}/src/pages/`
-      }
-    },
-    {
-      resolve: 'gatsby-source-filesystem',
-      options: {
-        name: 'comments',
-        path: `${__dirname}/src/comments/`
       }
     },
     {
@@ -59,6 +51,8 @@ module.exports = {
         ]
       }
     },
+    'gatsby-transformer-sharp',
+    'gatsby-plugin-sharp',
     'gatsby-redirect-from',
     'gatsby-plugin-meta-redirect',
     {
@@ -68,9 +62,9 @@ module.exports = {
         short_name: 'S. Castiel',
         start_url: '/',
         background_color: '#ffffff',
-        theme_color: '#ffffff',
-        display: 'minimal-ui'
-        // icon: 'src/images/icon.png'
+        theme_color: '#8db0c3',
+        display: 'minimal-ui',
+        icon: 'assets/logo.png'
       }
     },
     'gatsby-plugin-offline',

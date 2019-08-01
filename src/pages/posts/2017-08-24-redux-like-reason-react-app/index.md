@@ -4,6 +4,8 @@ date: '2017-08-24'
 redirect_from:
   - /posts/005-redux-like-reason-react-app.html
 lang: 'en'
+category: 'dev'
+cover: './cover.png'
 ---
 
 In the past few weeks I've become a big fan of [Reason](https://reasonml.github.io/), and in particular its association to React with [Reason React](https://reasonml.github.io/reason-react/). And because both Reason and Reason React are really young projects, there is not a lot of tutorials, StackOverflow questions, and documentation about it yet. So beginning a new project isn't as easy as the official website wants us think.

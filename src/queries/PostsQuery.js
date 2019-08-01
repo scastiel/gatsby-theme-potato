@@ -13,6 +13,7 @@ const PostsQuery = ({ children }) => (
                 title
                 date
                 lang
+                category
               }
               excerpt
               fields {

@@ -2,6 +2,8 @@
 title: 'Bien développer est-il un art ?'
 date: '2015-05-01'
 lang: 'fr'
+category: 'dev'
+cover: './image02.jpg'
 ---
 
 Ces derniers temps j’ai entendu plusieurs fois que des développeurs passionnés considéraient le développement comme un art. Par exemple, le manifeste de l’[artisan développeur](http://artisandeveloppeur.com/) parle de “recherche du beau”, par opposition avec ceux considérant le code uniquement dans un processus industriel.

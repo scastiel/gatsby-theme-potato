@@ -2,6 +2,8 @@
 title: 'Vivre sans télé, c’est possible ? (Spoiler : oui)'
 date: '2015-09-15'
 lang: 'fr'
+category: 'life'
+cover: './cover.jpg'
 ---
 
 En réponse à [cet article sur Medium](https://medium.com/france/ex-junkie-de-la-t%C3%A9l%C3%A9vision-j-ai-tir%C3%A9-un-trait-sur-mon-addiction-92dbe0ae1075), voici mon retour d’expérience sur la suppression de la télé de mon quotidien. Pour commencer, je pense avoir été plus modéré dans le sens où la télé trône toujours en pièce maîtresse de mon salon, et elle est même souvent allumée. Pour regarder des films, des séries sur Netflix ou autres, mais quasiment jamais sur la « télé » au sens « chaînes de télé ».

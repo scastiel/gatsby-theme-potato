@@ -9,6 +9,7 @@ const FooterContainer = styled.div`
   padding: 0.5em 0;
   border-top: 1px dotted var(--separatorColor);
   text-align: center;
+  font-family: var(--sansSerifFont);
 
   a {
     color: inherit;

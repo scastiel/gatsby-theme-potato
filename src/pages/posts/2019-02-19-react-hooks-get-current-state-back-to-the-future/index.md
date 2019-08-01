@@ -2,6 +2,8 @@
 title: 'React hooks: get the current state, back to the future'
 date: '2019-02-19T12:00:00'
 lang: 'en'
+category: 'dev'
+cover: './cover.jpg'
 ---
 
 [React Hooks](https://reactjs.org/docs/hooks-intro.html) are trully awesome, but the more I play with them the more I discover tricks, and sometimes spend a lot of time figuring out why my code doesn’t do what it is supposed to.

@@ -2,6 +2,8 @@
 title: 'Pourquoi j’écris un livre sur React ?'
 date: '2018-09-25'
 lang: 'fr'
+category: 'life'
+cover: './cover.jpg'
 ---
 
 Voilà quelques mois, j’étais à la recherche d’un nouveau projet personnel. Bien souvent ce type de recherche aboutit au développement d’une nouvelle application web ou mobile, mais cette fois-ci, j’ai plutôt décidé d’écrire un livre. Ce n’est pas la première fois, j’avais écrit [un livre consacré à Node.js](https://github.com/scastiel/decouvrir-nodejs) en 2013. Le projet m’avait beaucoup plu, bien que cela prenne beaucoup de temps.

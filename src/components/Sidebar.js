@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import bookImage from '../../assets/livre.png'
-import avatar from '../../assets/me.jpg'
+import avatar from '../../assets/me_new.png'
 import GithubIcon from '../../assets/svg/github.svg'
 import TwitterIcon from '../../assets/svg/twitter.svg'
-import MastodonIcon from '../../assets/svg/mastodon.svg'
+import NewsletterSignUp from './NewsletterSignup'
 
 const SidebarContainer = styled.div`
   display: flex;
@@ -17,7 +17,7 @@ const SidebarContainer = styled.div`
   padding: 1em;
   text-align: center;
 
-  @media (max-width: 55em) {
+  @media (max-width: 50rem) {
     width: auto;
     margin-left: 0;
     margin-top: 3em;
@@ -25,15 +25,20 @@ const SidebarContainer = styled.div`
     border-top: 1px dotted var(--separatorColor);
     flex-direction: row;
     justify-content: space-around;
+    flex-wrap: wrap;
   }
 `
 
 const Widget = styled.div`
   margin-top: 2rem;
-  width: 15em;
+  width: 15rem;
 
   a {
     color: inherit;
+  }
+
+  @media (max-width: 50rem) {
+    min-width: 15em;
   }
 `
 
@@ -50,6 +55,7 @@ const Avatar = styled.img`
   height: var(--size);
   border-radius: 50%;
   margin-bottom: 1rem;
+  background-color: var(--accentColor);
 `
 
 const SocialIcon = comp => styled(comp)`
@@ -65,7 +71,6 @@ const SocialIcon = comp => styled(comp)`
 `
 const StyledGithubIcon = SocialIcon(GithubIcon)
 const StyledTwitterIcon = SocialIcon(TwitterIcon)
-const StyledMastodonIcon = SocialIcon(MastodonIcon)
 
 class Sidebar extends Component {
   render() {
@@ -85,20 +90,21 @@ class Sidebar extends Component {
             <a href="https://github.com/scastiel">
               <StyledGithubIcon />
             </a>
-            <a href="https://mamot.fr/@scastiel">
-              <StyledMastodonIcon />
-            </a>
           </SocialIcons>
         </Widget>
 
         <Widget>
-          <a href="https://leanpub.com/apps-web-modernes-react">
+          <NewsletterSignUp />
+        </Widget>
+
+        <Widget>
+          <a href="https://www.masterreact.io/livre">
             <img
               src={bookImage}
               alt="Des applications modernes avec React (French)"
               style={{ maxWidth: '100%' }}
             />
-            My book on LeanPub
+            My book about React (French)
           </a>
         </Widget>
       </SidebarContainer>

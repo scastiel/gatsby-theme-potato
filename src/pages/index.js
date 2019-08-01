@@ -25,6 +25,7 @@ export const query = graphql`
             title
             date
             lang
+            category
           }
           excerpt
           fields {

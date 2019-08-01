@@ -3,22 +3,18 @@ import { graphql } from 'gatsby'
 import Layout from '../components/Layout'
 import BlogPostExcerpt from '../components/BlogPostExcerpt'
 
-const getTitle = lang => {
-  if (lang === 'en') {
-    return 'Articles in English'
-  }
-  return 'Articles en français'
-}
+const getTitle = category =>
+  `Articles posted in ${category.slice(0, 1).toUpperCase() + category.slice(1)}`
 
-const LangTemplate = ({
-  pageContext: { lang },
+const CategoryTemplate = ({
+  pageContext: { category },
   data: {
     allMarkdownRemark: { edges }
   }
 }) => {
   const posts = edges.map(edge => edge.node)
   return (
-    <Layout title={getTitle(lang)} displayPageTitle>
+    <Layout title={getTitle(category)} displayPageTitle>
       {posts.map(post => (
         <BlogPostExcerpt key={post.id} post={post} />
       ))}
@@ -26,14 +22,14 @@ const LangTemplate = ({
   )
 }
 
-export default LangTemplate
+export default CategoryTemplate
 
 export const query = graphql`
-  query($lang: String!) {
+  query($category: String!) {
     allMarkdownRemark(
       limit: 2000
       sort: { fields: [frontmatter___date], order: DESC }
-      filter: { frontmatter: { lang: { eq: $lang } } }
+      filter: { frontmatter: { category: { eq: $category } } }
     ) {
       totalCount
       edges {

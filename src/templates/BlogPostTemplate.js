@@ -10,6 +10,10 @@ const BlogPostTemplate = ({ data: { markdownRemark: post } }) => {
       slug={post.fields.slug}
       description={post.excerpt}
       lang={post.frontmatter.lang}
+      category={post.frontmatter.category}
+      date={post.frontmatter.date}
+      displayTitle={true}
+      cover={post.frontmatter.cover}
     >
       <BlogPost post={post} />
     </Layout>
@@ -25,6 +29,15 @@ export const query = graphql`
         title
         date
         lang
+        category
+        cover {
+          publicURL
+          childImageSharp {
+            sizes(maxWidth: 2000) {
+              ...GatsbyImageSharpSizes
+            }
+          }
+        }
       }
       fields {
         slug

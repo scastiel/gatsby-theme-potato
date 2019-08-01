@@ -4,6 +4,8 @@ date: '2016-11-16'
 redirect_from:
   - /posts/003-play-with-cryptography-with-openpgpjs.html
 lang: 'en'
+category: 'dev'
+cover: './cover.jpg'
 ---
 
 For about a year now, I use [ProtonMail](https://protonmail.com) as my mail provider. If you don't know it, you should definitively give it a look! The mails are encrypted _end-to-end_, which means that ProtonMail has absolutely no readable version of the stored emails, nor any key to decrypt them.

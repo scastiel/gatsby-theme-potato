@@ -2,6 +2,8 @@
 title: 'Est-il utile d’apprendre React ?'
 date: '2018-10-03'
 lang: 'fr'
+category: 'life'
+cover: './cover.jpg'
 ---
 
 Plusieurs tweets m’ont interpelé récemment, par rapport au fait que l’écosystème JavaScript s’est dégradé, car concentré autour de plus en plus d’outils pas forcément utiles. React en prend notamment pour son grade.

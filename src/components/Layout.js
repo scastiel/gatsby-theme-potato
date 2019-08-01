@@ -5,11 +5,13 @@ import { Helmet } from 'react-helmet'
 import SiteMetadataQuery from '../queries/SiteMetadataQuery'
 import 'raleway-webfont'
 import 'typeface-pt-serif'
-import Bio from './Bio'
 import '../colors.css'
 import Footer from './Footer'
 import withTheme from './ThemeUser'
 import Sidebar from './Sidebar'
+import { renderDate } from '../utils'
+import LangLink from './LangLink'
+import CategoryLink from './CategoryLink'
 
 const Container = styled.div`
   background-color: var(--backgroundColor);
@@ -18,13 +20,12 @@ const Container = styled.div`
 const StyledLayout = styled.div`
   box-sizing: border-box;
   width: 100%;
-  max-width: 55em;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 0.5em;
   font-family: var(--serifFont);
   font-size: calc(20px + (24 - 20) * (100vw - 800px) / (800-400));
   color: var(--textColor);
+
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
 
   *,
   *:before,
@@ -32,53 +33,172 @@ const StyledLayout = styled.div`
     box-sizing: inherit;
   }
 
-  @media (min-width: 38em) {
+  a {
+    color: var(--linkTextColor);
+  }
+
+  @media (min-width: 50rem) {
     font-size: 20px;
   }
 `
 
 const BlogHeader = styled.header`
-  margin-top: ${props => (props.isHome ? '3em' : '0.5em')};
-  padding-bottom: 1em;
-  border-bottom: ${props =>
-    props.isHome ? '0' : '1px dotted var(--separatorColor)'};
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: stretch;
+
+  border-bottom: 0.4rem solid var(--accentColor);
 
   h1 {
-    font-size: ${props => (props.isHome ? '2em' : '1.5em')};
+    font-family: var(--sansSerifFont);
+    font-weight: 300;
+    font-size: 1.5em;
     margin: 0;
+    text-transform: uppercase;
 
     a {
       text-decoration: none;
     }
   }
 
-  .description {
-    color: #888888;
-    font-size: 1.1rem;
-    font-style: italic;
-    margin-bottom: 1rem;
-    margin-top: 1rem;
+  em {
+    font-style: normal;
+    color: var(--accentColor);
   }
 
   a {
     color: inherit;
   }
+
+  @media (max-width: 50rem) {
+    flex-direction: column;
+    align-items: center;
+  }
+`
+
+const ArticleHeader = styled.header`
+  background-image: url(${props => props.backgroundImage});
+  background-size: cover;
+  background-position: center center;
+`
+
+const ArticleTitle = styled.header`
+  background-color: var(--pageHeaderColor);
+  min-height: 20em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  & > * {
+    width: 100%;
+    max-width: 35rem;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  h1 {
+    color: white;
+    text-shadow: 0 0 5px black;
+    font-size: 1.8em;
+    padding-top: 1em;
+    padding-bottom: 0.5em;
+    font-weight: 700;
+  }
+
+  @media (max-width: 50rem) {
+    min-height: 0;
+  }
+`
+
+const PageInfos = styled.div`
+  font-family: var(--sansSerifFont);
+  font-size: 0.9em;
+  color: white;
+  text-shadow: 0 0 5px black;
+  padding-bottom: 2em;
+
+  a {
+    color: inherit;
+    text-decoration: none;
+
+    :hover,
+    :active {
+      text-decoration: underline;
+    }
+  }
+`
+
+const Menu = styled.nav`
+  font-family: var(--sansSerifFont);
+  flex-grow: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 0.5em;
+
+  a {
+    text-decoration: none;
+    padding: 0.2em 0.5em 0.2em 0.5em;
+
+    &[aria-current='page'],
+    &.current {
+      color: var(--accentColor);
+    }
+
+    @media (max-width: 50rem) {
+      font-size: 0.8em;
+      padding: 0em 0.5em 0.5em 0.5em;
+    }
+  }
+`
+
+const BlogTitle = styled.div`
+  flex: 1;
+  padding: 1em;
+
+  @media (max-width: 50rem) {
+    padding-bottom: 0.4em;
+  }
+`
+
+const PageTitle = styled.h2`
+  font-family: var(--sansSerifFont);
+  color: var(--titleTextColor);
+  font-size: 2.2em;
+  font-weight: 700;
+  margin-top: 2rem;
+  margin-bottom: 0;
+
+  a {
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-color: var(--accentColor);
+  }
 `
 
 const Body = styled.div`
   display: flex;
-  width: 100%;
   justify-content: center;
 
-  @media (max-width: 55em) {
+  width: 100%;
+  max-width: 50rem;
+  margin-left: auto;
+  margin-right: auto;
+
+  padding: 2em 0.5em 0.5em;
+
+  @media (max-width: 50rem) {
     flex-direction: column;
+    padding-top: 1em;
   }
 `
 
 const Content = styled.div`
-  max-width: calc(100% - 15em + 2em - 3em);
+  width: 100%;
+  max-width: calc(100% + 2em - 3em);
 
-  @media (max-width: 55em) {
+  @media (max-width: 50rem) {
     max-width: 100%;
   }
 `
@@ -88,11 +208,15 @@ const Layout = ({
   isHome,
   title,
   displayTitle,
+  displayPageTitle,
   slug,
   description,
   lang,
+  category,
+  date,
   theme,
-  setTheme
+  setTheme,
+  cover
 }) => (
   <Container>
     <StyledLayout>
@@ -121,18 +245,41 @@ const Layout = ({
               </style>
             </Helmet>
             <BlogHeader isHome={isHome}>
-              <h1>
-                <Link to="/">{blogTitle}</Link>
-              </h1>
-              {isHome && <Bio />}
+              <BlogTitle>
+                <h1>
+                  <Link to="/">{blogTitle}</Link>
+                </h1>
+              </BlogTitle>
+              <Menu>
+                <Link to="/">Home</Link>
+                <Link to="/start-here">Start here</Link>
+                <Link to="/categories/life">Life</Link>
+                <Link to="/categories/dev">Dev</Link>
+                <Link to="/about">About</Link>
+              </Menu>
             </BlogHeader>
           </>
         )}
       </SiteMetadataQuery>
-      {displayTitle && <h1>{title}</h1>}
+
+      {displayTitle && (
+        <ArticleHeader backgroundImage={cover && cover.publicURL}>
+          <ArticleTitle>
+            <h1>{title}</h1>
+            <PageInfos>
+              {renderDate(date)} – <CategoryLink category={category} /> –{' '}
+              <LangLink lang={lang} />
+            </PageInfos>
+          </ArticleTitle>
+        </ArticleHeader>
+      )}
+
       <Body>
-        <Content>{children}</Content>
-        <Sidebar />
+        <Content>
+          {displayPageTitle && <PageTitle>{title}</PageTitle>}
+          {children}
+        </Content>
+        {isHome && <Sidebar />}
       </Body>
       <Footer theme={theme} setTheme={setTheme} />
     </StyledLayout>
