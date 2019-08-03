@@ -6,6 +6,17 @@ import GithubIcon from '../../assets/svg/github.svg'
 import TwitterIcon from '../../assets/svg/twitter.svg'
 import NewsletterSignUp from './NewsletterSignup'
 
+const hiddenSidebarStyle = `
+  position: fixed;
+  right: -17rem;
+  top: 0;
+  bottom: 0;
+  overflow-y: auto;
+  width: 17rem;
+  background-color: var(--backgroundColor);
+  border-left-style: none;
+`
+
 const SidebarContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -17,15 +28,10 @@ const SidebarContainer = styled.div`
   padding: 1em;
   text-align: center;
 
+  ${({ hidden }) => hidden && hiddenSidebarStyle};
+
   @media (max-width: 50rem) {
-    width: auto;
-    margin-left: 0;
-    margin-top: 3em;
-    border-left-width: 0;
-    border-top: 1px dotted var(--separatorColor);
-    flex-direction: row;
-    justify-content: space-around;
-    flex-wrap: wrap;
+    ${hiddenSidebarStyle};
   }
 `
 
@@ -38,7 +44,7 @@ const Widget = styled.div`
   }
 
   @media (max-width: 50rem) {
-    min-width: 15em;
+    min-width: 15rem;
   }
 `
 
@@ -72,42 +78,109 @@ const SocialIcon = comp => styled(comp)`
 const StyledGithubIcon = SocialIcon(GithubIcon)
 const StyledTwitterIcon = SocialIcon(TwitterIcon)
 
+const Trigger = styled.div`
+  .nav-trigger {
+    position: fixed;
+    top: 1.11rem;
+    right: 1rem;
+    visibility: hidden;
+  }
+
+  label[for='nav-trigger'] {
+    display: ${props => (props.display ? 'block' : 'none')};
+    position: fixed;
+    top: 1.3rem;
+    right: 1rem;
+    z-index: 2;
+
+    width: 1.8rem;
+    height: 1.3rem;
+    cursor: pointer;
+
+    @media (max-width: 50rem) {
+      display: block;
+    }
+  }
+
+  .nav-trigger:checked + label {
+    right: 14rem;
+    transition: right 0.2s;
+  }
+
+  .sidebar {
+    transition: left 0.2s;
+  }
+
+  .nav-trigger:checked ~ .sidebar {
+    right: 0;
+    transition: right 0.2s;
+    box-shadow: 0 0 30px 0 var(--textColor);
+  }
+`
+
+const Hamburger = styled.div`
+  position: relative;
+  display: inline-block;
+  width: 1.6rem;
+  height: 1.3rem;
+  border-top: 0.2rem solid var(--accentColor);
+  border-bottom: 0.2rem solid var(--accentColor);
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0.35rem;
+    left: 0px;
+    width: 100%;
+    border-top: 0.2rem solid var(--accentColor);
+  }
+`
+
 class Sidebar extends Component {
   render() {
+    const { hidden } = this.props
     return (
-      <SidebarContainer>
-        <Widget>
-          <Avatar src={avatar} />
-          <p>
-            French web developper, passionate about JavaScript (especially
-            React), expatriated in Montréal. Very enthousiast about blockchain
-            and cryptocurrencies.
-          </p>
-          <SocialIcons>
-            <a href="https://twitter.com/scastiel">
-              <StyledTwitterIcon />
-            </a>
-            <a href="https://github.com/scastiel">
-              <StyledGithubIcon />
-            </a>
-          </SocialIcons>
-        </Widget>
+      <>
+        <Trigger display={hidden}>
+          <input type="checkbox" id="nav-trigger" className="nav-trigger" />
+          <label htmlFor="nav-trigger">
+            <Hamburger />
+          </label>
+          <SidebarContainer hidden={hidden} className="sidebar">
+            <Widget>
+              <Avatar src={avatar} />
+              <p>
+                French web developper, passionate about JavaScript (especially
+                React), expatriated in Montréal. Very enthousiast about
+                blockchain and cryptocurrencies.
+              </p>
+              <SocialIcons>
+                <a href="https://twitter.com/scastiel">
+                  <StyledTwitterIcon />
+                </a>
+                <a href="https://github.com/scastiel">
+                  <StyledGithubIcon />
+                </a>
+              </SocialIcons>
+            </Widget>
 
-        <Widget>
-          <NewsletterSignUp />
-        </Widget>
+            <Widget>
+              <NewsletterSignUp />
+            </Widget>
 
-        <Widget>
-          <a href="https://www.masterreact.io/livre">
-            <img
-              src={bookImage}
-              alt="Des applications modernes avec React (French)"
-              style={{ maxWidth: '100%' }}
-            />
-            My book about React (French)
-          </a>
-        </Widget>
-      </SidebarContainer>
+            <Widget>
+              <a href="https://www.masterreact.io/livre">
+                <img
+                  src={bookImage}
+                  alt="Des applications modernes avec React (French)"
+                  style={{ maxWidth: '100%' }}
+                />
+                My book about React (French)
+              </a>
+            </Widget>
+          </SidebarContainer>
+        </Trigger>
+      </>
     )
   }
 }

@@ -73,7 +73,6 @@ const BlogHeader = styled.header`
 
   @media (max-width: 50rem) {
     flex-direction: column;
-    align-items: center;
   }
 `
 
@@ -133,9 +132,9 @@ const Menu = styled.nav`
   font-family: var(--sansSerifFont);
   flex-grow: 0;
   display: flex;
-  justify-content: center;
   align-items: center;
-  margin-right: 0.5em;
+  margin-right: ${({ isHome }) => (isHome ? '0.5em' : '3em')};
+  margin-left: 0.5rem;
 
   a {
     text-decoration: none;
@@ -155,7 +154,7 @@ const Menu = styled.nav`
 
 const BlogTitle = styled.div`
   flex: 1;
-  padding: 1em;
+  padding: 1rem;
 
   @media (max-width: 50rem) {
     padding-bottom: 0.4em;
@@ -250,7 +249,7 @@ const Layout = ({
                   <Link to="/">{blogTitle}</Link>
                 </h1>
               </BlogTitle>
-              <Menu>
+              <Menu isHome={isHome}>
                 <Link to="/">Home</Link>
                 <Link to="/start-here">Start here</Link>
                 <Link to="/categories/life">Life</Link>
@@ -279,7 +278,7 @@ const Layout = ({
           {displayPageTitle && <PageTitle>{title}</PageTitle>}
           {children}
         </Content>
-        {isHome && <Sidebar />}
+        <Sidebar hidden={!isHome} />
       </Body>
       <Footer theme={theme} setTheme={setTheme} />
     </StyledLayout>
