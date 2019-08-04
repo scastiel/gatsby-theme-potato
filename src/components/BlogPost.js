@@ -2,20 +2,23 @@ import React from 'react'
 import { withPrefix } from 'gatsby'
 import styled from 'styled-components'
 import 'prismjs/plugins/line-numbers/prism-line-numbers.css'
-import 'prismjs/themes/prism.css'
+import 'prismjs/themes/prism-tomorrow.css'
 import { Helmet } from 'react-helmet'
 import NewsletterSignUp from './NewsletterSignup'
 
 const Content = styled.div`
   line-height: 1.6rem;
 
-  pre {
+  pre[class*='language-'] {
     max-width: 100%;
     overflow-x: auto;
-    line-height: 100%;
+    line-height: 90%;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 0.5em;
 
     code {
-      font-size: 75%;
+      font-size: 70%;
     }
   }
 
@@ -30,6 +33,10 @@ const Content = styled.div`
     font-family: var(--sansSerifFont);
   }
 
+  h2 {
+    margin-top: 2em;
+  }
+
   blockquote {
     font-style: italic;
   }
@@ -42,6 +49,21 @@ const Content = styled.div`
   figure {
     margin-top: 2em;
     margin-bottom: 2em;
+  }
+
+  p code,
+  li code,
+  h2 code,
+  h3 code {
+    background-color: transparent !important;
+    color: var(--textColor) !important;
+  }
+
+  @media (max-width: 50rem) {
+    .gatsby-highlight {
+      margin-left: -0.5em;
+      margin-right: -0.5em;
+    }
   }
 `
 
