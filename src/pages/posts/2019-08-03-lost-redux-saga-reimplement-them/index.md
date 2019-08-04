@@ -10,9 +10,15 @@ You can use everyday a library such as React, Redux or Redux-Saga. You can be pe
 
 I used to live exactly that with Redux-Saga. And in my opinion, one of the best ways to understand how a library works is to try to implement it yourself. Well, obviously a minimalistic version of it.
 
-In this article, I’ll show you how to write basic implementations of Redux and Redux Saga. If you use them in your React projects, you could discover they’re not as magical as they may seem. Let’s start with Redux
+_This article is not an introduction to Redux or Redux-Saga. There are plenty of them on the web, including their respective official documentations ([Redux](https://redux.js.org/basics/basic-tutorial), [Redux-Saga](https://redux-saga.js.org/docs/introduction/BeginnerTutorial.html)). I suppose you already know basics but want to know more about what’s really inside._
 
-The base concept of Redux is the store. To create one, you’ll need a reducer and an initial state. if we suppose that the initial state is determined by what the reducer returns when no state is provided to him, we can define a `createStore` function taking only a reducer as parameter:
+In this article, I’ll show you how to write basic implementations of Redux and Redux Saga. If you use them in your React projects, you could discover they’re not as magical as they may seem.
+
+Final source code and samples are available [in this sandbox](https://codesandbox.io/embed/thirsty-glade-0g196), if you want to see the result right now.
+
+## Create a store with Redux
+
+The base concept of Redux is the store. To create one, you’ll need a reducer and an initial state. If we suppose that the initial state is determined by what the reducer returns when no state is provided to him, we can define a `createStore` function taking only a reducer as parameter:
 
 ```js
 const createStore = reducer => ({
@@ -52,9 +58,7 @@ That’s it. Does it seem too easy for you? Let’s try it to see if it actually
 Let’s first create a reducer:
 
 ```js
-const initialState = {
-  name: undefined
-}
+const initialState = { name: undefined }
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -89,7 +93,9 @@ Everything looks fine, right? And our Redux implementation is only ten lines of 
 
 Second task, rewrite Redux-Saga. It is a little more complicated, since the base concepts of the library are themselves more difficult to understand.
 
-First, sagas are generator functions. A sort of function which execution is stopped when encountering a `yield` instruction, and resuming shortly after 🤔.
+## Implement Redux-Saga effects
+
+First thing to know: sagas are generator functions. A sort of function which execution is stopped when encountering a `yield` instruction, and resuming shortly after 🤔.
 
 I think it’s really easier to get when you understand the concept of _effect_. Sagas must be pure functions, i.e. not trigger side effects, such as making an HTTP request, logging something, or accessing the store. The trick for a saga is to stop its execution with some kind of message like ”I need to read this value in the state, get back to me when you have it”. This message is an effect.
 
@@ -119,7 +125,11 @@ export async function runSaga(store, saga, ...args) {
 }
 ```
 
-Now is the time to handle our saga and the effects it triggers. The easier way to understand sagas and JavaScript’s generator functions is to remember they basically return an iterator. Each of the value returned by the iterator is an effect, and we call iterator’s next value with the response expected by the effect:
+Now is the time to handle our saga and the effects it triggers.
+
+## Call a function with `call` effect
+
+The easier way to understand sagas and JavaScript’s generator functions is to remember they basically return an iterator. Each of the value returned by the iterator is an effect, and we call iterator’s next value with the response expected by the effect:
 
 ```js
 const it = saga() // saga is a generator function: function* saga() { ...
@@ -141,7 +151,9 @@ export async function runSaga(store, saga, ...args) {
     let result = it.next()
     while (!result.done) {
       const effect = result.value
-      console.log('Effect:', effect)
+      // See `logEffect` function in src/logger.js
+      // at https://codesandbox.io/embed/thirsty-glade-0g196.
+      logEffect(effect)
 
       switch (effect.type) {
         case 'call':
@@ -160,16 +172,17 @@ export async function runSaga(store, saga, ...args) {
 
 We basically handle the iterator returned by the saga as we would handle any iterator. And depending the effect, we decide what we do. Here we call the function referenced by the `call` effect with associated parameters:
 
-```
-result = it.next(effect.fn(...effect.args))
+```js
+result = it.next(await effect.fn(...effect.args))
 ```
 
 Let’s use this first implementation with an example.
 
 ```js
-const getUser = async id => {
+export const getUser = async id => {
   const res = await fetch(`https://jsonplaceholder.typicode.com/users/${id}`)
-  return res.json()
+  const response = await res.json()
+  return { id: response.id, name: response.name }
 }
 
 const showUserName = user => {
@@ -181,21 +194,18 @@ function* mySaga() {
   yield call(showUserName, user)
 }
 
-// We don’t use the store for now
-const reducer = state => state
-const store = createStore(reducer)
+// I created a basic store, you can find it in src/samples/store.js
+// at https://codesandbox.io/embed/thirsty-glade-0g196.
 runSaga(store, mySaga)
 ```
 
 By running this example you should see something like this in your console:
 
-```js
-Effect Object {type: "call", fn: function getUser(), args: Array[1]}
-Effect Object {type: "call", fn: function showUserName(), args: Array[1]}
-User: Leanne Graham
-```
+![Console output for the first saga example](ex_saga_01.png)
 
 As you can see our `runSaga` function first intercepted one `call` effect, called `getUser` function and waited for the result since it’s an asynchronous function. Then with the second `call` effect it called `showUserName` function.
+
+## Read and write to the store with `select` and `put` effects
 
 Next step is to be able to read from and write to the store, thanks to `select` and `put` effects. Now we have the boilerplate to handle effects, it should not be too complicated to understand.
 
@@ -222,42 +232,15 @@ function* mySaga() {
 }
 ```
 
-We now need to provide a more concrete store:
+You should now see something like this in your console:
 
-```js
-const initialState = {
-  userId: 1
-}
-
-const reducer = (state = initialState, action) => {
-  switch (action.type) {
-    case 'getUserSuccess':
-      return { ...state, user: action.payload }
-    default:
-      return state
-  }
-}
-
-const store = createStore(reducer)
-
-store.stateEmitter.on('new_state', () => {
-  console.log('New state:', store.state)
-})
-runSaga(store, mySaga)
-```
-
-Run the example and you should now see something like this in your console:
-
-```
-Effect Object {type: "select", selector: function ()}
-Effect Object {type: "call", fn: function getUser(), args: Array[1]}
-Effect Object {type: "put", action: Object}
-New state: Object {userId: 1, user: Object}
-```
+![Console output for the second saga example](ex_saga_02.png)
 
 This works very well, and you’ll admit that this kind of saga is very common. But something is still missing. When you write sagas, you want to react to certain actions. Here we just ran our saga, but how can we run this process only when a given action occurs?
 
 Usually we’d use `takeEvery` helper to tell Redux-Saga we want to execute some saga when an action with the given type is dispatched. But before being able to implement `takeEvery`, we need to implement two base effects: `take` and `fork`.
+
+## Wait for a specific action with `take` effect
 
 `take` effects wait for any action with a given type, and resumes the saga only then. For our example, we want to get user info only when an action with type “getUser” occurs.
 
@@ -292,22 +275,9 @@ function* mySaga() {
 window.store = store
 ```
 
-You’ll notice in the console that we just have one effect triggered: the `take` one:
+You’ll notice in the console that we just have one effect triggered: the `take` one. You’ll have to dispatch a “getUser” action for the rest of the saga will be executed:
 
-```
-Effect Object {type: "take", actionType: "getUser"}
-```
-
-But now if you dispatch a “getUser” action, the rest of the saga will be executed:
-
-```
-> store.dispatch({ type: 'getUser' })
-New state: Object {userId: 1}
-Effect Object {type: "select", selector: function ()}
-Effect Object {type: "call", fn: function getUser(), args: Array[1]}
-Effect Object {type: "put", action: Object}
-New state: Object {userId: 1, user: Object}
-```
+![Console output for the third saga example](ex_saga_03.png)
 
 That’s almost perfect, but if you try to dispatch a second time the same action, you’ll notice that nothing happens… That’s because `take` only subscribes to the next action with given type, not all of them. One solution to react to every “getUser” actions could be to wrap our saga into an infinite loop:
 
@@ -324,7 +294,7 @@ function* mySaga() {
 
 It works well, and don’t be afraid it’s not actually the kind of infinite loops we tend to forbid, it’s just an infinite iterator. The saga will never terminate, but the content of the loop will be executed only once per “getUser” action dispatched.
 
-Yet, it’s still not perfect. What if we want to subscribe to two action types, let’s say “getUser“ and “getDocuments“. `take` effects block the saga execution, so it’s not possible to write:
+Yet, it’s still not perfect. What if we want to subscribe to two action types, let’s say “getUser” and “getDocuments”. `take` effects block the saga execution, so it’s not possible to write:
 
 ```js
 while (true) {
@@ -339,6 +309,8 @@ while (true) {
 Well it’s possible, but it won’t give the expected behavior. It’ll just handle both action types alternatively.
 
 To be able to handle several actions with `take`, we need to be able to fork our saga to create several execution contexts. That’s the point of the `fork` effect.
+
+## Fork the current saga with `fork` effect
 
 Although it’s probably the most difficult to understand effect, and the most difficult to implement for a real usage (in the real Redux-Saga), our implementation will be very simple.
 
@@ -376,13 +348,17 @@ Three sagas will run in parallel: one for the users, one for the documents, and 
 
 Forking a saga, create infinite loops and waiting for a given action type is very common. But if you don’t remember using `fork` and `take` that often, it maybe because you prefer using the very helpful `takeEvery`.
 
+## React on specific actions with `takeEvery`
+
 `takeEvery` is just a helper to achieve what we did more easily. For a given action type, it forks the saga, creates an infinite loop, takes all actions with this type, and run the new saga, passing it the action as parameter.
 
 ```js
 export function* takeEvery(actionType, saga) {
-  yield fork(function*() {
-    const action = yield take(actionType)
-    yield* saga(action)
+  yield fork(function* newSaga() {
+    while (true) {
+      const action = yield take(actionType)
+      yield* saga(action)
+    }
   })
 }
 ```
@@ -391,7 +367,8 @@ Notice the use of `yield*` instruction. Here we don’t want to trigger an effec
 
 ```js
 function* userSaga() {
-  const userId = yield select(state => state.userId)
+  const selectUserId = state => state.userId
+  const userId = yield select(selectUserId)
   const user = yield call(getUser, userId)
   yield put({ type: 'getUserSuccess', payload: user })
 }
@@ -407,21 +384,13 @@ As you can see, in this implementation `takeEvery` is not really an effect, just
 
 The trace in the console is really interesting:
 
-```
-Effect Object {type: "fork", saga: function _callee(), args: Array[0]}
-Effect Object {type: "take", actionType: "getUser"}
-> store.dispatch({ type: 'getUser' })
-New state: Object {id: 1}
-Effect Object {type: "select", selector: function ()}
-Effect Object {type: "call", fn: function getUser(), args: Array[1]}
-Effect Object {type: "put", action: Object}
-New state: Object {id: 1, user: Object}
-Effect Object {type: "take", actionType: "getUser"}
-```
+![Console output for the final saga example](ex_saga_04.png)
 
 Before we dispatch anything, the saga is forked (`fork`) and waits for a “getUser” action (`take`). When we dispatch the action, `select`, `call`, and `put` effects are triggered, then the saga waits for the next “getUser” action.
 
 This concludes our Redux Saga implementation and this article. The final code with samples is available in this [CodeSandbox](https://codesandbox.io/embed/thirsty-glade-0g196).
+
+## That’s all folks!
 
 I hope that after reading this article you understand better Redux and Redux Saga. You understood the goal was not to learn how to create your own implementations and use them in production.
 
