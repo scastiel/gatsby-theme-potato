@@ -86,7 +86,7 @@ openpgp.decrypt(options).then(decryptedMessage => {
 })
 ```
 
-The original message appears :)
+The original message appears :)
 
 ## Sign a message
 
@@ -155,13 +155,13 @@ openpgp.decrypt(options).then(decryptedMessage => {
 })
 ```
 
-As a result you can still see the decrypted message, but also that the signature associated with the message is valid regarding Bob's public key! No possible doubt, the message was encrypted by Bob :)
+As a result you can still see the decrypted message, but also that the signature associated with the message is valid regarding Bob's public key! No possible doubt, the message was encrypted by Bob :)
 
 ---
 
 This is it for this brief introduction to cryptography using OpenPGP.js! If you were already familiar with OpenPGP, I hope this article convinced you that using in JavaScript is very easy; if you were not, I hope it made you want to know more about it and maybe use it in your own applications.
 
-Just a last thing: OpenPGP.js can be used with Node.js (as we saw it), but also directly client-side in the browser :D
+Just a last thing: OpenPGP.js can be used with Node.js (as we saw it), but also directly client-side in the browser :D
 
 Resources:
 

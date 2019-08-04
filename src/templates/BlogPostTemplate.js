@@ -14,6 +14,7 @@ const BlogPostTemplate = ({ data: { markdownRemark: post } }) => {
       date={post.frontmatter.date}
       displayTitle={true}
       cover={post.frontmatter.cover}
+      readingTime={post.fields.readingTime.text}
     >
       <BlogPost post={post} />
     </Layout>
@@ -41,6 +42,9 @@ export const query = graphql`
       }
       fields {
         slug
+        readingTime {
+          text
+        }
       }
     }
   }

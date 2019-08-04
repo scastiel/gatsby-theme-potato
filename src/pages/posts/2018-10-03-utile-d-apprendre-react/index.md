@@ -8,7 +8,7 @@ cover: './cover.jpg'
 
 Plusieurs tweets m’ont interpelé récemment, par rapport au fait que l’écosystème JavaScript s’est dégradé, car concentré autour de plus en plus d’outils pas forcément utiles. React en prend notamment pour son grade.
 
-> Ça me rend triste quand même tout ce tooling et cette complexité pour faire des webapps JavaScript. Les sites ne sont pas mieux qu'à l'époque de Backbone mais si tu n'utilises pas moins de 5 outils et un transpileur et des types, tu n'es plus crédible ... M'enfin où va-t-on ?!
+> Ça me rend triste quand même tout ce tooling et cette complexité pour faire des webapps JavaScript. Les sites ne sont pas mieux qu'à l'époque de Backbone mais si tu n'utilises pas moins de 5 outils et un transpileur et des types, tu n'es plus crédible ... M'enfin où va-t-on ?!
 >
 > – Ph. Charrière sur [Twitter](https://twitter.com/k33g_org/status/1047072836895068163)
 
@@ -18,7 +18,7 @@ Cela me désole un peu bien que je comprenne les arguments adressés. Voici ce q
 
 C’est un argument que l’on entend beaucoup: React n’est qu’un nouveau framework comme un autre, il a l’air super à première vue, mais dans deux ans tout le monde l’aura oublié et des heures de formation et d’expérience pourront être jetées à la poubelle.
 
-> Entre apprendre Elm et la programmation fonctionnelle, OU apprendre React + Webpack + npm + Babel +… + … qui seront tous obselètent un jour ou un autre, je préfère miser sur quelque chose d’utile, qui m’enrichit intellectuellement et qui me servira plus tard :-). Mon avis :-).
+> Entre apprendre Elm et la programmation fonctionnelle, OU apprendre React + Webpack + npm + Babel +… + … qui seront tous obselètent un jour ou un autre, je préfère miser sur quelque chose d’utile, qui m’enrichit intellectuellement et qui me servira plus tard :-). Mon avis :-).
 >
 > – Ivan Enderlin sur [Twitter](https://twitter.com/mnt_io)
 

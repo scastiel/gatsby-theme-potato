@@ -78,7 +78,7 @@ const SocialIcon = comp => styled(comp)`
 const StyledGithubIcon = SocialIcon(GithubIcon)
 const StyledTwitterIcon = SocialIcon(TwitterIcon)
 
-const Trigger = styled.div`
+const Trigger = styled(({ display, ...props }) => <div {...props} />)`
   .nav-trigger {
     position: fixed;
     top: 1.11rem;

@@ -30,6 +30,9 @@ export const query = graphql`
           excerpt
           fields {
             slug
+            readingTime {
+              text
+            }
           }
         }
       }

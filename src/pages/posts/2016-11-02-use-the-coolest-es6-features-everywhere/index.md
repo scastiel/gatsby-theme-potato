@@ -148,7 +148,7 @@ Using Babel for the back-end of our application is not difficult either. Just ad
 }
 ```
 
-You guessed it, the command `npm run build:server` will create a new _dist/server_ directory with an _app.js_ file. And the `npm start` command still starts the app correctly :)
+You guessed it, the command `npm run build:server` will create a new _dist/server_ directory with an _app.js_ file. And the `npm start` command still starts the app correctly :)
 
 **Note:** it's a good idea to put all generated files into a single directory (here _dist_). This way you can ignore this directory with the versionning tool you use (put it into ths _.gitignore_ for Git for instance).
 
@@ -156,7 +156,7 @@ You guessed it, the command `npm run build:server` will create a new _dist/serve
 
 You've done it! Now you can write all your JavaScript, both back-end and front-end, using the last language features: `async`/`await` (cool article [here](https://www.twilio.com/blog/2015/10/asyncawait-the-hero-javascript-deserved.html)), object destructuring (good introduction [here](http://exploringjs.com/es6/ch_destructuring.html)), and a lot of other stuff!
 
-By the way, the example app for this article is [available on GitHub](https://github.com/scastiel/hello-babel) :)
+By the way, the example app for this article is [available on GitHub](https://github.com/scastiel/hello-babel) :)
 
 To go further:
 

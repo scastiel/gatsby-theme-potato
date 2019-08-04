@@ -202,6 +202,10 @@ const Content = styled.div`
   }
 `
 
+const ReadingTime = styled.span`
+  white-space: nowrap;
+`
+
 const Layout = ({
   children,
   isHome,
@@ -215,7 +219,8 @@ const Layout = ({
   date,
   theme,
   setTheme,
-  cover
+  cover,
+  readingTime
 }) => (
   <Container>
     <StyledLayout>
@@ -267,7 +272,8 @@ const Layout = ({
             <h1>{title}</h1>
             <PageInfos>
               {renderDate(date)} – <CategoryLink category={category} /> –{' '}
-              <LangLink lang={lang} />
+              <LangLink lang={lang} /> –{' '}
+              <ReadingTime>{readingTime}</ReadingTime>
             </PageInfos>
           </ArticleTitle>
         </ArticleHeader>

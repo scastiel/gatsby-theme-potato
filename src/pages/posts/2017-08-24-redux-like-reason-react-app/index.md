@@ -274,7 +274,7 @@ Testing components is really easy, there is just one thing to know: Reason React
 ```reason
 let counter =
   ReasonReact.wrapReasonForJs
-    ::component
+    ::component
     (
       fun jsProps =>
         make
