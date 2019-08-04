@@ -1,5 +1,5 @@
 ---
-title: 'Vivre sans télé, c’est possible ? (Spoiler : oui)'
+title: 'Vivre sans télé, c’est possible ? (Spoiler : oui)'
 date: '2015-09-15'
 lang: 'fr'
 category: 'life'
@@ -19,11 +19,11 @@ Comme pour Joël, il y a encore quelques mois, la télé occupait une grande par
 
 Ça commençait le matin pendant mon petit déjeuner sur les chaînes d’infos. Pour peu que le petit déjeuner dure assez longtemps, il m’arrivait même de zapper sur une autre chaîne d’infos quand les reportages tournaient en boucle…
 
-Puis le soir en rentrant : soi-disant fatigué de ma journée, l’envie de poser mon cerveau et de ne surtout pas faire quelque chose de constructif m’envahissait… D’abord des émissions débiles genre « Un dîner presque parfait », puis c’était parti pour Canal+ : le JT, et bien sûr la grand-messe du Grand Journal, les Guignols et autre Petit Journal.
+Puis le soir en rentrant : soi-disant fatigué de ma journée, l’envie de poser mon cerveau et de ne surtout pas faire quelque chose de constructif m’envahissait… D’abord des émissions débiles genre « Un dîner presque parfait », puis c’était parti pour Canal+ : le JT, et bien sûr la grand-messe du Grand Journal, les Guignols et autre Petit Journal.
 
-J’enchaînais avec le programme de la soirée : au mieux un film que j’avais probablement déjà vu, parfois même que j’avais en DivX quelque part ; au pire une série policière comme on en voit tant.
+J’enchaînais avec le programme de la soirée : au mieux un film que j’avais probablement déjà vu, parfois même que j’avais en DivX quelque part ; au pire une série policière comme on en voit tant.
 
-Voici les quelques constats que je fais avec le recul :
+Voici les quelques constats que je fais avec le recul :
 
 - Tout d’abord la télé n’était la plupart du temps allumée que pour assurer une présence dans mon appartement. À part le matin où j’étais un minimum concentrée sur les infos, je faisais généralement autre chose, je ne suivais pas toujours ce qui s’y disait.
 - Ensuite, l’omniprésence de la publicité. C’est tellement dingue que lorsqu’on regarde énormément la télé comme je le faisais, on ne la remarque même plus  –  mais inconsciemment on s’en imprègne et on devient même « expert en pub » (« Ah tiens voici donc la nouvelle pub Renault dont j’ai entendu parler. C’est vrai qu’elle est sympa… »).
@@ -36,17 +36,17 @@ Voici les quelques constats que je fais avec le recul :
   </figcaption>
 </figure>
 
-À présent tout ceci me paraît un brin ridicule. Je n’ai pas arrêté la télé comme ça parce que je l’avais décidé du jour au lendemain. Juste parce qu’un jour je n’ai pas eu envie d’allumer la télé. Puis le lendemain non plus, ni le jour d’après. Et ça ne m’a pas manqué. Pourquoi ?
+À présent tout ceci me paraît un brin ridicule. Je n’ai pas arrêté la télé comme ça parce que je l’avais décidé du jour au lendemain. Juste parce qu’un jour je n’ai pas eu envie d’allumer la télé. Puis le lendemain non plus, ni le jour d’après. Et ça ne m’a pas manqué. Pourquoi ?
 
 **Parce que** plutôt que d’allumer la télé tout le temps, j’écoute plutôt de la musique ou la radio.
 
 **Parce que** ne plus entendre de publicité dans mon appart’ à longueur de journée fait un bien fou.
 
-**Et surtout**, surtout, parce que je me suis aperçu qu’on vit très bien sans télé pour une raison simple : la qualité des programmes est abominable (sauf exceptions heureusement).
+**Et surtout**, surtout, parce que je me suis aperçu qu’on vit très bien sans télé pour une raison simple : la qualité des programmes est abominable (sauf exceptions heureusement).
 
-Les journaux en continu ? De l’info prémâchée, aucun recul sur ce qui se passe, les mêmes dépêches d’une chaîne à l’autre. Le Grand Journal ? Elle est loin l’époque où c’était l’émission incontournable où les politiques et artistes se devaient de passer. Arrêtez de changer le présentateur : planchez juste sur une nouvelle émission qui sorte un peu de l’ordinaire !
+Les journaux en continu ? De l’info prémâchée, aucun recul sur ce qui se passe, les mêmes dépêches d’une chaîne à l’autre. Le Grand Journal ? Elle est loin l’époque où c’était l’émission incontournable où les politiques et artistes se devaient de passer. Arrêtez de changer le présentateur : planchez juste sur une nouvelle émission qui sorte un peu de l’ordinaire !
 
-Et enfin, les films et séries qui passent ? Ce n’est pas qu’ils sont mauvais, c’est juste que :
+Et enfin, les films et séries qui passent ? Ce n’est pas qu’ils sont mauvais, c’est juste que :
 
 - ce sont souvent les mêmes qui repassent ;
 - ils sont rarement en VO ;

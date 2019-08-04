@@ -44,10 +44,17 @@ const ReadMoreLink = styled(Link)`
   color: var(--linkTextColor);
 `
 
+const ReadingTime = styled.span`
+  white-space: nowrap;
+`
+
 const BlogPostExcerpt = ({ post }) => {
   const {
     frontmatter: { title, date, lang, category },
-    fields: { slug },
+    fields: {
+      slug,
+      readingTime: { text }
+    },
     excerpt
   } = post
   return (
@@ -58,7 +65,7 @@ const BlogPostExcerpt = ({ post }) => {
         </Title>
         <Infos>
           Posted in <CategoryLink category={category} /> on {renderDate(date)} –{' '}
-          <LangLink lang={lang} />
+          <LangLink lang={lang} /> – <ReadingTime>{text}</ReadingTime>
         </Infos>
       </header>
       <Content>
