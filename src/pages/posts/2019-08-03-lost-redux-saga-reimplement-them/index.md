@@ -35,7 +35,7 @@ dispatch(action) {
 }
 ```
 
-The base functionality is here, but out store is pretty useless if we are unable to subscribe to state updates. To handle these subscriptions we’ll use an _event emitter_, publicly accessible. Similarly, we’ll offer an event emitter for actions; we’ll use it when implementing Redux-Saga.
+The base functionality is here, but our store is pretty useless if we can’t subscribe to state updates. To handle these subscriptions we’ll use a publicly accessible _event emitter_. Similarly, we’ll offer an event emitter for actions; we’ll use it when implementing Redux-Saga.
 
 ```js
 import { EventEmitter } from 'events'
@@ -77,7 +77,7 @@ const store = createStore(reducer)
 window.store = store
 ```
 
-In the console, we can check that out state is initialized correctly, then subscribe to state updates, and dispatch an action:
+In the console, we can check that our state is initialized correctly, then subscribe to state updates, and dispatch an action:
 
 ```
 > store.state
@@ -93,11 +93,11 @@ Everything looks fine, right? And our Redux implementation is only ten lines of 
 
 Second task, rewrite Redux-Saga. It is a little more complicated, since the base concepts of the library are themselves more difficult to understand.
 
-## Implement Redux-Saga effects
+## Implementing Redux-Saga effects
 
-First thing to know: sagas are generator functions. A sort of function which execution is stopped when encountering a `yield` instruction, and resuming shortly after 🤔.
+First thing to know: sagas are generator functions. Said quickly, a sort of function which execution is stopped when encountering a `yield` instruction, and resuming shortly after 🤔. If you want to understand them deeply I suggest you to read [Generators chapter on _ExploringJS_](https://exploringjs.com/es6/ch_generators.html), or maybe just to have a look at [what Babels transpiles a generator function to](https://babeljs.io/repl/#?babili=false&browsers=&build=&builtIns=false&spec=false&loose=false&code_lz=GYVwdgxgLglg9mAVAAgLYE8DiBTM2BOAhlHPgBRgCUyA3gFDLLozYA2AJsmMgNTICMDJiw5deyAExD82KCHzdufAMx0AvnSA&debug=false&forceAllTransforms=false&shippedProposals=false&circleciRepo=&evaluate=false&fileSize=false&timeTravel=false&sourceType=module&lineWrap=true&presets=es2015%2Creact%2Cstage-2&prettier=false&targets=&version=7.5.5&externalPlugins=). Again, nothing magic about that!
 
-I think it’s really easier to get when you understand the concept of _effect_. Sagas must be pure functions, i.e. not trigger side effects, such as making an HTTP request, logging something, or accessing the store. The trick for a saga is to stop its execution with some kind of message like ”I need to read this value in the state, get back to me when you have it”. This message is an effect.
+Generators applied to sagas may be easier to get when you understand the concept of _effect_. Sagas must be pure functions, i.e. not trigger side effects, such as making an HTTP request, logging something, or accessing the store. The trick for a saga is to stop its execution with some kind of message like ”I need to read this value in the state, get back to me when you have it”. This message is an effect.
 
 Redux-Saga offers some base effects we’ll implement ourselves:
 
@@ -117,7 +117,7 @@ export const put = action => ({ type: 'put', action })
 export const fork = (saga, ...args) => ({ type: 'fork', saga, args })
 ```
 
-With the real Redux-Saga, a saga is run by creating a middleware and adding it to the Redux store. In our implementation, to keep it simpler we’ll create a function `runSaga`, taking as parameter the saga and the store:
+With the real Redux-Saga, a saga is run by creating a middleware and adding it to the Redux store. In our implementation, to keep it simpler we’ll create a function `runSaga`, taking as parameter the store and the saga:
 
 ```js
 export async function runSaga(store, saga, ...args) {
@@ -176,6 +176,8 @@ We basically handle the iterator returned by the saga as we would handle any ite
 result = it.next(await effect.fn(...effect.args))
 ```
 
+_Note that we use `await` to wait for the promise to be resolved (it even works on non-promise values, good for us!). `await` has similarities with `yield` instruction, and before the `async`/`await` syntax landed in ES2015+, [some libraries](https://github.com/tj/co) used generator functions to simulate it._
+
 Let’s use this first implementation with an example.
 
 ```js
@@ -222,7 +224,7 @@ case 'put':
 
 For `select` effects, we just call the given selector passing it the state as parameter. For the `put` ones, we dispatch the given action. Let’s test these effects by improving our sample.
 
-Now our saga will get a user ID from the state, then call an API to get the user infos, and finally dispatch an action to save this info in the state.
+Now our saga will get a user ID from the state, then call an API to get the user infos, and finally dispatch an action to save these info in the state.
 
 ```js
 function* mySaga() {
@@ -242,20 +244,15 @@ Usually we’d use `takeEvery` helper to tell Redux-Saga we want to execute some
 
 ## Wait for a specific action with `take` effect
 
-`take` effects wait for any action with a given type, and resumes the saga only then. For our example, we want to get user info only when an action with type “getUser” occurs.
+`take` effects wait for any action with a given type, and resumes the saga only then. For our example, we want to get the user info only when an action with type “getUser” occurs.
 
-Implementing `take` effect is not difficult, we just need to subscribe to our store’s actions event emitter `actionsEmitter`. To make the code easier to read I created a little helper to be able to subscribe to a specific action event with a promise-based interface: (declared at the top of `runSaga` to be able to access the store)
-
-```js
-const waitNextAction = actionType =>
-  new Promise(resolve => store.actionsEmitter.once(actionType, resolve))
-```
-
-Handling `take` effects is now pretty straightforward:
+Implementing `take` effect is not difficult, we just need to subscribe to our store’s actions event emitter `actionsEmitter`, and resume the iterator with the next matching action. By using an approach based on promises, it looks liek this:
 
 ```js
 case 'take':
-  const action = await waitNextAction(effect.actionType)
+  const action = await new Promise(
+    resolve => store.actionsEmitter.once(effect.actionType, resolve)
+  )
   result = it.next(action)
   break
 ```
@@ -397,3 +394,5 @@ I hope that after reading this article you understand better Redux and Redux Sag
 But now you can see that there is nothing magic in these libraries, nor there is in most open source libraries. By learning how to rewrite minimalistic and naive implementations, you discover that they’re not as complicated as they may seem, even for experienced developers.
 
 Redux and Redux Saga (and React too) are great not because someone invented very complex concepts, but because someone took a lot of time to create easy concepts to solve complex problems.
+
+_Many thanks to [Marvin](https://mobile.twitter.com/mfrachet) for his review. Check [his blog](https://acodingdance.io/), it’s awesome too!_
