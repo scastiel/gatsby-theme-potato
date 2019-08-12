@@ -244,6 +244,7 @@ const Layout = ({
                 content={description || siteDescription}
               />
               <meta name="canonical" content={siteUrl + (slug || '')} />
+              <meta name="google-site-verification" content="5Q_TarltVbGG59F555OVyv-Atq7_WnFHhgrHcAqT2Kw" />
               <style>
                 {'body { background-color: var(--backgroundColor); }'}
               </style>
