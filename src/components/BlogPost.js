@@ -51,6 +51,23 @@ const Content = styled.div`
     margin-bottom: 2em;
   }
 
+  figure.small-right {
+    .gatsby-resp-image-wrapper {
+      width: 20em;
+    }
+
+    @media (min-width: 75rem) {
+      margin-left: 0 !important;
+      margin-right: -10em !important;
+      float: right;
+
+      .gatsby-resp-image-wrapper {
+        margin-left: 3em !important;
+        margin-right: 3em !important;
+      }
+    }
+  }
+
   p code,
   li code,
   h2 code,
@@ -63,6 +80,16 @@ const Content = styled.div`
     .gatsby-highlight {
       margin-left: -0.5em;
       margin-right: -0.5em;
+    }
+  }
+
+  hr {
+    border-style: none;
+    text-align: center;
+
+    &:before {
+      content: '* * *';
+      color: var(--separatorColor);
     }
   }
 `
