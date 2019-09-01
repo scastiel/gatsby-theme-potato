@@ -52,16 +52,13 @@ const Content = styled.div`
   }
 
   figure.small-right {
-    .gatsby-resp-image-wrapper {
-      width: 20em;
-    }
-
     @media (min-width: 75rem) {
       margin-left: 0 !important;
       margin-right: -10em !important;
       float: right;
 
       .gatsby-resp-image-wrapper {
+        width: 20em;
         margin-left: 3em !important;
         margin-right: 3em !important;
       }
