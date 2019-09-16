@@ -7,7 +7,7 @@ import { Helmet } from 'react-helmet'
 import NewsletterSignUp from './NewsletterSignup'
 
 const Content = styled.div`
-  line-height: 1.6rem;
+  line-height: 1.6em;
 
   pre[class*='language-'] {
     max-width: 100%;
@@ -71,9 +71,11 @@ const Content = styled.div`
   h3 code {
     background-color: transparent !important;
     color: var(--textColor) !important;
+    font-size: 0.95em !important;
+    padding: 0 !important;
   }
 
-  @media (max-width: 50rem) {
+  @media (max-width: 45rem) {
     .gatsby-highlight {
       margin-left: -0.5em;
       margin-right: -0.5em;

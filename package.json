@@ -37,7 +37,7 @@
     "react-dom": "^16.8.6",
     "react-helmet": "^5.2.0",
     "styled-components": "^3.4.9",
-    "typeface-pt-serif": "^0.0.54"
+    "typeface-libre-baskerville": "^0.0.72"
   },
   "devDependencies": {
     "eslint": "^5.6.0",

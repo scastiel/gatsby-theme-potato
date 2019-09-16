@@ -30,7 +30,7 @@ const SidebarContainer = styled.div`
 
   ${({ hidden }) => hidden && hiddenSidebarStyle};
 
-  @media (max-width: 50rem) {
+  @media (max-width: 45rem) {
     ${hiddenSidebarStyle};
   }
 `
@@ -43,7 +43,7 @@ const Widget = styled.div`
     color: inherit;
   }
 
-  @media (max-width: 50rem) {
+  @media (max-width: 45rem) {
     min-width: 15rem;
   }
 `
@@ -97,7 +97,7 @@ const Trigger = styled(({ display, ...props }) => <div {...props} />)`
     height: 1.3rem;
     cursor: pointer;
 
-    @media (max-width: 50rem) {
+    @media (max-width: 45rem) {
       display: block;
     }
   }

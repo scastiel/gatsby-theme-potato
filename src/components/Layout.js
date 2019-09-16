@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { Helmet } from 'react-helmet'
 import SiteMetadataQuery from '../queries/SiteMetadataQuery'
 import 'raleway-webfont'
-import 'typeface-pt-serif'
+import 'typeface-libre-baskerville'
 import '../colors.css'
 import Footer from './Footer'
 import withTheme from './ThemeUser'
@@ -21,7 +21,8 @@ const StyledLayout = styled.div`
   box-sizing: border-box;
   width: 100%;
   font-family: var(--serifFont);
-  font-size: calc(20px + (24 - 20) * (100vw - 800px) / (800-400));
+  letter-spacing: -0.2px;
+  font-size: calc(18px + (24 - 20) * (100vw - 800px) / (800-400));
   color: var(--textColor);
 
   -moz-osx-font-smoothing: grayscale;
@@ -37,8 +38,8 @@ const StyledLayout = styled.div`
     color: var(--linkTextColor);
   }
 
-  @media (min-width: 50rem) {
-    font-size: 20px;
+  @media (min-width: 45rem) {
+    font-size: 18px;
   }
 `
 
@@ -71,7 +72,7 @@ const BlogHeader = styled.header`
     color: inherit;
   }
 
-  @media (max-width: 50rem) {
+  @media (max-width: 45rem) {
     flex-direction: column;
   }
 `
@@ -105,7 +106,7 @@ const ArticleTitle = styled.header`
     font-weight: 700;
   }
 
-  @media (max-width: 50rem) {
+  @media (max-width: 45rem) {
     min-height: 0;
   }
 `
@@ -145,7 +146,7 @@ const Menu = styled.nav`
       color: var(--accentColor);
     }
 
-    @media (max-width: 50rem) {
+    @media (max-width: 45rem) {
       font-size: 0.8em;
       padding: 0em 0.5em 0.5em 0.5em;
     }
@@ -156,7 +157,7 @@ const BlogTitle = styled.div`
   flex: 1;
   padding: 1rem;
 
-  @media (max-width: 50rem) {
+  @media (max-width: 45rem) {
     padding-bottom: 0.4em;
   }
 `
@@ -181,13 +182,13 @@ const Body = styled.div`
   justify-content: center;
 
   width: 100%;
-  max-width: 50rem;
+  max-width: 45rem;
   margin-left: auto;
   margin-right: auto;
 
   padding: 2em 0.5em 0.5em;
 
-  @media (max-width: 50rem) {
+  @media (max-width: 45rem) {
     flex-direction: column;
     padding-top: 1em;
   }
@@ -197,7 +198,7 @@ const Content = styled.div`
   width: 100%;
   max-width: calc(100% + 2em - 3em);
 
-  @media (max-width: 50rem) {
+  @media (max-width: 45rem) {
     max-width: 100%;
   }
 `
@@ -244,7 +245,10 @@ const Layout = ({
                 content={description || siteDescription}
               />
               <meta name="canonical" content={siteUrl + (slug || '')} />
-              <meta name="google-site-verification" content="5Q_TarltVbGG59F555OVyv-Atq7_WnFHhgrHcAqT2Kw" />
+              <meta
+                name="google-site-verification"
+                content="5Q_TarltVbGG59F555OVyv-Atq7_WnFHhgrHcAqT2Kw"
+              />
               <style>
                 {'body { background-color: var(--backgroundColor); }'}
               </style>
