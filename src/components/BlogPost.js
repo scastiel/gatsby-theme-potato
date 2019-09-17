@@ -39,6 +39,9 @@ const Content = styled.div`
 
   blockquote {
     font-style: italic;
+    line-height: 1.7em;
+    font-size: 1.2em;
+    color: var(--lightTextColor);
   }
 
   figcaption {
@@ -89,6 +92,48 @@ const Content = styled.div`
     &:before {
       content: '* * *';
       color: var(--separatorColor);
+    }
+  }
+
+  .inset-right {
+    font-family: var(--sansSerifFont);
+    font-size: 0.9em;
+    line-height: 1.3em;
+    padding: 1.3em;
+    background-color: var(--lightAccentColor);
+    max-width: 25rem;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1rem;
+
+    @media (min-width: 45rem) {
+      margin-left: 2em !important;
+      float: right;
+    }
+
+    @media (min-width: 50rem) {
+      margin-right: -2rem;
+    }
+    @media (min-width: 55rem) {
+      margin-right: -5rem;
+    }
+    @media (min-width: 60rem) {
+      margin-right: -8rem;
+    }
+
+    p {
+      margin: 0;
+    }
+
+    ul {
+      margin: 0;
+      padding-left: 1.5em;
+    }
+
+    h2 {
+      margin-top: 0;
+      text-align: left;
+      font-size: 1.2em;
     }
   }
 `
