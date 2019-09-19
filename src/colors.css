@@ -10,7 +10,7 @@ html {
 
   --accentColor: hsl(200, 50%, 60%);
   --articleTitleTextColor: hsl(201, 31%, 30%);
-  --pageHeaderColor: hsla(201, 31%, 30%, 70%);
+  --pageHeaderColor: hsla(200, 50%, 30%, 70%);
   --lightAccentColor: hsla(200, 50%, 60%, 15%);
 
   --sansSerifFont: 'Raleway', sans-serif;

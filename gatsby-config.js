@@ -65,7 +65,7 @@ module.exports = {
         short_name: 'S. Castiel',
         start_url: '/',
         background_color: '#ffffff',
-        theme_color: '#8db0c3',
+        theme_color: '#66aacc',
         display: 'minimal-ui',
         icon: 'assets/logo.png'
       }
