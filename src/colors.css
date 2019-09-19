@@ -8,10 +8,10 @@ html {
   --commentBorderColor: hsl(0, 0%, 90%);
   --inputBorderColor: hsl(0, 0%, 70%);
 
-  --accentColor: hsl(201, 31%, 66%);
+  --accentColor: hsl(200, 50%, 60%);
   --articleTitleTextColor: hsl(201, 31%, 30%);
   --pageHeaderColor: hsla(201, 31%, 30%, 70%);
-  --lightAccentColor: hsla(201, 31%, 66%, 15%);
+  --lightAccentColor: hsla(200, 50%, 60%, 15%);
 
   --sansSerifFont: 'Raleway', sans-serif;
   --serifFont: 'Libre Baskerville', serif;

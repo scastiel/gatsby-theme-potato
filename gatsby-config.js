@@ -9,6 +9,8 @@ module.exports = {
     lang: 'en'
   },
   plugins: [
+    'gatsby-plugin-sitemap',
+    'gatsby-plugin-netlify',
     {
       resolve: 'gatsby-plugin-react-svg',
       options: {
