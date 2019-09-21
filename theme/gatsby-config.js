@@ -23,7 +23,6 @@ module.exports = {
         }
       }
     },
-    'gatsby-plugin-feed',
     'gatsby-plugin-react-helmet',
     'gatsby-transformer-yaml',
     {
@@ -60,7 +59,6 @@ module.exports = {
     },
     'gatsby-transformer-sharp',
     'gatsby-plugin-sharp',
-    'gatsby-redirect-from',
     'gatsby-plugin-meta-redirect',
     'gatsby-plugin-styled-components'
   ]

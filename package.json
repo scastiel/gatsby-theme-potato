@@ -2,8 +2,8 @@
   "private": true,
   "version": "independent",
   "workspaces": [
-    "example",
-    "theme"
+    "theme",
+    "demo"
   ],
   "devDependencies": {
     "tslint": "^5.20.0",

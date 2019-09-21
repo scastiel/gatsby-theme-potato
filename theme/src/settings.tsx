@@ -32,6 +32,7 @@ export interface Theme {
 export interface Settings {
   widgets: ComponentType[]
   PostFooter: ComponentType<{
+    url: string
     post: PostQuery_markdownRemark
   }> | null
   Footer: ComponentType | null

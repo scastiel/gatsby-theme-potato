@@ -144,6 +144,10 @@ const Separator = styled.hr`
   margin-top: 5em;
 `
 
+const ArticleFooter = styled.div`
+  font-family: ${({ theme }) => theme.sansSerifFont};
+`
+
 export interface Props {
   post: any
   siteUrl: string
@@ -178,7 +182,9 @@ const BlogPost: FC<Props> = ({ post, siteUrl }) => {
         {settings.PostFooter && (
           <>
             <Separator />
-            <settings.PostFooter post={post} />
+            <ArticleFooter>
+              <settings.PostFooter url={url} post={post} />
+            </ArticleFooter>
           </>
         )}
       </article>
