@@ -1,0 +1,66 @@
+import React from 'react'
+import { graphql } from 'gatsby'
+import Layout from '../components/Layout'
+import BlogPost from '../components/BlogPost'
+
+const BlogPostTemplate = ({
+  data: {
+    site: {
+      siteMetadata: { siteUrl }
+    },
+    markdownRemark: post
+  }
+}) => {
+  return (
+    <Layout
+      title={post.frontmatter.title}
+      slug={post.fields.slug}
+      url={`/posts${post.fields.slug}`}
+      description={post.excerpt}
+      lang={post.frontmatter.lang}
+      category={post.frontmatter.category}
+      date={post.frontmatter.date}
+      displayTitle={true}
+      cover={post.frontmatter.cover}
+      readingTime={post.fields.readingTime.text}
+    >
+      <BlogPost post={post} siteUrl={siteUrl} />
+    </Layout>
+  )
+}
+
+export const query = graphql`
+  query($slug: String!) {
+    site {
+      siteMetadata {
+        siteUrl
+      }
+    }
+    markdownRemark(fields: { slug: { eq: $slug } }) {
+      html
+      excerpt
+      frontmatter {
+        title
+        date
+        lang
+        category
+        cover {
+          publicURL
+          childImageSharp {
+            sizes(maxWidth: 2000) {
+              ...GatsbyImageSharpSizes
+            }
+          }
+        }
+      }
+      fields {
+        slug
+        readingTime {
+          text
+        }
+      }
+    }
+  }
+`
+
+export default BlogPostTemplate
