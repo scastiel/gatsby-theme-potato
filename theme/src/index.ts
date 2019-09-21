@@ -1,0 +1,6 @@
+export { Layout } from './components/Layout'
+export { Avatar } from './components/sidebar/Avatar'
+export { Widget } from './components/sidebar/Widget'
+export { SocialIcon } from './components/sidebar/SocialIcon'
+export { SocialIconsContainer } from './components/sidebar/SocialIconsContainer'
+export { NewsletterSignUp } from './components/NewsletterSignup'

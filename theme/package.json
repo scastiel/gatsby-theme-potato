@@ -3,11 +3,13 @@
   "version": "0.1.0",
   "description": "A theme for Gatsby",
   "license": "MIT",
+  "types": "src/index.ts",
   "scripts": {
     "develop": "gatsby develop",
-    "build": "gatsby build",
-    "serve": "gatsby serve",
-    "clean": "gatsby clean"
+    "build": "tsc -p tsconfig.json",
+    "generate-types": "apollo client:codegen src/types --passthroughCustomScalars --target=typescript --outputFlat",
+    "typecheck": "tsc --noEmit",
+    "lint": "tslint -p ."
   },
   "dependencies": {
     "babel-plugin-styled-components": "^1.7.1",
@@ -20,6 +22,7 @@
     "gatsby-plugin-react-svg": "^2.0.0",
     "gatsby-plugin-sharp": "^2.2.9",
     "gatsby-plugin-styled-components": "^3.0.0",
+    "gatsby-plugin-typescript": "^2.1.9",
     "gatsby-redirect-from": "^0.1.1",
     "gatsby-remark-copy-linked-files": "^2.0.5",
     "gatsby-remark-images": "^2.0.1",
@@ -31,11 +34,15 @@
     "gatsby-transformer-yaml": "^2.1.1",
     "prismjs": "^1.15.0",
     "raleway-webfont": "^3.0.1",
-    "react-helmet": "^5.2.0",
-    "styled-components": "^3.4.9",
+    "react-helmet": "^6.0.0-beta",
+    "react-side-effect": "2",
     "typeface-libre-baskerville": "^0.0.72"
   },
   "devDependencies": {
+    "@babel/core": "^7.6.0",
+    "@types/react-helmet": "^5.0.10",
+    "@types/styled-components": "^4.1.19",
+    "apollo": "^2.18.3",
     "eslint": "^5.6.0",
     "eslint-config-prettier": "^3.0.1",
     "eslint-config-standard": "^12.0.0",
@@ -48,12 +55,15 @@
     "gatsby": "^2.13.45",
     "prettier": "^1.14.3",
     "react": "^16.8.6",
-    "react-dom": "^16.8.6"
+    "react-dom": "^16.8.6",
+    "styled-components": "^4.3.2",
+    "typescript": "^3.6.3"
   },
   "peerDependencies": {
     "gatsby": "^2.13.45",
     "react": "^16.8.6",
-    "react-dom": "^16.8.6"
+    "react-dom": "^16.8.6",
+    "styled-components": "^4.3.2"
   },
   "prettier": {
     "semi": false,

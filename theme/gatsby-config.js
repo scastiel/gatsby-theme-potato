@@ -2,6 +2,7 @@ require('babel-polyfill')
 
 module.exports = {
   plugins: [
+    `gatsby-plugin-typescript`,
     {
       resolve: `gatsby-plugin-page-creator`,
       options: {

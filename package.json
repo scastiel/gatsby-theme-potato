@@ -4,5 +4,10 @@
   "workspaces": [
     "example",
     "theme"
-  ]
+  ],
+  "devDependencies": {
+    "tslint": "^5.20.0",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-config-standard": "^8.0.1"
+  }
 }

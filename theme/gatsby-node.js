@@ -42,7 +42,7 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
     }) => {
       createPage({
         path: `/posts${slug}`,
-        component: require.resolve('./src/templates/BlogPostTemplate.js'),
+        component: require.resolve('./src/templates/BlogPostTemplate.tsx'),
         context: { slug }
       })
       if (!langs.includes(lang)) {
@@ -57,7 +57,7 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
   langs.forEach(lang => {
     createPage({
       path: `/langs/${lang}`,
-      component: require.resolve('./src/templates/LangTemplate.js'),
+      component: require.resolve('./src/templates/LangTemplate.tsx'),
       context: { lang }
     })
   })
@@ -65,7 +65,7 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
   categories.forEach(category => {
     createPage({
       path: `/categories/${category}`,
-      component: require.resolve('./src/templates/CategoryTemplate.js'),
+      component: require.resolve('./src/templates/CategoryTemplate.tsx'),
       context: { category }
     })
   })
