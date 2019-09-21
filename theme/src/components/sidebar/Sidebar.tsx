@@ -39,7 +39,7 @@ const Trigger = styled(({ display, ...props }) => <div {...props} />)`
   .nav-trigger:checked ~ .sidebar {
     right: 0;
     transition: right 0.2s;
-    box-shadow: 0 0 30px 0 var(--textColor);
+    box-shadow: 0 0 30px 0 ${({ theme }) => theme.textColor};
   }
 `
 
@@ -48,8 +48,8 @@ const Hamburger = styled.div`
   display: inline-block;
   width: 1.6rem;
   height: 1.3rem;
-  border-top: 0.2rem solid var(--accentColor);
-  border-bottom: 0.2rem solid var(--accentColor);
+  border-top: 0.2rem solid ${({ theme }) => theme.accentColor};
+  border-bottom: 0.2rem solid ${({ theme }) => theme.accentColor};
 
   &:before {
     content: '';
@@ -57,7 +57,7 @@ const Hamburger = styled.div`
     top: 0.35rem;
     left: 0px;
     width: 100%;
-    border-top: 0.2rem solid var(--accentColor);
+    border-top: 0.2rem solid ${({ theme }) => theme.accentColor};
   }
 `
 

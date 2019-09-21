@@ -1,3 +1,5 @@
+import 'raleway-webfont'
+import 'typeface-libre-baskerville'
 import Footer from '../components/Footer'
 import { PostFooter } from '../components/PostFooter'
 import BookWidget from '../components/widgets/BookWidget'
@@ -18,6 +20,13 @@ const customSettings = {
   twitterCardInfo: {
     user: '@scastiel',
     defaultImage: '/twitter-card-small.png'
+  },
+  theme: {
+    accentColor: 'hsl(200, 50%, 60%)',
+    pageHeaderColor: 'hsla(200, 50%, 30%, 70%)',
+    lightAccentColor: 'hsla(200, 50%, 60%, 15%)',
+    sansSerifFont: "'Raleway', sans-serif",
+    serifFont: "'Libre Baskerville', serif"
   }
 }
 

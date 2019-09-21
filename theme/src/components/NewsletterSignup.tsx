@@ -2,13 +2,13 @@ import React, { FC } from 'react'
 import styled from 'styled-components'
 
 const Box = styled.div`
-  background-color: var(--lightAccentColor);
+  background-color: ${({ theme }) => theme.lightAccentColor};
   padding: 1em;
   max-width: 18em;
   text-align: center;
 
   * {
-    font-family: var(--sansSerifFont);
+    font-family: ${({ theme }) => theme.sansSerifFont};
     font-size: 1em;
   }
 
@@ -23,7 +23,7 @@ const Box = styled.div`
   }
 
   button {
-    background-color: var(--accentColor);
+    background-color: ${({ theme }) => theme.accentColor};
     padding: 0.5em 1em;
     margin-top: 0.5em;
     font-size: 1em;

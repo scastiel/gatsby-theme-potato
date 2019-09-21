@@ -1,7 +1,7 @@
 #!/bin/sh
 
-SOURCE_FILE="assets/avatar.png"
-DEST_FILE="assets/logo.png"
+SOURCE_FILE="content/assets/avatar.png"
+DEST_FILE="content/assets/logo.png"
 SIZE=500
 COLOR="hsl(200, 50%, 60%)"
 OFFSET=20

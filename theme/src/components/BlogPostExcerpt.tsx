@@ -11,8 +11,8 @@ const Excerpt = styled.article`
 `
 
 const Title = styled.h2`
-  font-family: var(--sansSerifFont);
-  color: var(--titleTextColor);
+  font-family: ${({ theme }) => theme.sansSerifFont};
+  color: ${({ theme }) => theme.titleTextColor};
   font-size: 1.5rem;
   font-weight: 700;
   margin-top: 2rem;
@@ -21,14 +21,14 @@ const Title = styled.h2`
   a {
     color: inherit;
     text-decoration: underline;
-    text-decoration-color: var(--accentColor);
+    text-decoration-color: ${({ theme }) => theme.accentColor};
   }
 `
 
 const Infos = styled.div`
-  font-family: var(--sansSerifFont);
+  font-family: ${({ theme }) => theme.sansSerifFont};
   font-size: 0.8em;
-  color: var(--lightTextColor);
+  color: ${({ theme }) => theme.lightTextColor};
   margin-top: 0.5rem;
 
   a {
@@ -42,7 +42,7 @@ const Content = styled.div`
 
 const ReadMoreLink = styled(Link)`
   font-style: italic;
-  color: var(--linkTextColor);
+  color: ${({ theme }) => theme.linkTextColor};
 `
 
 const ReadingTime = styled.span`

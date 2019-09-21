@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { NewsletterSignUp } from './NewsletterSignUp'
 
 const ArticleFooter = styled.p`
-  font-family: var(--sansSerifFont);
+  font-family: ${({ theme })=> theme.sansSerifFont};
 `
 
 const NewsletterBox = styled.div`

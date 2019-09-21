@@ -30,7 +30,7 @@ const Content = styled.div`
   h3,
   h4,
   h5 {
-    font-family: var(--sansSerifFont);
+    font-family: ${({ theme }) => theme.sansSerifFont};
   }
 
   h2 {
@@ -41,7 +41,7 @@ const Content = styled.div`
     font-style: italic;
     line-height: 1.7em;
     font-size: 1.2em;
-    color: var(--lightTextColor);
+    color: ${({ theme }) => theme.lightTextColor};
   }
 
   figcaption {
@@ -73,7 +73,7 @@ const Content = styled.div`
   h2 code,
   h3 code {
     background-color: transparent !important;
-    color: var(--textColor) !important;
+    color: ${({ theme }) => theme.textColor} !important;
     font-size: 0.95em !important;
     padding: 0 !important;
   }
@@ -91,16 +91,16 @@ const Content = styled.div`
 
     &:before {
       content: '* * *';
-      color: var(--separatorColor);
+      color: ${({ theme }) => theme.separatorColor};
     }
   }
 
   .inset-right {
-    font-family: var(--sansSerifFont);
+    font-family: ${({ theme }) => theme.sansSerifFont};
     font-size: 0.9em;
     line-height: 1.3em;
     padding: 1.3em;
-    background-color: var(--lightAccentColor);
+    background-color: ${({ theme }) => theme.lightAccentColor};
     max-width: 25rem;
     margin-left: auto;
     margin-right: auto;
@@ -140,7 +140,7 @@ const Content = styled.div`
 
 const Separator = styled.hr`
   border-style: none;
-  border-bottom: 1px dotted var(--separatorColor);
+  border-bottom: 1px dotted ${({ theme }) => theme.separatorColor};
   margin-top: 5em;
 `
 

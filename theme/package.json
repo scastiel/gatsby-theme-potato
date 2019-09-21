@@ -33,10 +33,8 @@
     "gatsby-transformer-sharp": "^2.2.5",
     "gatsby-transformer-yaml": "^2.1.1",
     "prismjs": "^1.15.0",
-    "raleway-webfont": "^3.0.1",
     "react-helmet": "^6.0.0-beta",
-    "react-side-effect": "2",
-    "typeface-libre-baskerville": "^0.0.72"
+    "react-side-effect": "^2.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.6.0",
