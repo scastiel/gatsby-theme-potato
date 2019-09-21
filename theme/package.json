@@ -1,0 +1,87 @@
+{
+  "name": "gatsby-theme-potato",
+  "version": "1.0.0",
+  "description": "A theme for Gatsby",
+  "license": "MIT",
+  "types": "src/index.ts",
+  "scripts": {
+    "develop": "gatsby develop",
+    "build": "tsc -p tsconfig.json",
+    "generate-types": "apollo client:codegen src/types --passthroughCustomScalars --target=typescript --outputFlat",
+    "typecheck": "tsc --noEmit",
+    "lint": "tslint -p ."
+  },
+  "dependencies": {
+    "babel-plugin-styled-components": "^1.7.1",
+    "babel-polyfill": "^6.26.0",
+    "gatsby-image": "^2.2.7",
+    "gatsby-plugin-feed": "^2.0.5",
+    "gatsby-plugin-meta-redirect": "^1.1.0",
+    "gatsby-plugin-page-creator": "^2.1.21",
+    "gatsby-plugin-react-helmet": "^3.0.0",
+    "gatsby-plugin-react-svg": "^2.0.0",
+    "gatsby-plugin-sharp": "^2.2.9",
+    "gatsby-plugin-styled-components": "^3.0.0",
+    "gatsby-plugin-typescript": "^2.1.9",
+    "gatsby-redirect-from": "^0.1.1",
+    "gatsby-remark-copy-linked-files": "^2.0.5",
+    "gatsby-remark-images": "^2.0.1",
+    "gatsby-remark-prismjs": "^3.0.0",
+    "gatsby-remark-reading-time": "^1.0.1",
+    "gatsby-source-filesystem": "^2.0.1",
+    "gatsby-transformer-remark": "^2.1.3",
+    "gatsby-transformer-sharp": "^2.2.5",
+    "gatsby-transformer-yaml": "^2.1.1",
+    "prismjs": "^1.15.0",
+    "react-helmet": "^6.0.0-beta",
+    "react-side-effect": "^2.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.6.0",
+    "@types/react-helmet": "^5.0.10",
+    "@types/styled-components": "^4.1.19",
+    "apollo": "^2.18.3",
+    "eslint": "^5.6.0",
+    "eslint-config-prettier": "^3.0.1",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-node": "^7.0.1",
+    "eslint-plugin-prettier": "^2.6.2",
+    "eslint-plugin-promise": "^4.0.1",
+    "eslint-plugin-react": "^7.11.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "gatsby": "^2.13.45",
+    "prettier": "^1.14.3",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "styled-components": "^4.3.2",
+    "typescript": "^3.6.3"
+  },
+  "peerDependencies": {
+    "gatsby": "^2.13.45",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "styled-components": "^4.3.2"
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true,
+    "proseWrap": "never"
+  },
+  "eslintConfig": {
+    "parser": "babel-eslint",
+    "extends": [
+      "standard",
+      "plugin:react/recommended",
+      "plugin:prettier/recommended"
+    ],
+    "rules": {
+      "react/display-name": 0,
+      "react/prop-types": 0
+    },
+    "env": {
+      "jest": true,
+      "browser": true
+    }
+  }
+}
