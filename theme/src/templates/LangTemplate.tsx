@@ -12,11 +12,13 @@ const getTitle = (lang: string) => {
 }
 
 export interface Props {
+  uri: string
   pageContext: { lang: string }
   data: LangPostsQuery
 }
 
 const LangTemplate: FC<Props> = ({
+  uri,
   pageContext: { lang },
   data: {
     allMarkdownRemark: { edges }
@@ -24,7 +26,7 @@ const LangTemplate: FC<Props> = ({
 }) => {
   const posts = edges.map(edge => edge.node)
   return (
-    <Layout title={getTitle(lang)} displayPageTitle>
+    <Layout url={uri} title={getTitle(lang)} displayPageTitle>
       {posts.map(post => (
         <BlogPostExcerpt key={post.id} post={post} />
       ))}

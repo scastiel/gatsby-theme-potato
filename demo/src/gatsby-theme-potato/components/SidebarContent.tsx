@@ -1,10 +1,19 @@
 import {
   Avatar,
+  NewsletterSignUp,
   SocialIcon,
   SocialIconsContainer,
   Widget
 } from 'gatsby-theme-potato'
 import React, { FC } from 'react'
+
+const NewsletterWidget: FC = () => {
+  return (
+    <Widget>
+      <NewsletterSignUp formUrl="https://example.com" antispamFieldName="" />
+    </Widget>
+  )
+}
 
 const ProfileWidget: FC = () => {
   return (
@@ -31,4 +40,11 @@ const ProfileWidget: FC = () => {
   )
 }
 
-export default ProfileWidget
+const SidebarContent: FC = () => (
+  <>
+    <ProfileWidget />
+    <NewsletterWidget />
+  </>
+)
+
+export default SidebarContent

@@ -5,7 +5,7 @@ const getStyledIcon = (comp: any) => styled(comp)`
   display: inline-block;
   margin: 0 0.2em;
   width: 1em;
-  fill: ${({ theme })=> theme.lightTextColor};
+  fill: ${({ theme }) => theme.lightTextColor};
 
   :hover {
     opacity: 1;
@@ -21,11 +21,11 @@ export interface Props {
 export const SocialIcon: FC<Props> = ({ type, url }) => {
   const BaseIcon =
     type === 'github'
-      ? require('../../../assets/svg/github.svg')
+      ? require('../../assets/svg/github.svg')
       : type === 'twitter'
-      ? require('../../../assets/svg/twitter.svg')
+      ? require('../../assets/svg/twitter.svg')
       : type === 'mastodon'
-      ? require('../../../assets/svg/mastodon.svg')
+      ? require('../../assets/svg/mastodon.svg')
       : null
   const Icon = getStyledIcon(BaseIcon)
   return (

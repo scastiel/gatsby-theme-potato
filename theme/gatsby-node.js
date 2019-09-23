@@ -1,8 +1,15 @@
 const { createFilePath } = require('gatsby-source-filesystem')
+const path = require('path')
 
-exports.onCreateNode = ({ node, getNode, actions: { createNodeField } }) => {
+exports.onCreateNode = (
+  { node, getNode, actions: { createNodeField } },
+  themeOptions = {}
+) => {
   if (node.internal.type === 'MarkdownRemark') {
-    const slug = createFilePath({ node, getNode, basePath: 'pages' })
+    const postPath = createFilePath({ node, getNode })
+    const slug = themeOptions.postsPrefix
+      ? path.join(themeOptions.postsPrefix, postPath)
+      : postPath
     createNodeField({
       node,
       name: 'slug',
@@ -41,7 +48,7 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
       }
     }) => {
       createPage({
-        path: `/posts${slug}`,
+        path: `${slug}`,
         component: require.resolve('./src/templates/BlogPostTemplate.tsx'),
         context: { slug }
       })

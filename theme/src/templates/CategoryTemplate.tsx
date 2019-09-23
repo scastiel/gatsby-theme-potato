@@ -8,11 +8,13 @@ const getTitle = (category: string) =>
   `Articles posted in ${category.slice(0, 1).toUpperCase() + category.slice(1)}`
 
 export interface Props {
+  uri: string
   pageContext: { category: string }
   data: CategoryPostsQuery
 }
 
 const CategoryTemplate: FC<Props> = ({
+  uri,
   pageContext: { category },
   data: {
     allMarkdownRemark: { edges }
@@ -20,7 +22,7 @@ const CategoryTemplate: FC<Props> = ({
 }) => {
   const posts = edges.map(edge => edge.node)
   return (
-    <Layout title={getTitle(category)} displayPageTitle>
+    <Layout url={uri} title={getTitle(category)} displayPageTitle>
       {posts.map(post => (
         <BlogPostExcerpt key={post.id} post={post} />
       ))}

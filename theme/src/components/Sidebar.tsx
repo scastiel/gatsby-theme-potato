@@ -1,7 +1,7 @@
-import React, { Component, FC } from 'react'
+import React, { Component, ComponentType, FC } from 'react'
 import styled from 'styled-components'
-import settings from '../../settings'
 import { SidebarContainer } from './SidebarContainer'
+import SidebarContent from './SidebarContent'
 
 const Trigger = styled(({ display, ...props }) => <div {...props} />)`
   .nav-trigger {
@@ -62,10 +62,11 @@ const Hamburger = styled.div`
 `
 
 export interface Props {
+  widgets?: ComponentType[]
   hidden: boolean
 }
 
-export const Sidebar: FC<Props> = ({ hidden }) => {
+export const Sidebar: FC<Props> = ({ widgets = [], hidden }) => {
   return (
     <>
       <Trigger display={hidden}>
@@ -74,9 +75,7 @@ export const Sidebar: FC<Props> = ({ hidden }) => {
           <Hamburger />
         </label>
         <SidebarContainer hidden={hidden} className="sidebar">
-          {settings.widgets.map((Widget, index) => (
-            <Widget key={index} />
-          ))}
+          <SidebarContent />
         </SidebarContainer>
       </Trigger>
     </>

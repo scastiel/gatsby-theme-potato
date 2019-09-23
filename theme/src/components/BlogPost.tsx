@@ -1,10 +1,9 @@
-import { withPrefix } from 'gatsby'
 import 'prismjs/plugins/line-numbers/prism-line-numbers.css'
 import 'prismjs/themes/prism-tomorrow.css'
 import React, { FC } from 'react'
 import styled from 'styled-components'
-import settings from '../settings'
-import TwitterCard from './TwitterCard'
+import { PostQuery_markdownRemark } from '../types/PostQuery'
+import PostFooter from './PostFooter'
 
 const Content = styled.div`
   line-height: 1.6em;
@@ -149,47 +148,20 @@ const ArticleFooter = styled.div`
 `
 
 export interface Props {
-  post: any
+  post: PostQuery_markdownRemark
   siteUrl: string
 }
 
-const BlogPost: FC<Props> = ({ post, siteUrl }) => {
-  const {
-    frontmatter: { title, cover },
-    fields: { slug },
-    html,
-    excerpt
-  } = post
-  const url = `${siteUrl}/posts${slug}`
-  return (
-    <>
-      {settings.twitterCardInfo && (
-        <TwitterCard
-          user={settings.twitterCardInfo.user}
-          url={url}
-          title={title}
-          description={excerpt}
-          type={cover ? 'summary_large_image' : 'summary'}
-          image={
-            cover
-              ? `${siteUrl}${cover.publicURL}`
-              : `${siteUrl}${withPrefix(settings.twitterCardInfo.defaultImage)}`
-          }
-        />
-      )}
-      <article>
-        <Content dangerouslySetInnerHTML={{ __html: html }} />
-        {settings.PostFooter && (
-          <>
-            <Separator />
-            <ArticleFooter>
-              <settings.PostFooter url={url} post={post} />
-            </ArticleFooter>
-          </>
-        )}
-      </article>
-    </>
-  )
-}
+const BlogPost: FC<Props> = ({ post, siteUrl }) => (
+  <>
+    <article>
+      <Content dangerouslySetInnerHTML={{ __html: post.html! }} />
+      <Separator />
+      <ArticleFooter>
+        <PostFooter siteUrl={siteUrl} post={post} />
+      </ArticleFooter>
+    </article>
+  </>
+)
 
 export default BlogPost
