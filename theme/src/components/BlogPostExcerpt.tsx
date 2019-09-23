@@ -54,12 +54,11 @@ interface Props {
 }
 
 const BlogPostExcerpt: FC<Props> = ({ post }) => {
-  const url = `/posts${post.fields!.slug!}`
   return (
     <Excerpt>
       <header>
         <Title>
-          <Link to={url}>{post.frontmatter!.title}</Link>
+          <Link to={`/${post.fields!.slug}`}>{post.frontmatter!.title}</Link>
         </Title>
         <Infos>
           Posted in <CategoryLink category={post.frontmatter!.category!} /> on{' '}
@@ -70,7 +69,10 @@ const BlogPostExcerpt: FC<Props> = ({ post }) => {
       </header>
       <Content>
         <p>
-          {post.excerpt} <ReadMoreLink to={url}>Continue reading…</ReadMoreLink>
+          {post.excerpt}{' '}
+          <ReadMoreLink to={`/${post.fields!.slug}`}>
+            Continue reading…
+          </ReadMoreLink>
         </p>
       </Content>
     </Excerpt>

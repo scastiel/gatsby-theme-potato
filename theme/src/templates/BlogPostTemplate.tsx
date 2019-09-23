@@ -15,7 +15,6 @@ const BlogPostTemplate: FC<Props> = ({
     <Layout
       title={post!.frontmatter!.title!}
       slug={post!.fields!.slug!}
-      url={`/posts${post!.fields!.slug}`}
       description={post!.excerpt!}
       lang={post!.frontmatter!.lang!}
       category={post!.frontmatter!.category!}
@@ -26,7 +25,7 @@ const BlogPostTemplate: FC<Props> = ({
       }
       readingTime={post!.fields!.readingTime!.text!}
     >
-      <BlogPost post={post} siteUrl={site!.siteMetadata!.siteUrl!} />
+      <BlogPost post={post!} siteUrl={site!.siteMetadata!.siteUrl!} />
     </Layout>
   )
 }

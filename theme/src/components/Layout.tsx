@@ -3,12 +3,13 @@ import React, { FC } from 'react'
 import { Helmet } from 'react-helmet'
 import styled, { ThemeProvider } from 'styled-components'
 import SiteMetadataQuery from '../queries/SiteMetadataQuery'
-import settings from '../settings'
+import siteTheme from '../theme'
 import { renderDate } from '../utils'
 import CategoryLink from './CategoryLink'
 import Footer from './Footer'
 import LangLink from './LangLink'
-import Sidebar from './sidebar/Sidebar'
+import MenuItems from './MenuItems'
+import Sidebar from './Sidebar'
 
 const Container = styled.div`
   background-color: ${({ theme }) => theme.backgroundColor};
@@ -206,6 +207,21 @@ const ReadingTime = styled.span`
   white-space: nowrap;
 `
 
+const FooterContainer = styled.div`
+  margin: 0;
+  color: ${({ theme }) => theme.lightTextColor};
+  font-size: 0.8em;
+  margin-top: 5em;
+  padding: 0.5em 0;
+  border-top: 1px dotted ${({ theme }) => theme.separatorColor};
+  text-align: center;
+  font-family: ${({ theme }) => theme.sansSerifFont};
+
+  a {
+    color: inherit;
+  }
+`
+
 export interface Props {
   isHome?: boolean
   title?: string
@@ -236,7 +252,7 @@ export const Layout: FC<Props> = ({
   coverUrl,
   readingTime
 }) => (
-  <ThemeProvider theme={settings.theme}>
+  <ThemeProvider theme={siteTheme}>
     <Container>
       <StyledLayout>
         <SiteMetadataQuery>
@@ -260,7 +276,7 @@ export const Layout: FC<Props> = ({
                 />
                 <meta
                   name="canonical"
-                  content={siteUrl + (url || slug || '')}
+                  content={siteUrl + (url || (slug && '/' + slug) || '')}
                 />
                 <style>{'body { padding: 0; margin: 0 }'}</style>
               </Helmet>
@@ -270,15 +286,9 @@ export const Layout: FC<Props> = ({
                     <Link to="/">{blogTitle}</Link>
                   </h1>
                 </BlogTitle>
-                {settings.menuLinks && (
-                  <Menu isHome={isHome}>
-                    {settings.menuLinks.map(({ url: linkUrl, label }) => (
-                      <Link to={linkUrl} key={linkUrl}>
-                        {label}
-                      </Link>
-                    ))}
-                  </Menu>
-                )}
+                <Menu isHome={isHome}>
+                  <MenuItems />
+                </Menu>
               </BlogHeader>
             </>
           )}
@@ -304,7 +314,9 @@ export const Layout: FC<Props> = ({
           </Content>
           <Sidebar hidden={!isHome} />
         </Body>
-        <Footer />
+        <FooterContainer>
+          <Footer />
+        </FooterContainer>
       </StyledLayout>
     </Container>
   </ThemeProvider>
