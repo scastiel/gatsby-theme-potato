@@ -1,13 +1,30 @@
 {
   "name": "gatsby-theme-potato",
-  "version": "1.1.0",
-  "description": "A theme for Gatsby",
+  "version": "1.1.1",
+  "description": "A Potato Theme for Gatsby",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/scastiel/gatsby-theme-potato",
+    "directory": "theme"
+  },
+  "author": {
+    "name": "Sébastien Castiel",
+    "url": "https://blog.castiel.me"
+  },
+  "keywords": [
+    "gatsby",
+    "gatsby-theme",
+    "gatsby-plugin",
+    "react",
+    "blog"
+  ],
+  "homepage": "https://github.com/scastiel/gatsby-theme-potato",
   "types": "src/index.ts",
   "scripts": {
     "develop": "gatsby develop",
     "build": "tsc -p tsconfig.json",
-    "generate-types": "apollo client:codegen src/types --passthroughCustomScalars --target=typescript --outputFlat",
+    "generate-types": "apollo client:codegen src/types --tagName=graphql --passthroughCustomScalars --target=typescript --outputFlat",
     "typecheck": "tsc --noEmit",
     "lint": "tslint -p ."
   },
@@ -60,26 +77,5 @@
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "styled-components": "^4.3.2"
-  },
-  "prettier": {
-    "semi": false,
-    "singleQuote": true,
-    "proseWrap": "never"
-  },
-  "eslintConfig": {
-    "parser": "babel-eslint",
-    "extends": [
-      "standard",
-      "plugin:react/recommended",
-      "plugin:prettier/recommended"
-    ],
-    "rules": {
-      "react/display-name": 0,
-      "react/prop-types": 0
-    },
-    "env": {
-      "jest": true,
-      "browser": true
-    }
   }
 }
