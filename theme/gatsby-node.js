@@ -5,11 +5,13 @@ exports.onCreateNode = (
   { node, getNode, actions: { createNodeField } },
   themeOptions = {}
 ) => {
+  let { postsPrefix } = themeOptions
+  if (postsPrefix && !postsPrefix.startsWith('/')) {
+    postsPrefix = `/${postsPrefix}`
+  }
   if (node.internal.type === 'MarkdownRemark') {
     const postPath = createFilePath({ node, getNode })
-    const slug = themeOptions.postsPrefix
-      ? path.join(themeOptions.postsPrefix, postPath)
-      : postPath
+    const slug = postsPrefix ? path.join(postsPrefix, postPath) : postPath
     createNodeField({
       node,
       name: 'slug',

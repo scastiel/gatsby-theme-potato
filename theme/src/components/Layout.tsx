@@ -276,7 +276,7 @@ export const Layout: FC<Props> = ({
                 />
                 <meta
                   name="canonical"
-                  content={siteUrl + (url || (slug && '/' + slug) || '')}
+                  content={siteUrl + (url || slug || '')}
                 />
                 <style>{'body { padding: 0; margin: 0 }'}</style>
               </Helmet>

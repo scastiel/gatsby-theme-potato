@@ -18,13 +18,13 @@ export const PostTwitterCard: FC<Props> = ({
 }) => (
   <TwitterCard
     user={user}
-    url={`${siteUrl}/${post.fields!.slug}`}
+    url={`${siteUrl}${post.fields!.slug}`}
     title={post.frontmatter!.title!}
     description={post.excerpt!}
     type={post.frontmatter!.cover ? 'summary_large_image' : 'summary'}
     image={
       post.frontmatter!.cover
-        ? `${siteUrl}/${post.frontmatter!.cover.publicURL}`
+        ? `${siteUrl}${post.frontmatter!.cover.publicURL}`
         : `${siteUrl}${withPrefix(defaultImage!)}`
     }
   />
