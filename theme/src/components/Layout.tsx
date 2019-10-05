@@ -49,18 +49,6 @@ const BlogHeader = styled.header`
 
   border-bottom: 0.4rem solid ${({ theme }) => theme.accentColor};
 
-  h1 {
-    font-family: ${({ theme }) => theme.sansSerifFont};
-    font-weight: 300;
-    font-size: 1.5em;
-    margin: 0;
-    text-transform: uppercase;
-
-    a {
-      text-decoration: none;
-    }
-  }
-
   em {
     font-style: normal;
     color: ${({ theme }) => theme.accentColor};
@@ -76,7 +64,7 @@ const BlogHeader = styled.header`
 `
 
 const ArticleHeader = styled(({ backgroundImage, ...props }) => (
-  <header {...props} />
+  <div {...props} />
 ))`
   background-image: url(${props => props.backgroundImage});
   background-size: cover;
@@ -157,12 +145,22 @@ const BlogTitle = styled.div`
   flex: 1;
   padding: 1rem;
 
+  font-family: ${({ theme }) => theme.sansSerifFont};
+  font-weight: 300;
+  font-size: 1.5em;
+  margin: 0;
+  text-transform: uppercase;
+
+  a {
+    text-decoration: none;
+  }
+
   @media (max-width: 45rem) {
     padding-bottom: 0.4em;
   }
 `
 
-const PageTitle = styled.h2`
+const PageTitle = styled.h1`
   font-family: ${({ theme }) => theme.sansSerifFont};
   color: ${({ theme }) => theme.titleTextColor};
   font-size: 2.2em;
@@ -194,7 +192,7 @@ const Body = styled.div`
   }
 `
 
-const Content = styled.div`
+const Content = styled.article`
   width: 100%;
   max-width: calc(100% + 2em - 3em);
 
@@ -207,7 +205,7 @@ const ReadingTime = styled.span`
   white-space: nowrap;
 `
 
-const FooterContainer = styled.div`
+const FooterContainer = styled.footer`
   margin: 0;
   color: ${({ theme }) => theme.lightTextColor};
   font-size: 0.8em;
@@ -281,10 +279,8 @@ export const Layout: FC<Props> = ({
                 <style>{'body { padding: 0; margin: 0 }'}</style>
               </Helmet>
               <BlogHeader>
-                <BlogTitle>
-                  <h1>
-                    <Link to="/">{blogTitle}</Link>
-                  </h1>
+                <BlogTitle className="site-title">
+                  <Link to="/">{blogTitle}</Link>
                 </BlogTitle>
                 <Menu isHome={isHome}>
                   <MenuItems />

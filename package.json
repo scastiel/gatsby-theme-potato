@@ -3,7 +3,8 @@
   "version": "independent",
   "workspaces": [
     "theme",
-    "demo"
+    "demo",
+    "tests"
   ],
   "devDependencies": {
     "tslint": "^5.20.0",
