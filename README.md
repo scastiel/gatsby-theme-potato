@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/scastiel/gatsby-theme-potato.svg?branch=master)](https://travis-ci.org/scastiel/gatsby-theme-potato)
+
 This repository contains:
 
 - [🥔A Potato Theme for Gatsby](https://github.com/scastiel/gatsby-theme-potato/tree/master/theme)
