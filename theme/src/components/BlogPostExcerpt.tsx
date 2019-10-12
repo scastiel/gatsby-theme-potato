@@ -1,6 +1,7 @@
 import { Link } from 'gatsby'
 import React, { FC } from 'react'
 import styled from 'styled-components'
+import { Theme } from '../theme'
 import { AllPostsQuery_allMarkdownRemark_edges_node } from '../types/AllPostsQuery'
 import { renderDate } from '../utils'
 import CategoryLink from './CategoryLink'
@@ -11,8 +12,8 @@ const Excerpt = styled.article`
 `
 
 const Title = styled.h2`
-  font-family: ${({ theme }) => theme.sansSerifFont};
-  color: ${({ theme }) => theme.titleTextColor};
+  font-family: ${({ theme }: { theme: Theme }) => theme.sansSerifFont};
+  color: ${({ theme }: { theme: Theme }) => theme.titleTextColor};
   font-size: 1.5rem;
   font-weight: 700;
   margin-top: 2rem;
@@ -21,14 +22,15 @@ const Title = styled.h2`
   a {
     color: inherit;
     text-decoration: underline;
-    text-decoration-color: ${({ theme }) => theme.accentColor};
+    text-decoration-color: ${({ theme }: { theme: Theme }) =>
+      theme.accentColor};
   }
 `
 
 const Infos = styled.div`
-  font-family: ${({ theme }) => theme.sansSerifFont};
+  font-family: ${({ theme }: { theme: Theme }) => theme.sansSerifFont};
   font-size: 0.8em;
-  color: ${({ theme }) => theme.lightTextColor};
+  color: ${({ theme }: { theme: Theme }) => theme.lightTextColor};
   margin-top: 0.5rem;
 
   a {
@@ -42,7 +44,7 @@ const Content = styled.div`
 
 const ReadMoreLink = styled(Link)`
   font-style: italic;
-  color: ${({ theme }) => theme.linkTextColor};
+  color: ${({ theme }: { theme: Theme }) => theme.linkTextColor};
 `
 
 const ReadingTime = styled.span`
@@ -58,7 +60,7 @@ const BlogPostExcerpt: FC<Props> = ({ post }) => {
     <Excerpt>
       <header>
         <Title>
-          <Link to={`/${post.fields!.slug}`}>{post.frontmatter!.title}</Link>
+          <Link to={post.fields!.slug!}>{post.frontmatter!.title}</Link>
         </Title>
         <Infos>
           Posted in <CategoryLink category={post.frontmatter!.category!} /> on{' '}
@@ -70,9 +72,7 @@ const BlogPostExcerpt: FC<Props> = ({ post }) => {
       <Content>
         <p>
           {post.excerpt}{' '}
-          <ReadMoreLink to={`/${post.fields!.slug}`}>
-            Continue reading…
-          </ReadMoreLink>
+          <ReadMoreLink to={post.fields!.slug!}>Continue reading…</ReadMoreLink>
         </p>
       </Content>
     </Excerpt>

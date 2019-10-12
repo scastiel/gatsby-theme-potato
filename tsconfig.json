@@ -1,11 +1,14 @@
 {
   "compilerOptions": {
+    "target": "esnext",
     "jsx": "react",
     "allowSyntheticDefaultImports": true,
     "noImplicitAny": true,
     "strictNullChecks": true,
+    "moduleResolution": "node",
     "sourceMap": true,
     "declaration": true,
-    "declarationMap": true
+    "declarationMap": true,
+    "types": ["react", "node"]
   }
 }

@@ -25,8 +25,10 @@ const LangTemplate: FC<Props> = ({
   }
 }) => {
   const posts = edges.map(edge => edge.node)
+  const title = getTitle(lang)
   return (
-    <Layout url={uri} title={getTitle(lang)} displayPageTitle>
+    <Layout url={uri} title={title}>
+      <h1>{title}</h1>
       {posts.map(post => (
         <BlogPostExcerpt key={post.id} post={post} />
       ))}

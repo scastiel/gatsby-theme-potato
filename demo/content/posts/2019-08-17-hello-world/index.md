@@ -10,12 +10,11 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam tincidunt volutp
 
 Duis ante lectus, luctus at libero blandit, tempor consequat augue. Nulla ultrices ornare mauris, vel consectetur quam laoreet id. In mi lacus, consequat aliquet laoreet in, tincidunt ac nunc. Etiam venenatis molestie lorem. Curabitur commodo tristique efficitur.
 
-<figure>
-  <img src="./coffee.jpg" alt="Cup of coffee">
-  <figcaption>
-    Photo by <a href="https://unsplash.com/@itsdavo?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">David Mao</a> on <a href="https://unsplash.com/search/photos/sleep?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
-  <figcaption>
-</figure>
+<div class="inset-right-image">
+
+![Cup of coffee](./coffee.jpg 'Photo by David Mao')
+
+</div>
 
 Proin vitae dolor nunc. Sed imperdiet eros sed lobortis semper. Vivamus vitae dolor neque. Nullam fermentum molestie odio. Etiam quis blandit purus, et tristique enim. Sed a sapien quis diam sagittis semper a et mi. Nulla euismod cursus lacus eget aliquet. Vestibulum ac imperdiet orci, eu egestas libero. Aliquam erat volutpat. Donec auctor eget sapien in tincidunt. Cras pulvinar, turpis nec volutpat feugiat, mi odio sagittis turpis, consequat sagittis nisi urna sed lacus. Donec cursus ac dui eu hendrerit. Donec non dictum sem. Curabitur vitae diam turpis. Phasellus id mi interdum, accumsan tellus quis, consequat elit.
 

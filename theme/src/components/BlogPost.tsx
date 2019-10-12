@@ -2,8 +2,10 @@ import 'prismjs/plugins/line-numbers/prism-line-numbers.css'
 import 'prismjs/themes/prism-tomorrow.css'
 import React, { FC } from 'react'
 import styled from 'styled-components'
+import { Theme } from '../theme'
 import { PostQuery_markdownRemark } from '../types/PostQuery'
 import PostFooter from './PostFooter'
+import Separator from './Separator'
 
 const Content = styled.div`
   line-height: 1.6em;
@@ -29,7 +31,7 @@ const Content = styled.div`
   h3,
   h4,
   h5 {
-    font-family: ${({ theme }) => theme.sansSerifFont};
+    font-family: ${({ theme }: { theme: Theme }) => theme.sansSerifFont};
   }
 
   h2 {
@@ -40,7 +42,7 @@ const Content = styled.div`
     font-style: italic;
     line-height: 1.7em;
     font-size: 1.2em;
-    color: ${({ theme }) => theme.lightTextColor};
+    color: ${({ theme }: { theme: Theme }) => theme.lightTextColor};
   }
 
   figcaption {
@@ -72,7 +74,7 @@ const Content = styled.div`
   h2 code,
   h3 code {
     background-color: transparent !important;
-    color: ${({ theme }) => theme.textColor} !important;
+    color: ${({ theme }: { theme: Theme }) => theme.textColor} !important;
     font-size: 0.95em !important;
     padding: 0 !important;
   }
@@ -90,20 +92,47 @@ const Content = styled.div`
 
     &:before {
       content: '* * *';
-      color: ${({ theme }) => theme.separatorColor};
+      color: ${({ theme }: { theme: Theme }) => theme.separatorColor};
     }
   }
 
-  .inset-right {
-    font-family: ${({ theme }) => theme.sansSerifFont};
-    font-size: 0.9em;
-    line-height: 1.3em;
-    padding: 1.3em;
-    background-color: ${({ theme }) => theme.lightAccentColor};
+  .inset-right,
+  .inset-right-image {
+    width: 100%;
     max-width: 25rem;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 1rem;
+    padding: 1.3em;
+
+    &.inset-right-image {
+      figure {
+        margin: 0;
+      }
+    }
+
+    &.inset-right {
+      font-family: ${({ theme }: { theme: Theme }) => theme.sansSerifFont};
+      font-size: 0.9em;
+      line-height: 1.3em;
+      background-color: ${({ theme }: { theme: Theme }) =>
+        theme.lightAccentColor};
+
+      p {
+        margin: 0;
+      }
+
+      ul {
+        margin: 0;
+        padding-left: 1.5em;
+      }
+
+      h2 {
+        margin-top: 0;
+        text-align: left;
+        font-size: 1.2em;
+      }
+    }
 
     @media (min-width: 45rem) {
       margin-left: 2em !important;
@@ -119,32 +148,11 @@ const Content = styled.div`
     @media (min-width: 60rem) {
       margin-right: -8rem;
     }
-
-    p {
-      margin: 0;
-    }
-
-    ul {
-      margin: 0;
-      padding-left: 1.5em;
-    }
-
-    h2 {
-      margin-top: 0;
-      text-align: left;
-      font-size: 1.2em;
-    }
   }
 `
 
-const Separator = styled.hr`
-  border-style: none;
-  border-bottom: 1px dotted ${({ theme }) => theme.separatorColor};
-  margin-top: 5em;
-`
-
-const ArticleFooter = styled.div`
-  font-family: ${({ theme }) => theme.sansSerifFont};
+const PostFooterContainer = styled.div`
+  font-family: ${({ theme }: { theme: Theme }) => theme.sansSerifFont};
 `
 
 export interface Props {
@@ -157,9 +165,9 @@ const BlogPost: FC<Props> = ({ post, siteUrl }) => (
     <article>
       <Content dangerouslySetInnerHTML={{ __html: post.html! }} />
       <Separator />
-      <ArticleFooter>
+      <PostFooterContainer>
         <PostFooter siteUrl={siteUrl} post={post} />
-      </ArticleFooter>
+      </PostFooterContainer>
     </article>
   </>
 )

@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Theme } from '../settings'
+import { Theme } from '../theme'
 
 const hiddenSidebarStyle = (theme: Theme) => `
   position: fixed;

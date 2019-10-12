@@ -1,6 +1,7 @@
 import { graphql } from 'gatsby'
 import React, { FC } from 'react'
 import BlogPost from '../components/BlogPost'
+import BlogPostHeader from '../components/BlogPostHeader'
 import { Layout } from '../components/Layout'
 import { PostQuery } from '../types/PostQuery'
 
@@ -14,16 +15,10 @@ const BlogPostTemplate: FC<Props> = ({
   return (
     <Layout
       title={post!.frontmatter!.title!}
-      slug={post!.fields!.slug!}
+      url={post!.fields!.slug!}
       description={post!.excerpt!}
       lang={post!.frontmatter!.lang!}
-      category={post!.frontmatter!.category!}
-      date={post!.frontmatter!.date!}
-      displayTitle={true}
-      coverUrl={
-        post!.frontmatter!.cover! && post!.frontmatter!.cover!.publicURL!
-      }
-      readingTime={post!.fields!.readingTime!.text!}
+      header={<BlogPostHeader post={post!} />}
     >
       <BlogPost post={post!} siteUrl={site!.siteMetadata!.siteUrl!} />
     </Layout>

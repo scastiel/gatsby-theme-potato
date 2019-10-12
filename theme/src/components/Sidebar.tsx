@@ -62,11 +62,10 @@ const Hamburger = styled.div`
 `
 
 export interface Props {
-  widgets?: ComponentType[]
   hidden: boolean
 }
 
-export const Sidebar: FC<Props> = ({ widgets = [], hidden }) => {
+export const Sidebar: FC<Props> = ({ hidden }) => {
   return (
     <>
       <Trigger display={hidden}>

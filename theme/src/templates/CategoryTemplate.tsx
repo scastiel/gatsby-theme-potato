@@ -21,8 +21,10 @@ const CategoryTemplate: FC<Props> = ({
   }
 }) => {
   const posts = edges.map(edge => edge.node)
+  const title = getTitle(category)
   return (
-    <Layout url={uri} title={getTitle(category)} displayPageTitle>
+    <Layout url={uri} title={title}>
+      <h1>{title}</h1>
       {posts.map(post => (
         <BlogPostExcerpt key={post.id} post={post} />
       ))}
