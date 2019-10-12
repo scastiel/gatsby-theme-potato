@@ -1,11 +1,16 @@
 import React, { FC } from 'react'
 import styled from 'styled-components'
+import { Theme } from '../theme'
 
 const getStyledIcon = (comp: any) => styled(comp)`
   display: inline-block;
   margin: 0 0.2em;
   width: 1em;
-  fill: ${({ theme }) => theme.lightTextColor};
+  fill: ${({ theme }: { theme: Theme }) => theme.lightTextColor};
+
+  @media (prefers-color-scheme: dark) {
+    fill: ${({ theme }: { theme: Theme }) => theme.darkLightTextColor};
+  }
 
   :hover {
     opacity: 1;

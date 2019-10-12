@@ -2,22 +2,25 @@ import React, { FC, ReactNode } from 'react'
 import { Helmet } from 'react-helmet'
 import styled, { ThemeProvider } from 'styled-components'
 import useSiteMetadata from '../queries/useSiteMetadata'
-import siteTheme from '../theme'
+import siteTheme, { Theme } from '../theme'
 import BlogHeader from './BlogHeader'
 import Footer from './Footer'
 import Sidebar from './Sidebar'
 
-const Container = styled.div`
-  background-color: ${({ theme }) => theme.backgroundColor};
-`
-
 const StyledLayout = styled.div`
+  min-height: 100vh;
   box-sizing: border-box;
   width: 100%;
   font-family: ${({ theme }) => theme.serifFont};
   letter-spacing: -0.2px;
   font-size: calc(18px + (24 - 20) * (100vw - 800px) / (800-400));
   color: ${({ theme }) => theme.textColor};
+  background-color: ${({ theme }) => theme.backgroundColor};
+
+  @media (prefers-color-scheme: dark) {
+    color: ${({ theme }) => theme.darkTextColor};
+    background-color: ${({ theme }) => theme.darkBackgroundColor};
+  }
 
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
@@ -30,6 +33,10 @@ const StyledLayout = styled.div`
 
   a {
     color: ${({ theme }) => theme.linkTextColor};
+
+    @media (prefers-color-scheme: dark) {
+      color: ${({ theme }) => theme.darkLinkTextColor};
+    }
   }
 
   @media (min-width: 45rem) {
@@ -65,6 +72,10 @@ const Content = styled.article`
     font-weight: 700;
     margin-top: 2rem;
     margin-bottom: 0;
+
+    @media (prefers-color-scheme: dark) {
+      color: ${({ theme }) => theme.darkTitleTextColor};
+    }
   }
 
   @media (max-width: 45rem) {
@@ -74,13 +85,19 @@ const Content = styled.article`
 
 const FooterContainer = styled.footer`
   margin: 0;
-  color: ${({ theme }) => theme.lightTextColor};
+  color: ${({ theme }: { theme: Theme }) => theme.lightTextColor};
   font-size: 0.8em;
   margin-top: 5em;
   padding: 0.5em 0;
   border-top: 1px dotted ${({ theme }) => theme.separatorColor};
   text-align: center;
   font-family: ${({ theme }) => theme.sansSerifFont};
+
+  @media (prefers-color-scheme: dark) {
+    color: ${({ theme }: { theme: Theme }) => theme.darkLightTextColor};
+    border-top-color: ${({ theme }: { theme: Theme }) =>
+      theme.darkSeparatorColor};
+  }
 
   a {
     color: inherit;
@@ -113,39 +130,34 @@ export const Layout: FC<Props> = ({
   } = useSiteMetadata()
   return (
     <ThemeProvider theme={siteTheme}>
-      <Container>
-        <StyledLayout>
-          <Helmet>
-            <html lang={lang || siteLang!} />
-            <meta charSet="utf-8" />
-            <title>
-              {title ? `${title} | ` : ''}
-              {blogTitle}
-            </title>
-            <meta
-              name="description"
-              content={description || siteDescription!}
-            />
-            <meta name="canonical" content={siteUrl + (url || '')} />
-            <style>{'body { padding: 0; margin: 0 }'}</style>
-          </Helmet>
-          <BlogHeader
-            blogTitle={blogTitle!}
-            displaySidebar={Boolean(displaySidebar)}
-          ></BlogHeader>
+      <StyledLayout>
+        <Helmet>
+          <html lang={lang || siteLang!} />
+          <meta charSet="utf-8" />
+          <title>
+            {title ? `${title} | ` : ''}
+            {blogTitle}
+          </title>
+          <meta name="description" content={description || siteDescription!} />
+          <meta name="canonical" content={siteUrl + (url || '')} />
+          <style>{'body { padding: 0; margin: 0 }'}</style>
+        </Helmet>
+        <BlogHeader
+          blogTitle={blogTitle!}
+          displaySidebar={Boolean(displaySidebar)}
+        ></BlogHeader>
 
-          {header}
+        {header}
 
-          <Body>
-            <Content>{children}</Content>
-            <Sidebar hidden={!displaySidebar} />
-          </Body>
+        <Body>
+          <Content>{children}</Content>
+          <Sidebar hidden={!displaySidebar} />
+        </Body>
 
-          <FooterContainer>
-            <Footer />
-          </FooterContainer>
-        </StyledLayout>
-      </Container>
+        <FooterContainer>
+          <Footer />
+        </FooterContainer>
+      </StyledLayout>
     </ThemeProvider>
   )
 }
