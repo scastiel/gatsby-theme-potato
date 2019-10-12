@@ -1,5 +1,6 @@
 import React, { FC } from 'react'
 import styled from 'styled-components'
+import { Theme } from '../theme'
 import MenuItems from './MenuItems'
 
 const StyledMenu = styled(({ displaySidebar, ...props }) => <nav {...props} />)`
@@ -16,7 +17,11 @@ const StyledMenu = styled(({ displaySidebar, ...props }) => <nav {...props} />)`
 
     &[aria-current='page'],
     &.current {
-      color: ${({ theme }) => theme.accentColor};
+      color: ${({ theme }: { theme: Theme }) => theme.accentColor};
+
+      @media (prefers-color-scheme: dark) {
+        color: ${({ theme }: { theme: Theme }) => theme.darkAccentColor};
+      }
     }
 
     @media (max-width: 45rem) {

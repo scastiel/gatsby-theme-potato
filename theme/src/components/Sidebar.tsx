@@ -1,5 +1,6 @@
 import React, { Component, ComponentType, FC } from 'react'
 import styled from 'styled-components'
+import { Theme } from '../theme'
 import { SidebarContainer } from './SidebarContainer'
 import SidebarContent from './SidebarContent'
 
@@ -39,7 +40,13 @@ const Trigger = styled(({ display, ...props }) => <div {...props} />)`
   .nav-trigger:checked ~ .sidebar {
     right: 0;
     transition: right 0.2s;
-    box-shadow: 0 0 30px 0 ${({ theme }) => theme.textColor};
+    box-shadow: 0 0 30px 0
+      ${({ theme }: { theme: Theme }) => theme.separatorColor};
+
+    @media (prefers-color-scheme: dark) {
+      box-shadow: 0 0 30px 0
+        ${({ theme }: { theme: Theme }) => theme.darkSeparatorColor};
+    }
   }
 `
 
@@ -48,8 +55,13 @@ const Hamburger = styled.div`
   display: inline-block;
   width: 1.6rem;
   height: 1.3rem;
-  border-top: 0.2rem solid ${({ theme }) => theme.accentColor};
-  border-bottom: 0.2rem solid ${({ theme }) => theme.accentColor};
+  border-top: 0.2rem solid ${({ theme }: { theme: Theme }) => theme.accentColor};
+  border-bottom: 0.2rem solid
+    ${({ theme }: { theme: Theme }) => theme.accentColor};
+
+  @media (prefers-color-scheme: dark) {
+    border-color: ${({ theme }: { theme: Theme }) => theme.darkAccentColor};
+  }
 
   &:before {
     content: '';
@@ -58,6 +70,10 @@ const Hamburger = styled.div`
     left: 0px;
     width: 100%;
     border-top: 0.2rem solid ${({ theme }) => theme.accentColor};
+
+    @media (prefers-color-scheme: dark) {
+      border-color: ${({ theme }: { theme: Theme }) => theme.darkAccentColor};
+    }
   }
 `
 

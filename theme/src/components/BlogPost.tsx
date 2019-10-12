@@ -43,6 +43,10 @@ const Content = styled.div`
     line-height: 1.7em;
     font-size: 1.2em;
     color: ${({ theme }: { theme: Theme }) => theme.lightTextColor};
+
+    @media (prefers-color-scheme: dark) {
+      color: ${({ theme }: { theme: Theme }) => theme.darkLightTextColor};
+    }
   }
 
   figcaption {
@@ -93,6 +97,10 @@ const Content = styled.div`
     &:before {
       content: '* * *';
       color: ${({ theme }: { theme: Theme }) => theme.separatorColor};
+
+      @media (prefers-color-scheme: dark) {
+        color: ${({ theme }: { theme: Theme }) => theme.darkSeparatorColor};
+      }
     }
   }
 

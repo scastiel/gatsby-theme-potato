@@ -1,5 +1,6 @@
 import React, { FC } from 'react'
 import styled from 'styled-components'
+import { Theme } from '../theme'
 
 const Box = styled.div`
   background-color: ${({ theme }) => theme.lightAccentColor};
@@ -23,11 +24,16 @@ const Box = styled.div`
   }
 
   button {
-    background-color: ${({ theme }) => theme.accentColor};
+    background-color: ${({ theme }: { theme: Theme }) => theme.accentColor};
     padding: 0.5em 1em;
     margin-top: 0.5em;
     font-size: 1em;
     border-width: 0;
+
+    @media (prefers-color-scheme: dark) {
+      background-color: ${({ theme }: { theme: Theme }) =>
+        theme.darkAccentColor};
+    }
   }
 `
 

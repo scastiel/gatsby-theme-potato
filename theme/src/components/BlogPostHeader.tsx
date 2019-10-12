@@ -1,5 +1,6 @@
 import React, { FC } from 'react'
 import styled from 'styled-components'
+import { Theme } from '../theme'
 import { PostQuery_markdownRemark } from '../types/PostQuery'
 import { renderDate } from '../utils'
 import CategoryLink from './CategoryLink'
@@ -14,11 +15,16 @@ const HeaderBanner = styled(({ backgroundImage, ...props }) => (
 `
 
 const ArticleTitle = styled.header`
-  background-color: ${({ theme }) => theme.pageHeaderColor};
+  background-color: ${({ theme }: { theme: Theme }) => theme.pageHeaderColor};
   min-height: 20em;
   display: flex;
   flex-direction: column;
   justify-content: center;
+
+  @media (prefers-color-scheme: dark) {
+    background-color: ${({ theme }: { theme: Theme }) =>
+      theme.darkPageHeaderColor};
+  }
 
   & > * {
     width: 100%;
