@@ -96,17 +96,43 @@ const Content = styled.div`
     }
   }
 
-  .inset-right {
-    font-family: ${({ theme }: { theme: Theme }) => theme.sansSerifFont};
-    font-size: 0.9em;
-    line-height: 1.3em;
-    padding: 1.3em;
-    background-color: ${({ theme }: { theme: Theme }) =>
-      theme.lightAccentColor};
+  .inset-right,
+  .inset-right-image {
+    width: 100%;
     max-width: 25rem;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 1rem;
+    padding: 1.3em;
+
+    &.inset-right-image {
+      figure {
+        margin: 0;
+      }
+    }
+
+    &.inset-right {
+      font-family: ${({ theme }: { theme: Theme }) => theme.sansSerifFont};
+      font-size: 0.9em;
+      line-height: 1.3em;
+      background-color: ${({ theme }: { theme: Theme }) =>
+        theme.lightAccentColor};
+
+      p {
+        margin: 0;
+      }
+
+      ul {
+        margin: 0;
+        padding-left: 1.5em;
+      }
+
+      h2 {
+        margin-top: 0;
+        text-align: left;
+        font-size: 1.2em;
+      }
+    }
 
     @media (min-width: 45rem) {
       margin-left: 2em !important;
@@ -121,21 +147,6 @@ const Content = styled.div`
     }
     @media (min-width: 60rem) {
       margin-right: -8rem;
-    }
-
-    p {
-      margin: 0;
-    }
-
-    ul {
-      margin: 0;
-      padding-left: 1.5em;
-    }
-
-    h2 {
-      margin-top: 0;
-      text-align: left;
-      font-size: 1.2em;
     }
   }
 `
