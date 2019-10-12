@@ -15,11 +15,9 @@ const StyledLayout = styled.div`
   letter-spacing: -0.2px;
   font-size: calc(18px + (24 - 20) * (100vw - 800px) / (800-400));
   color: ${({ theme }) => theme.textColor};
-  background-color: ${({ theme }) => theme.backgroundColor};
 
   @media (prefers-color-scheme: dark) {
     color: ${({ theme }) => theme.darkTextColor};
-    background-color: ${({ theme }) => theme.darkBackgroundColor};
   }
 
   -moz-osx-font-smoothing: grayscale;
@@ -140,7 +138,19 @@ export const Layout: FC<Props> = ({
           </title>
           <meta name="description" content={description || siteDescription!} />
           <meta name="canonical" content={siteUrl + (url || '')} />
-          <style>{'body { padding: 0; margin: 0 }'}</style>
+          <style>{`
+            body {
+              padding: 0;
+              margin: 0;
+              background-color: ${siteTheme.backgroundColor};
+            }
+
+            @media (prefers-color-scheme: dark) {
+              body {
+                background-color: ${siteTheme.darkBackgroundColor};
+              }
+            }
+          `}</style>
         </Helmet>
         <BlogHeader
           blogTitle={blogTitle!}
