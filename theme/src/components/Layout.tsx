@@ -1,14 +1,10 @@
-import { Link } from 'gatsby'
-import React, { FC } from 'react'
+import React, { FC, ReactNode } from 'react'
 import { Helmet } from 'react-helmet'
 import styled, { ThemeProvider } from 'styled-components'
-import SiteMetadataQuery from '../queries/SiteMetadataQuery'
+import useSiteMetadata from '../queries/useSiteMetadata'
 import siteTheme from '../theme'
-import { renderDate } from '../utils'
-import CategoryLink from './CategoryLink'
+import BlogHeader from './BlogHeader'
 import Footer from './Footer'
-import LangLink from './LangLink'
-import MenuItems from './MenuItems'
 import Sidebar from './Sidebar'
 
 const Container = styled.div`
@@ -41,140 +37,6 @@ const StyledLayout = styled.div`
   }
 `
 
-const BlogHeader = styled.header`
-  background-size: cover;
-  background-position: center;
-  display: flex;
-  align-items: stretch;
-
-  border-bottom: 0.4rem solid ${({ theme }) => theme.accentColor};
-
-  em {
-    font-style: normal;
-    color: ${({ theme }) => theme.accentColor};
-  }
-
-  a {
-    color: inherit;
-  }
-
-  @media (max-width: 45rem) {
-    flex-direction: column;
-  }
-`
-
-const ArticleHeader = styled(({ backgroundImage, ...props }) => (
-  <div {...props} />
-))`
-  background-image: url(${props => props.backgroundImage});
-  background-size: cover;
-  background-position: center center;
-`
-
-const ArticleTitle = styled.header`
-  background-color: ${({ theme }) => theme.pageHeaderColor};
-  min-height: 20em;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-
-  & > * {
-    width: 100%;
-    max-width: 35rem;
-    margin: 0 auto;
-    text-align: center;
-  }
-
-  h1 {
-    color: white;
-    text-shadow: 0 0 5px black;
-    font-size: 1.8em;
-    padding-top: 1em;
-    padding-bottom: 0.5em;
-    font-weight: 700;
-  }
-
-  @media (max-width: 45rem) {
-    min-height: 0;
-  }
-`
-
-const PageInfos = styled.div`
-  font-family: ${({ theme }) => theme.sansSerifFont};
-  font-size: 0.9em;
-  color: white;
-  text-shadow: 0 0 5px black;
-  padding-bottom: 2em;
-
-  a {
-    color: inherit;
-    text-decoration: none;
-
-    :hover,
-    :active {
-      text-decoration: underline;
-    }
-  }
-`
-
-const Menu = styled(({ isHome, ...props }) => <nav {...props} />)`
-  font-family: ${({ theme }) => theme.sansSerifFont};
-  flex-grow: 0;
-  display: flex;
-  align-items: center;
-  margin-right: ${({ isHome }) => (isHome ? '0.5em' : '3em')};
-  margin-left: 0.5rem;
-
-  a {
-    text-decoration: none;
-    padding: 0.2em 0.5em 0.2em 0.5em;
-
-    &[aria-current='page'],
-    &.current {
-      color: ${({ theme }) => theme.accentColor};
-    }
-
-    @media (max-width: 45rem) {
-      font-size: 0.8em;
-      padding: 0em 0.5em 0.5em 0.5em;
-    }
-  }
-`
-
-const BlogTitle = styled.div`
-  flex: 1;
-  padding: 1rem;
-
-  font-family: ${({ theme }) => theme.sansSerifFont};
-  font-weight: 300;
-  font-size: 1.5em;
-  margin: 0;
-  text-transform: uppercase;
-
-  a {
-    text-decoration: none;
-  }
-
-  @media (max-width: 45rem) {
-    padding-bottom: 0.4em;
-  }
-`
-
-const PageTitle = styled.h1`
-  font-family: ${({ theme }) => theme.sansSerifFont};
-  color: ${({ theme }) => theme.titleTextColor};
-  font-size: 2.2em;
-  font-weight: 700;
-  margin-top: 2rem;
-  margin-bottom: 0;
-
-  a {
-    color: inherit;
-    text-decoration: underline;
-    text-decoration-color: ${({ theme }) => theme.accentColor};
-  }
-`
-
 const Body = styled.div`
   display: flex;
   justify-content: center;
@@ -196,13 +58,18 @@ const Content = styled.article`
   width: 100%;
   max-width: calc(100% + 2em - 3em);
 
+  h1 {
+    font-family: ${({ theme }) => theme.sansSerifFont};
+    color: ${({ theme }) => theme.titleTextColor};
+    font-size: 2.2em;
+    font-weight: 700;
+    margin-top: 2rem;
+    margin-bottom: 0;
+  }
+
   @media (max-width: 45rem) {
     max-width: 100%;
   }
-`
-
-const ReadingTime = styled.span`
-  white-space: nowrap;
 `
 
 const FooterContainer = styled.footer`
@@ -221,99 +88,64 @@ const FooterContainer = styled.footer`
 `
 
 export interface Props {
-  isHome?: boolean
+  displaySidebar?: boolean
   title?: string
-  displayTitle?: boolean
-  displayPageTitle?: boolean
-  slug?: string
-  url?: string
+  url: string
   description?: string
   lang?: string
-  category?: string
-  date?: Date
-  coverUrl?: string
-  readingTime?: string
+  header?: ReactNode
 }
 
 export const Layout: FC<Props> = ({
   children,
-  isHome,
+  displaySidebar,
   title,
-  displayTitle,
-  displayPageTitle,
-  slug,
   url,
   description,
   lang,
-  category,
-  date,
-  coverUrl,
-  readingTime
-}) => (
-  <ThemeProvider theme={siteTheme}>
-    <Container>
-      <StyledLayout>
-        <SiteMetadataQuery>
-          {({
-            title: blogTitle,
-            description: siteDescription,
-            lang: siteLang,
-            siteUrl
-          }) => (
-            <>
-              <Helmet>
-                <html lang={lang || siteLang!} />
-                <meta charSet="utf-8" />
-                <title>
-                  {title ? `${title} | ` : ''}
-                  {blogTitle}
-                </title>
-                <meta
-                  name="description"
-                  content={description || siteDescription!}
-                />
-                <meta
-                  name="canonical"
-                  content={siteUrl + (url || slug || '')}
-                />
-                <style>{'body { padding: 0; margin: 0 }'}</style>
-              </Helmet>
-              <BlogHeader>
-                <BlogTitle className="site-title">
-                  <Link to="/">{blogTitle}</Link>
-                </BlogTitle>
-                <Menu isHome={isHome}>
-                  <MenuItems />
-                </Menu>
-              </BlogHeader>
-            </>
-          )}
-        </SiteMetadataQuery>
+  header
+}) => {
+  const {
+    title: blogTitle,
+    description: siteDescription,
+    lang: siteLang,
+    siteUrl
+  } = useSiteMetadata()
+  return (
+    <ThemeProvider theme={siteTheme}>
+      <Container>
+        <StyledLayout>
+          <Helmet>
+            <html lang={lang || siteLang!} />
+            <meta charSet="utf-8" />
+            <title>
+              {title ? `${title} | ` : ''}
+              {blogTitle}
+            </title>
+            <meta
+              name="description"
+              content={description || siteDescription!}
+            />
+            <meta name="canonical" content={siteUrl + (url || '')} />
+            <style>{'body { padding: 0; margin: 0 }'}</style>
+          </Helmet>
+          <BlogHeader
+            blogTitle={blogTitle!}
+            displaySidebar={Boolean(displaySidebar)}
+          ></BlogHeader>
 
-        {displayTitle && (
-          <ArticleHeader backgroundImage={coverUrl}>
-            <ArticleTitle>
-              <h1>{title}</h1>
-              <PageInfos>
-                {renderDate(date!)} – <CategoryLink category={category!} /> –{' '}
-                <LangLink lang={lang!} /> –{' '}
-                <ReadingTime>{readingTime}</ReadingTime>
-              </PageInfos>
-            </ArticleTitle>
-          </ArticleHeader>
-        )}
+          {header}
 
-        <Body>
-          <Content>
-            {displayPageTitle && <PageTitle>{title}</PageTitle>}
-            {children}
-          </Content>
-          <Sidebar hidden={!isHome} />
-        </Body>
-        <FooterContainer>
-          <Footer />
-        </FooterContainer>
-      </StyledLayout>
-    </Container>
-  </ThemeProvider>
-)
+          <Body>
+            <Content>{children}</Content>
+            <Sidebar hidden={!displaySidebar} />
+          </Body>
+
+          <FooterContainer>
+            <Footer />
+          </FooterContainer>
+        </StyledLayout>
+      </Container>
+    </ThemeProvider>
+  )
+}

@@ -5,14 +5,15 @@ import { Layout } from '../components/Layout'
 import { AllPostsQuery_allMarkdownRemark } from '../types/AllPostsQuery'
 
 export interface Props {
+  uri: string
   data: { allMarkdownRemark: AllPostsQuery_allMarkdownRemark }
 }
 
-const Index: FC<Props> = ({ data: { allMarkdownRemark } }) => {
+const Index: FC<Props> = ({ uri, data: { allMarkdownRemark } }) => {
   const edges = allMarkdownRemark ? allMarkdownRemark.edges : []
   const posts = edges.map(edge => edge.node)
   return (
-    <Layout isHome>
+    <Layout url={uri} displaySidebar>
       {posts.map(post => (
         <BlogPostExcerpt key={post.id} post={post} />
       ))}

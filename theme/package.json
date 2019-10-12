@@ -26,7 +26,8 @@
     "build": "tsc -p tsconfig.json",
     "generate-types": "apollo client:codegen src/types --tagName=graphql --passthroughCustomScalars --target=typescript --outputFlat",
     "typecheck": "tsc --noEmit",
-    "lint": "tslint -p ."
+    "lint": "tslint -p .",
+    "verify": "yarn typecheck && yarn lint"
   },
   "dependencies": {
     "babel-plugin-styled-components": "^1.7.1",
@@ -69,8 +70,7 @@
     "prettier": "^1.14.3",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "styled-components": "^4.3.2",
-    "typescript": "^3.6.3"
+    "styled-components": "^4.3.2"
   },
   "peerDependencies": {
     "gatsby": "^2.13.45",

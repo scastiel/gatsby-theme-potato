@@ -4,11 +4,19 @@
   "workspaces": [
     "theme",
     "demo",
-    "tests"
+    "e2e"
   ],
+  "scripts": {
+    "verify": "yarn workspace demo-gatsby-theme-potato verify && yarn workspace gatsby-theme-potato verify && yarn workspace e2e-gatsby-theme-potato verify",
+    "start": "yarn workspace demo-gatsby-theme-potato start",
+    "wait": "wait-on http://localhost:8000",
+    "test": "yarn workspace e2e-gatsby-theme-potato start"
+  },
   "devDependencies": {
     "tslint": "^5.20.0",
     "tslint-config-prettier": "^1.18.0",
-    "tslint-config-standard": "^8.0.1"
+    "tslint-config-standard": "^8.0.1",
+    "typescript": "^3.6.3",
+    "wait-on": "^3.3.0"
   }
 }
