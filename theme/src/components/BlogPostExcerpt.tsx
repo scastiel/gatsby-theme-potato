@@ -60,7 +60,7 @@ const BlogPostExcerpt: FC<Props> = ({ post }) => {
     <Excerpt>
       <header>
         <Title>
-          <Link to={`/${post.fields!.slug}`}>{post.frontmatter!.title}</Link>
+          <Link to={post.fields!.slug!}>{post.frontmatter!.title}</Link>
         </Title>
         <Infos>
           Posted in <CategoryLink category={post.frontmatter!.category!} /> on{' '}
@@ -72,9 +72,7 @@ const BlogPostExcerpt: FC<Props> = ({ post }) => {
       <Content>
         <p>
           {post.excerpt}{' '}
-          <ReadMoreLink to={`/${post.fields!.slug}`}>
-            Continue reading…
-          </ReadMoreLink>
+          <ReadMoreLink to={post.fields!.slug!}>Continue reading…</ReadMoreLink>
         </p>
       </Content>
     </Excerpt>

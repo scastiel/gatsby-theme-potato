@@ -16,12 +16,7 @@ Ut ultricies consectetur turpis sed tempus. Nulla efficitur ac libero maximus sa
 
 Nullam et suscipit arcu. Vivamus condimentum ligula ac tellus semper mattis. Proin iaculis dolor in augue pharetra, sed blandit nunc bibendum. Praesent tortor risus, consequat nec porttitor eu, pharetra nec arcu. Suspendisse nisi nulla, cursus a interdum quis, auctor vitae eros. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
 
-<figure>
-  <img src="./metro.jpg" alt="Metro">
-  <figcaption>
-    Photo by <a href="https://unsplash.com/@corey_lyfe">Corey Agopian</a>.
-  <figcaption>
-</figure>
+![Metro](./metro.jpg 'Photo by Corey Agopian')
 
 Aenean finibus risus feugiat, bibendum ante ac, ornare urna. Pellentesque in sodales dolor. Vivamus at augue libero. Fusce viverra bibendum orci sit amet mattis. Cras consequat, turpis quis dignissim tempor, nulla mauris ultrices sem, id porttitor felis nisi mattis tellus. Integer cursus pharetra urna, imperdiet ornare nulla placerat gravida. Nulla hendrerit neque id porta dictum. Pellentesque mollis leo non cursus mattis.
 
