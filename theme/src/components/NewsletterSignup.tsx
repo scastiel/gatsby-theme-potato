@@ -29,11 +29,6 @@ const Box = styled.div`
     margin-top: 0.5em;
     font-size: 1em;
     border-width: 0;
-
-    @media (prefers-color-scheme: dark) {
-      background-color: ${({ theme }: { theme: Theme }) =>
-        theme.darkAccentColor};
-    }
   }
 `
 

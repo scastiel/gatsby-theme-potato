@@ -11,10 +11,6 @@ const hiddenSidebarStyle = (theme: Theme) => `
   width: 17rem;
   background-color: ${theme.backgroundColor};
   border-left-style: none;
-
-  @media (prefers-color-scheme: dark) {
-    background-color: ${theme.darkBackgroundColor};
-  }
 `
 
 export const SidebarContainer = styled(({ theme, hidden, ...props }) => (
@@ -31,12 +27,6 @@ export const SidebarContainer = styled(({ theme, hidden, ...props }) => (
   margin-left: 3em;
   padding: 1em;
   text-align: center;
-
-  @media (prefers-color-scheme: dark) {
-    background-color: ${({ theme }) => theme.darkBackgroundColor};
-    border-left-color: ${({ theme }: { theme: Theme }) =>
-      theme.darkSeparatorColor};
-  }
 
   ${({ theme, hidden }) => hidden && hiddenSidebarStyle(theme)};
 

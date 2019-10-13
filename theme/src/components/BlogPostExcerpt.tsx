@@ -19,20 +19,11 @@ const Title = styled.h2`
   margin-top: 2rem;
   margin-bottom: 0;
 
-  @media (prefers-color-scheme: dark) {
-    color: ${({ theme }: { theme: Theme }) => theme.darkTitleTextColor};
-  }
-
   a {
     color: inherit;
     text-decoration: underline;
     text-decoration-color: ${({ theme }: { theme: Theme }) =>
       theme.accentColor};
-
-    @media (prefers-color-scheme: dark) {
-      text-decoration-color: ${({ theme }: { theme: Theme }) =>
-        theme.darkAccentColor};
-    }
   }
 `
 
@@ -41,10 +32,6 @@ const Infos = styled.div`
   font-size: 0.8em;
   color: ${({ theme }: { theme: Theme }) => theme.lightTextColor};
   margin-top: 0.5rem;
-
-  @media (prefers-color-scheme: dark) {
-    color: ${({ theme }: { theme: Theme }) => theme.darkLightTextColor};
-  }
 
   a {
     color: inherit;

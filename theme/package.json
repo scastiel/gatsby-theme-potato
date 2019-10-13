@@ -50,7 +50,8 @@
     "gatsby-transformer-yaml": "^2.1.1",
     "prismjs": "^1.15.0",
     "react-helmet": "^6.0.0-beta",
-    "react-side-effect": "^2.0.0"
+    "react-side-effect": "^2.0.0",
+    "use-theme": "^0.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.6.0",

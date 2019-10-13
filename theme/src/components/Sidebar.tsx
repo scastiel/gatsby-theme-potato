@@ -42,11 +42,6 @@ const Trigger = styled(({ display, ...props }) => <div {...props} />)`
     transition: right 0.2s;
     box-shadow: 0 0 30px 0
       ${({ theme }: { theme: Theme }) => theme.separatorColor};
-
-    @media (prefers-color-scheme: dark) {
-      box-shadow: 0 0 30px 0
-        ${({ theme }: { theme: Theme }) => theme.darkSeparatorColor};
-    }
   }
 `
 
@@ -59,10 +54,6 @@ const Hamburger = styled.div`
   border-bottom: 0.2rem solid
     ${({ theme }: { theme: Theme }) => theme.accentColor};
 
-  @media (prefers-color-scheme: dark) {
-    border-color: ${({ theme }: { theme: Theme }) => theme.darkAccentColor};
-  }
-
   &:before {
     content: '';
     position: absolute;
@@ -70,10 +61,6 @@ const Hamburger = styled.div`
     left: 0px;
     width: 100%;
     border-top: 0.2rem solid ${({ theme }) => theme.accentColor};
-
-    @media (prefers-color-scheme: dark) {
-      border-color: ${({ theme }: { theme: Theme }) => theme.darkAccentColor};
-    }
   }
 `
 

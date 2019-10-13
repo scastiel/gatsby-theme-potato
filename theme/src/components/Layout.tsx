@@ -1,8 +1,9 @@
-import React, { FC, ReactNode } from 'react'
+import React, { FC, ReactNode, useState } from 'react'
 import { Helmet } from 'react-helmet'
-import styled, { ThemeProvider } from 'styled-components'
+import styled, { ThemeProvider as SCThemeProvider } from 'styled-components'
+import { ThemeProvider, useTheme } from 'use-theme'
 import useSiteMetadata from '../queries/useSiteMetadata'
-import siteTheme, { Theme } from '../theme'
+import themes, { Theme } from '../theme'
 import BlogHeader from './BlogHeader'
 import Footer from './Footer'
 import Sidebar from './Sidebar'
@@ -91,12 +92,6 @@ const FooterContainer = styled.footer`
   text-align: center;
   font-family: ${({ theme }) => theme.sansSerifFont};
 
-  @media (prefers-color-scheme: dark) {
-    color: ${({ theme }: { theme: Theme }) => theme.darkLightTextColor};
-    border-top-color: ${({ theme }: { theme: Theme }) =>
-      theme.darkSeparatorColor};
-  }
-
   a {
     color: inherit;
   }
@@ -111,7 +106,7 @@ export interface Props {
   header?: ReactNode
 }
 
-export const Layout: FC<Props> = ({
+const Layout: FC<Props> = ({
   children,
   displaySidebar,
   title,
@@ -126,8 +121,9 @@ export const Layout: FC<Props> = ({
     lang: siteLang,
     siteUrl
   } = useSiteMetadata()
+  const [theme, setTheme] = useTheme()
   return (
-    <ThemeProvider theme={siteTheme}>
+    <SCThemeProvider theme={themes[theme]}>
       <StyledLayout>
         <Helmet>
           <html lang={lang || siteLang!} />
@@ -142,13 +138,7 @@ export const Layout: FC<Props> = ({
             body {
               padding: 0;
               margin: 0;
-              background-color: ${siteTheme.backgroundColor};
-            }
-
-            @media (prefers-color-scheme: dark) {
-              body {
-                background-color: ${siteTheme.darkBackgroundColor};
-              }
+              background-color: ${themes[theme].backgroundColor};
             }
           `}</style>
         </Helmet>
@@ -168,6 +158,13 @@ export const Layout: FC<Props> = ({
           <Footer />
         </FooterContainer>
       </StyledLayout>
-    </ThemeProvider>
+    </SCThemeProvider>
   )
 }
+
+const ThemedLayout: FC<Props> = props => (
+  <ThemeProvider>
+    <Layout {...props} />
+  </ThemeProvider>
+)
+export { ThemedLayout as Layout }
