@@ -4,6 +4,12 @@ module.exports = {
   plugins: [
     `gatsby-plugin-typescript`,
     {
+      resolve: `gatsby-plugin-layout`,
+      options: {
+        component: require.resolve(`./src/components/ThemedProvider.tsx`)
+      }
+    },
+    {
       resolve: `gatsby-plugin-page-creator`,
       options: {
         path: `${__dirname}/src/pages`
