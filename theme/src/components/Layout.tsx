@@ -138,7 +138,7 @@ export interface Props {
   header?: ReactNode
 }
 
-const Layout: FC<Props> = ({
+export const Layout: FC<Props> = ({
   children,
   displaySidebar,
   title,
@@ -193,10 +193,3 @@ const Layout: FC<Props> = ({
     </SCThemeProvider>
   )
 }
-
-const ThemedLayout: FC<Props> = props => (
-  <ThemeProvider>
-    <Layout {...props} />
-  </ThemeProvider>
-)
-export { ThemedLayout as Layout }
