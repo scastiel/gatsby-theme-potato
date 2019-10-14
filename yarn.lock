@@ -12213,10 +12213,10 @@ url@0.11.0, url@^0.11.0:
     punycode "1.3.2"
     querystring "0.2.0"
 
-use-theme@^0.1.1:
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/use-theme/-/use-theme-0.1.1.tgz#778d7bc640c6b70d6adca2d50ab0c629c4ccd1ae"
-  integrity sha512-zVsWFu7TS33VteVCdUXLWr7BtRBK9bD9rFlPGj24mXasF2gfwWaR5LvErIWtjFLNGc9/GYmquLYSbtGWB5liuw==
+use-theme@^0.1.3:
+  version "0.1.3"
+  resolved "https://registry.yarnpkg.com/use-theme/-/use-theme-0.1.3.tgz#337f2db6acba3c2570b26fdcabda5c3a9fc266ab"
+  integrity sha512-MxrwHywrznP7XCkaF457qI+w4dz8T1FIYgfrr8iyKLh/2L1kvMI+7bruMj23++h2jVAlj5JdTdTVp5UC5R729w==
 
 use@^3.1.0:
   version "3.1.1"
