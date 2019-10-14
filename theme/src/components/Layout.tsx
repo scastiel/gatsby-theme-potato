@@ -58,6 +58,16 @@ const StyledLayout = styled.div`
     margin-top: 0.5em;
     font-size: 1em;
     border-width: 0;
+
+    &.link {
+      color: inherit;
+      border-style: none;
+      background-color: transparent;
+      font-size: inherit;
+      text-decoration: underline;
+      cursor: pointer;
+      padding: 0;
+    }
   }
 
   @media (min-width: 45rem) {
