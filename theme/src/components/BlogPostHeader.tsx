@@ -21,11 +21,6 @@ const ArticleTitle = styled.header`
   flex-direction: column;
   justify-content: center;
 
-  @media (prefers-color-scheme: dark) {
-    background-color: ${({ theme }: { theme: Theme }) =>
-      theme.darkPageHeaderColor};
-  }
-
   & > * {
     width: 100%;
     max-width: 35rem;

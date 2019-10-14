@@ -8,10 +8,6 @@ const getStyledIcon = (comp: any) => styled(comp)`
   width: 1em;
   fill: ${({ theme }: { theme: Theme }) => theme.lightTextColor};
 
-  @media (prefers-color-scheme: dark) {
-    fill: ${({ theme }: { theme: Theme }) => theme.darkLightTextColor};
-  }
-
   :hover {
     opacity: 1;
     transition: 0.5s;

@@ -13,18 +13,9 @@ const StyledBlogHeader = styled.header`
   border-bottom: 0.4rem solid
     ${({ theme }: { theme: Theme }) => theme.accentColor};
 
-  @media (prefers-color-scheme: dark) {
-    border-bottom-color: ${({ theme }: { theme: Theme }) =>
-      theme.darkAccentColor};
-  }
-
   em {
     font-style: normal;
     color: ${({ theme }: { theme: Theme }) => theme.accentColor};
-
-    @media (prefers-color-scheme: dark) {
-      color: ${({ theme }: { theme: Theme }) => theme.darkAccentColor};
-    }
   }
 
   a {
