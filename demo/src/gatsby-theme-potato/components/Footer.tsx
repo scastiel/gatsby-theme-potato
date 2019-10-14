@@ -5,11 +5,11 @@ import styled from 'styled-components'
 const LinkButton = styled.button`
   color: inherit;
   border-style: none;
-  background-color: transparent;
+  background-color: transparent !important;
   font-size: inherit;
-  text-decoration: underline;
+  text-decoration: underline !important;
   cursor: pointer;
-  padding: 0;
+  padding: 0 !important;
 `
 
 const ChangeThemeButton: FC = ({ children }) => {

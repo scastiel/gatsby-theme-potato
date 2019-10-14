@@ -38,6 +38,28 @@ const StyledLayout = styled.div`
     }
   }
 
+  input {
+    padding: 0.5em;
+    width: 100%;
+    font-size: 1em;
+    border: 1px solid ${({ theme }: { theme: Theme }) => theme.separatorColor};
+    color: ${({ theme }: { theme: Theme }) => theme.textColor};
+    background-color: ${({ theme }: { theme: Theme }) => theme.backgroundColor};
+
+    &:focus {
+      outline: none;
+      border-color: ${({ theme }: { theme: Theme }) => theme.accentColor};
+    }
+  }
+
+  button {
+    background-color: ${({ theme }: { theme: Theme }) => theme.accentColor};
+    padding: 0.5em 1em;
+    margin-top: 0.5em;
+    font-size: 1em;
+    border-width: 0;
+  }
+
   @media (min-width: 45rem) {
     font-size: 18px;
   }
