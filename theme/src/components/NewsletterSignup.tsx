@@ -3,13 +3,13 @@ import styled from 'styled-components'
 import { Theme } from '../theme'
 
 const Box = styled.div`
-  background-color: ${({ theme }) => theme.lightAccentColor};
+  background-color: var(--lightAccentColor);
   padding: 1em;
   max-width: 18em;
   text-align: center;
 
   * {
-    font-family: ${({ theme }) => theme.sansSerifFont};
+    font-family: var(--sansSerifFont);
     font-size: 1em;
   }
 

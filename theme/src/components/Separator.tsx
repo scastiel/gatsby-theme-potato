@@ -4,7 +4,7 @@ import { Theme } from '../theme'
 const Separator = styled.hr`
   border-style: none;
   border-bottom: 1px dotted
-    ${({ theme }: { theme: Theme }) => theme.separatorColor};
+    var(--separatorColor);
   margin-top: 5em;
 `
 

@@ -6,7 +6,7 @@ const getStyledIcon = (comp: any) => styled(comp)`
   display: inline-block;
   margin: 0 0.2em;
   width: 1em;
-  fill: ${({ theme }: { theme: Theme }) => theme.lightTextColor};
+  fill: var(--lightTextColor);
 
   :hover {
     opacity: 1;

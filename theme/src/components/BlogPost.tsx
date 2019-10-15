@@ -31,7 +31,7 @@ const Content = styled.div`
   h3,
   h4,
   h5 {
-    font-family: ${({ theme }: { theme: Theme }) => theme.sansSerifFont};
+    font-family: var(--sansSerifFont);
   }
 
   h2 {
@@ -42,7 +42,7 @@ const Content = styled.div`
     font-style: italic;
     line-height: 1.7em;
     font-size: 1.2em;
-    color: ${({ theme }: { theme: Theme }) => theme.lightTextColor};
+    color: var(--lightTextColor);
   }
 
   figcaption {
@@ -74,7 +74,7 @@ const Content = styled.div`
   h2 code,
   h3 code {
     background-color: transparent !important;
-    color: ${({ theme }: { theme: Theme }) => theme.textColor} !important;
+    color: var(--textColor) !important;
     font-size: 0.95em !important;
     padding: 0 !important;
   }
@@ -92,7 +92,7 @@ const Content = styled.div`
 
     &:before {
       content: '* * *';
-      color: ${({ theme }: { theme: Theme }) => theme.separatorColor};
+      color: var(--separatorColor);
     }
   }
 
@@ -112,11 +112,10 @@ const Content = styled.div`
     }
 
     &.inset-right {
-      font-family: ${({ theme }: { theme: Theme }) => theme.sansSerifFont};
+      font-family: var(--sansSerifFont);
       font-size: 0.9em;
       line-height: 1.3em;
-      background-color: ${({ theme }: { theme: Theme }) =>
-        theme.lightAccentColor};
+      background-color: var(--lightAccentColor);
 
       p {
         margin: 0;
@@ -152,7 +151,7 @@ const Content = styled.div`
 `
 
 const PostFooterContainer = styled.div`
-  font-family: ${({ theme }: { theme: Theme }) => theme.sansSerifFont};
+  font-family: var(--sansSerifFont);
 `
 
 export interface Props {

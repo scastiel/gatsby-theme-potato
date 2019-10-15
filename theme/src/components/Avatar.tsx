@@ -6,5 +6,5 @@ export const Avatar = styled.img`
   height: 5em;
   border-radius: 50%;
   margin-bottom: 1rem;
-  background-color: ${({ theme }) => theme.accentColor};
+  background-color: var(--accentColor);
 `

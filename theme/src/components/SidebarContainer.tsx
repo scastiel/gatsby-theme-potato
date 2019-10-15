@@ -2,33 +2,32 @@ import React from 'react'
 import styled from 'styled-components'
 import { Theme } from '../theme'
 
-const hiddenSidebarStyle = (theme: Theme) => `
+const hiddenSidebarStyle = `
   position: fixed;
   right: -17rem;
   top: 0;
   bottom: 0;
   overflow-y: auto;
   width: 17rem;
-  background-color: ${theme.backgroundColor};
+  background-color: var(--backgroundColor);
   border-left-style: none;
 `
 
-export const SidebarContainer = styled(({ theme, hidden, ...props }) => (
+export const SidebarContainer = styled(({ hidden, ...props }) => (
   <div {...props} />
 ))`
-  background-color: ${({ theme }) => theme.backgroundColor};
+  background-color: var(--backgroundColor);
   display: flex;
   flex-direction: column;
-  border-left: 1px dotted
-    ${({ theme }: { theme: Theme }) => theme.separatorColor};
+  border-left: 1px dotted var(--separatorColor);
   font-size: 0.8em;
-  font-family: ${({ theme }: { theme: Theme }) => theme.sansSerifFont};
+  font-family: var(--sansSerifFont);
   flex-shrink: 0;
   margin-left: 3em;
   padding: 1em;
   text-align: center;
 
-  ${({ theme, hidden }) => hidden && hiddenSidebarStyle(theme)};
+  ${({ hidden }) => hidden && hiddenSidebarStyle};
 
   @media (max-width: 45rem) {
     ${hiddenSidebarStyle};
