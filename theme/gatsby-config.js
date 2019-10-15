@@ -6,7 +6,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-layout`,
       options: {
-        component: require.resolve(`./src/components/ThemedProvider.tsx`)
+        component: require.resolve(`./src/components/RootLayout.tsx`)
       }
     },
     {
