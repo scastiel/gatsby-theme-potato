@@ -1,7 +1,6 @@
 import React, { FC, ReactNode, useState } from 'react'
 import { Helmet } from 'react-helmet'
 import styled from 'styled-components'
-import { ThemeName, useTheme } from 'use-theme'
 import useSiteMetadata from '../queries/useSiteMetadata'
 import themes from '../theme'
 import BlogHeader from './BlogHeader'
@@ -63,6 +62,10 @@ const StyledLayout = styled.div`
       text-decoration: underline;
       cursor: pointer;
       padding: 0;
+
+      &.active {
+        font-weight: bold;
+      }
     }
   }
 
@@ -149,7 +152,6 @@ export const Layout: FC<Props> = ({
     lang: siteLang,
     siteUrl
   } = useSiteMetadata()
-  const [theme] = useTheme()
 
   const themesCssVars = Object.entries(themes).reduce(
     (acc, [themeName, themeVars]) => ({
@@ -160,7 +162,7 @@ export const Layout: FC<Props> = ({
           .map(([cssVar, value]) => `--${cssVar}: ${value}`)
           .join('; ')
     }),
-    {} as Record<ThemeName, string>
+    {} as Record<'light' | 'dark', string>
   )
 
   return (
@@ -174,12 +176,10 @@ export const Layout: FC<Props> = ({
         </title>
         <meta name="description" content={description || siteDescription!} />
         <meta name="canonical" content={siteUrl + (url || '')} />
-        <body className={theme} />
         <style>{`
             body {
               padding: 0;
               margin: 0;
-              background-color: ${themes[theme].backgroundColor};
             }
 
             body, body.light {
