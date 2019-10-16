@@ -4,7 +4,7 @@ import { Theme } from '../theme'
 import MenuItems from './MenuItems'
 
 const StyledMenu = styled(({ displaySidebar, ...props }) => <nav {...props} />)`
-  font-family: ${({ theme }) => theme.sansSerifFont};
+  font-family: var(--sansSerifFont);
   flex-grow: 0;
   display: flex;
   align-items: center;
@@ -17,7 +17,7 @@ const StyledMenu = styled(({ displaySidebar, ...props }) => <nav {...props} />)`
 
     &[aria-current='page'],
     &.current {
-      color: ${({ theme }: { theme: Theme }) => theme.accentColor};
+      color: var(--accentColor);
     }
 
     @media (max-width: 45rem) {

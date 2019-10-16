@@ -15,7 +15,7 @@ const HeaderBanner = styled(({ backgroundImage, ...props }) => (
 `
 
 const ArticleTitle = styled.header`
-  background-color: ${({ theme }: { theme: Theme }) => theme.pageHeaderColor};
+  background-color: var(--pageHeaderColor);
   min-height: 20em;
   display: flex;
   flex-direction: column;
@@ -43,7 +43,7 @@ const ArticleTitle = styled.header`
 `
 
 const PageInfos = styled.div`
-  font-family: ${({ theme }) => theme.sansSerifFont};
+  font-family: var(--sansSerifFont);
   font-size: 0.9em;
   color: white;
   text-shadow: 0 0 5px black;

@@ -1,9 +1,8 @@
 import React, { FC, ReactNode, useState } from 'react'
 import { Helmet } from 'react-helmet'
-import styled, { ThemeProvider as SCThemeProvider } from 'styled-components'
-import { ThemeProvider, useTheme } from 'use-theme'
+import styled from 'styled-components'
 import useSiteMetadata from '../queries/useSiteMetadata'
-import themes, { Theme } from '../theme'
+import themes from '../theme'
 import BlogHeader from './BlogHeader'
 import Footer from './Footer'
 import Sidebar from './Sidebar'
@@ -12,14 +11,10 @@ const StyledLayout = styled.div`
   min-height: 100vh;
   box-sizing: border-box;
   width: 100%;
-  font-family: ${({ theme }) => theme.serifFont};
+  font-family: var(--serifFont);
   letter-spacing: -0.2px;
   font-size: calc(18px + (24 - 20) * (100vw - 800px) / (800-400));
-  color: ${({ theme }) => theme.textColor};
-
-  @media (prefers-color-scheme: dark) {
-    color: ${({ theme }) => theme.darkTextColor};
-  }
+  color: var(--textColor);
 
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
@@ -31,10 +26,10 @@ const StyledLayout = styled.div`
   }
 
   a {
-    color: ${({ theme }) => theme.linkTextColor};
+    color: var(--linkTextColor);
 
     @media (prefers-color-scheme: dark) {
-      color: ${({ theme }) => theme.darkLinkTextColor};
+      color: var(--darkLinkTextColor);
     }
   }
 
@@ -42,18 +37,18 @@ const StyledLayout = styled.div`
     padding: 0.5em;
     width: 100%;
     font-size: 1em;
-    border: 1px solid ${({ theme }: { theme: Theme }) => theme.separatorColor};
-    color: ${({ theme }: { theme: Theme }) => theme.textColor};
-    background-color: ${({ theme }: { theme: Theme }) => theme.backgroundColor};
+    border: 1px solid var(--separatorColor);
+    color: var(--textColor);
+    background-color: var(--backgroundColor);
 
     &:focus {
       outline: none;
-      border-color: ${({ theme }: { theme: Theme }) => theme.accentColor};
+      border-color: var(--accentColor);
     }
   }
 
   button {
-    background-color: ${({ theme }: { theme: Theme }) => theme.accentColor};
+    background-color: var(--accentColor);
     padding: 0.5em 1em;
     margin-top: 0.5em;
     font-size: 1em;
@@ -67,6 +62,10 @@ const StyledLayout = styled.div`
       text-decoration: underline;
       cursor: pointer;
       padding: 0;
+
+      &.active {
+        font-weight: bold;
+      }
     }
   }
 
@@ -97,15 +96,15 @@ const Content = styled.article`
   max-width: calc(100% + 2em - 3em);
 
   h1 {
-    font-family: ${({ theme }) => theme.sansSerifFont};
-    color: ${({ theme }) => theme.titleTextColor};
+    font-family: var(--sansSerifFont);
+    color: var(--titleTextColor);
     font-size: 2.2em;
     font-weight: 700;
     margin-top: 2rem;
     margin-bottom: 0;
 
     @media (prefers-color-scheme: dark) {
-      color: ${({ theme }) => theme.darkTitleTextColor};
+      color: var(--darkTitleTextColor);
     }
   }
 
@@ -116,13 +115,13 @@ const Content = styled.article`
 
 const FooterContainer = styled.footer`
   margin: 0;
-  color: ${({ theme }: { theme: Theme }) => theme.lightTextColor};
+  color: var(--lightTextColor);
   font-size: 0.8em;
   margin-top: 5em;
   padding: 0.5em 0;
-  border-top: 1px dotted ${({ theme }) => theme.separatorColor};
+  border-top: 1px dotted var(--separatorColor);
   text-align: center;
-  font-family: ${({ theme }) => theme.sansSerifFont};
+  font-family: var(--sansSerifFont);
 
   a {
     color: inherit;
@@ -153,43 +152,72 @@ export const Layout: FC<Props> = ({
     lang: siteLang,
     siteUrl
   } = useSiteMetadata()
-  const [theme, setTheme] = useTheme()
+
+  const themesCssVars = Object.entries(themes).reduce(
+    (acc, [themeName, themeVars]) => ({
+      ...acc,
+      [themeName]:
+        `background-color: ${themeVars.backgroundColor}; ` +
+        Object.entries(themeVars)
+          .map(([cssVar, value]) => `--${cssVar}: ${value}`)
+          .join('; ')
+    }),
+    {} as Record<'light' | 'dark', string>
+  )
+
   return (
-    <SCThemeProvider theme={themes[theme]}>
-      <StyledLayout>
-        <Helmet>
-          <html lang={lang || siteLang!} />
-          <meta charSet="utf-8" />
-          <title>
-            {title ? `${title} | ` : ''}
-            {blogTitle}
-          </title>
-          <meta name="description" content={description || siteDescription!} />
-          <meta name="canonical" content={siteUrl + (url || '')} />
-          <style>{`
+    <StyledLayout>
+      <Helmet>
+        <html lang={lang || siteLang!} />
+        <meta charSet="utf-8" />
+        <title>
+          {title ? `${title} | ` : ''}
+          {blogTitle}
+        </title>
+        <meta name="description" content={description || siteDescription!} />
+        <meta name="canonical" content={siteUrl + (url || '')} />
+        <style>{`
             body {
               padding: 0;
               margin: 0;
-              background-color: ${themes[theme].backgroundColor};
+            }
+
+            body, body.light {
+              ${themesCssVars.light}
+            }
+            
+            body.dark {
+              ${themesCssVars.dark}
+            }
+            
+            @media (prefers-color-scheme: light) {
+              body {
+                ${themesCssVars.light}
+              }
+            }
+            
+            @media (prefers-color-scheme: dark) {
+              body {
+                ${themesCssVars.dark}
+              }
             }
           `}</style>
-        </Helmet>
-        <BlogHeader
-          blogTitle={blogTitle!}
-          displaySidebar={Boolean(displaySidebar)}
-        ></BlogHeader>
+      </Helmet>
+      <BlogHeader
+        blogTitle={blogTitle!}
+        displaySidebar={Boolean(displaySidebar)}
+      ></BlogHeader>
 
-        {header}
+      {header}
 
-        <Body>
-          <Content>{children}</Content>
-          <Sidebar hidden={!displaySidebar} />
-        </Body>
+      <Body>
+        <Content>{children}</Content>
+        <Sidebar hidden={!displaySidebar} />
+      </Body>
 
-        <FooterContainer>
-          <Footer />
-        </FooterContainer>
-      </StyledLayout>
-    </SCThemeProvider>
+      <FooterContainer>
+        <Footer />
+      </FooterContainer>
+    </StyledLayout>
   )
 }

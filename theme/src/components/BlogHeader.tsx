@@ -11,11 +11,11 @@ const StyledBlogHeader = styled.header`
   align-items: stretch;
 
   border-bottom: 0.4rem solid
-    ${({ theme }: { theme: Theme }) => theme.accentColor};
+    var(--accentColor);
 
   em {
     font-style: normal;
-    color: ${({ theme }: { theme: Theme }) => theme.accentColor};
+    color: var(--accentColor);
   }
 
   a {
@@ -31,7 +31,7 @@ const BlogTitle = styled.div`
   flex: 1;
   padding: 1rem;
 
-  font-family: ${({ theme }: { theme: Theme }) => theme.sansSerifFont};
+  font-family: var(--sansSerifFont);
   font-weight: 300;
   font-size: 1.5em;
   margin: 0;
